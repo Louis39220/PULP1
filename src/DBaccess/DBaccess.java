@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
 
-public class DBaccess implements InterfaceDBAccess {
+public class DBaccess implements InterfaceDBaccess {
 
     private Connection connexionDB;
 
