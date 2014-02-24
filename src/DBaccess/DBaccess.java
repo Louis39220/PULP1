@@ -14,8 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
 
-
-public class DBaccess {
+public class DBaccess implements InterfaceDBaccess {
 
     private Connection connexionDB;
 
@@ -28,17 +27,20 @@ public class DBaccess {
 
     /**
      * Cette fonction retourne l'unique instance de la classe
-     * @return 
+     *
+     * @return
      * @throws java.sql.SQLException
      */
-    public static DBaccess getInstance() throws SQLException {
+    @Override
+    public DBaccess getInstance() throws SQLException {
         if (instance == null) {
             instance = new DBaccess();
         }
         return instance;
     }
-    
-    public Player selectPlayer(String id) throws SQLException{
+
+    @Override
+    public Player selectPlayer(String id) throws SQLException {
         connexionDB = ConnexionOracleFactory.openConnection();
         ResultSet rs;
         Player p;
@@ -50,10 +52,11 @@ public class DBaccess {
         rs.close();
         connexionDB.close();
         return p;
-         
+
     }
-    
-    public ResultSet selectAllPlayer() throws SQLException{
+
+    @Override
+    public ResultSet selectAllPlayer() throws SQLException {
         connexionDB = ConnexionOracleFactory.openConnection();
         ResultSet rs;
         try (Statement st = connexionDB.createStatement()) {
@@ -61,10 +64,11 @@ public class DBaccess {
         }
         rs.close();
         connexionDB.close();
-        return rs;   
+        return rs;
     }
-    
-    public boolean insertPlayer(String name, String Surname, Date ddn, int rank) throws SQLException{
+
+    @Override
+    public boolean insertPlayer(String name, String Surname, Date ddn, int rank) throws SQLException {
         boolean res = true;
         connexionDB = ConnexionOracleFactory.openConnection();
         try (PreparedStatement PS = connexionDB.prepareStatement("INSERT INTO player(PLAYERNAME,PLAYERSURNAME,PLAYERDATENAISSANCE,PLAYERRANK) values(?,?,?,?)")) {
@@ -73,16 +77,34 @@ public class DBaccess {
             PS.setDate(3, ddn);
             PS.setInt(4, rank);
             try {
-                PS.executeQuery(); 
-            }
-            catch(SQLException e){
+                PS.executeQuery();
+            } catch (SQLException e) {
                 System.err.println(e.getMessage());
                 PS.cancel();
-                res=false;
+                res = false;
             }
+            PS.close();
             connexionDB.close();
         }
         return res;
     }
-    
+
+    public boolean deletePlayer(String id) throws SQLException {
+        boolean res = true;
+        connexionDB = ConnexionOracleFactory.openConnection();
+        try (PreparedStatement ps = connexionDB.prepareStatement("DELETE FROM player where PLAYERID= ?")) {
+            ps.setString(1, id);
+            try {
+                ps.executeQuery();
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+                ps.cancel();
+                res = false;
+            }
+            ps.close();
+            connexionDB.close();
+        }
+        return res;
+    }
+
 }
