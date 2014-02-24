@@ -11,7 +11,7 @@ public class SceneManager {
     private List<Scene> sences;
     private GameContainer gc;
     
-    public SceneManager(GameContainer gc) throws SlickException {
+    public SceneManager(GameContainer gc) {
         this.gc = gc;
         sences = new ArrayList<>();
     }

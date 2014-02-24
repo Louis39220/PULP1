@@ -43,7 +43,8 @@ public class SceneMenuPrincipal extends Scene implements Serializable {
         if (input.getMouseX() > Ctes.MENUPRINC_X_MATCH && input.getMouseX() < Ctes.MENUPRINC_X_MATCH + btMatch.getWidth() && 
                 input.getMouseY() > Ctes.MENUPRINC_Y_MATCH && input.getMouseY() < Ctes.MENUPRINC_Y_MATCH + btMatch.getHeight()) {
             if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) { //Si on appuie sur bouton match
-                
+                Main.Game.manager.addSence(new SceneMatch());
+                Main.Game.manager.removeSence(this);                
             }
             else { //Si on survol bouton match
                 btQuit = new Image("ressources/menuprincipal/btQuit.png");
@@ -54,7 +55,8 @@ public class SceneMenuPrincipal extends Scene implements Serializable {
         else if (input.getMouseX() > Ctes.MENUPRINC_X_VIP && input.getMouseX() < Ctes.MENUPRINC_X_VIP + btVIP.getWidth() && 
                 input.getMouseY() > Ctes.MENUPRINC_Y_VIP && input.getMouseY() < Ctes.MENUPRINC_Y_VIP + btVIP.getHeight()) {
             if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) { //Si on appuie sur bouton VIP
-                
+                Main.Game.manager.addSence(new SceneVIP());
+                Main.Game.manager.removeSence(this);
             }
             else { //Si on survol bouton VIP
                 btQuit = new Image("ressources/menuprincipal/btQuit.png");
@@ -65,7 +67,7 @@ public class SceneMenuPrincipal extends Scene implements Serializable {
         else if (input.getMouseX() > Ctes.MENUPRINC_X_QUIT && input.getMouseX() < Ctes.MENUPRINC_X_QUIT + btQuit.getWidth() && 
                 input.getMouseY() > Ctes.MENUPRINC_Y_QUIT && input.getMouseY() < Ctes.MENUPRINC_Y_QUIT + btQuit.getHeight()) {
             if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) { //Si on appuie sur bouton quitter
-                //Main.Game.manager.removeAll();
+                Main.Game.manager.removeAll();
                 gc.exit();
             }
             else { //Si on survol bouton quitter
