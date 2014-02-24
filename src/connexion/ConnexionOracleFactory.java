@@ -6,9 +6,12 @@
 
 package connexion;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
+import oracle.jdbc.pool.OracleDataSource;
 
 /**
  *
@@ -17,18 +20,29 @@ import java.sql.SQLException;
 public class ConnexionOracleFactory {
     
           // Attribut privé de gestion de la connexion à la bd Oracle
-  private Connection conn;
+  private static Connection conn;
 
   // Ouvre une connexion stockée dans la variable conn
-  public void openConnection() throws SQLException
+  public static Connection openConnection() throws SQLException
   {
-   String userid = "p01234567";
-   String password = "iut2013";
-   String URL = "jdbc:oracle:thin:@iuta.univ-lyon1.fr:1521:orcl";
-   DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver() );
-   conn = DriverManager.getConnection(URL,userid,password);
-   if(conn != null){System.out.println("Connexion etablie");}
+try {
+    Properties props = new Properties();
+    FileInputStream fichier = new FileInputStream("connexion.properties");
+    props.load(fichier);
+    OracleDataSource ods = new OracleDataSource();
+    ods.setDriverType(props.getProperty("pilote"));
+    ods.setPortNumber(new Integer(props.getProperty("port")).intValue());
+    ods.setServiceName(props.getProperty("service"));
+    ods.setUser(props.getProperty("user"));
+    ods.setPassword(props.getProperty("pwd"));
+    ods.setServerName(props.getProperty("serveur"));
+    return (ods.getConnection());
+} catch (IOException | NumberFormatException | SQLException e) {
+    System.err.println("Erreur lors de la lecture du fichier de configuration pour la connexion");
+        return null;
   }
+  }
+  
   public void closeConnection() throws SQLException
   {
    conn.close();

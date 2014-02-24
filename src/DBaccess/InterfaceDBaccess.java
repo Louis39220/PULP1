@@ -15,7 +15,6 @@ import java.sql.SQLException;
  * @author Louis
  */
 public class InterfaceDBaccess {
-    
 
     
 }
