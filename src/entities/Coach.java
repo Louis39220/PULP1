@@ -1,7 +1,5 @@
 package entities;
 
-import java.util.Date;
-
 /**
  *
  * @author Jérôme
@@ -12,7 +10,7 @@ public class Coach extends VIP
     private Player playerCoached;
     private int reputation;
 
-    public Coach(String coachId, String coachName, String coachSurname, Date coachBirthDate, Player playerCoached, int reputation) {
+    public Coach(String coachId, String coachName, String coachSurname, String coachBirthDate, Player playerCoached, int reputation) {
         super(coachId, coachName, coachSurname, coachBirthDate);
         this.playerCoached = playerCoached;
         this.reputation = reputation;

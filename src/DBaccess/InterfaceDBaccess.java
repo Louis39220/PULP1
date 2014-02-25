@@ -22,11 +22,11 @@ public interface InterfaceDBaccess {
 
     public ResultSet selectAllPlayer() throws SQLException;
 
-    public boolean insertPlayer(String name, String Surname, Date ddn, int rank) throws SQLException;
+  public boolean insertPlayer(String name, String Surname, String ddn, int rank) throws SQLException;
 
     public boolean deletePlayer(String id) throws SQLException;
     
-    public boolean updatePlayer(int id, String name,String surname, Date ddn, int rank) throws SQLException;
+    public boolean updatePlayer(int id, String name,String surname, String ddn, int rank) throws SQLException;
     
     
     

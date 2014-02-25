@@ -5,21 +5,21 @@
  */
 package DBaccess;
 
-import connexion.ConnexionOracleFactory;
+
+import connexion.ConnexionMysqlFactory;
 import entities.Player;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Date;
 
 public class DBaccess implements InterfaceDBaccess {
 
     private Connection connexionDB;
 
-    private DBaccess() throws SQLException {
-        connexionDB = ConnexionOracleFactory.openConnection();
+    public DBaccess() throws SQLException {
+        connexionDB = ConnexionMysqlFactory.openConnection();
     }
 
     // L'unique instance de la classe
@@ -41,7 +41,7 @@ public class DBaccess implements InterfaceDBaccess {
 
     @Override
     public Player selectPlayer(String id) throws SQLException {
-        connexionDB = ConnexionOracleFactory.openConnection();
+        connexionDB = ConnexionMysqlFactory.openConnection();
         ResultSet rs;
         Player p;
         try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM player WHERE playerId= ?")) {
@@ -57,7 +57,7 @@ public class DBaccess implements InterfaceDBaccess {
 
     @Override
     public ResultSet selectAllPlayer() throws SQLException {
-        connexionDB = ConnexionOracleFactory.openConnection();
+        connexionDB = ConnexionMysqlFactory.openConnection();
         ResultSet rs;
         try (Statement st = connexionDB.createStatement()) {
             rs = st.executeQuery("SELECT * FROM player");
@@ -68,16 +68,16 @@ public class DBaccess implements InterfaceDBaccess {
     }
 
     @Override
-    public boolean insertPlayer(String name, String Surname, Date ddn, int rank) throws SQLException {
+    public boolean insertPlayer(String name, String Surname, String ddn, int rank) throws SQLException {
         boolean res = true;
-        connexionDB = ConnexionOracleFactory.openConnection();
+        connexionDB = ConnexionMysqlFactory.openConnection();
         try (PreparedStatement PS = connexionDB.prepareStatement("INSERT INTO player(PLAYERNAME,PLAYERSURNAME,PLAYERDATENAISSANCE,PLAYERRANK) values(?,?,?,?)")) {
             PS.setString(1, name);
             PS.setString(2, Surname);
-            PS.setDate(3, ddn);
+            PS.setString(3, ddn);
             PS.setInt(4, rank);
             try {
-                PS.executeQuery();
+                PS.executeUpdate();
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
                 PS.cancel();
@@ -92,11 +92,11 @@ public class DBaccess implements InterfaceDBaccess {
     @Override
     public boolean deletePlayer(String id) throws SQLException {
         boolean res = true;
-        connexionDB = ConnexionOracleFactory.openConnection();
+        connexionDB = ConnexionMysqlFactory.openConnection();
         try (PreparedStatement ps = connexionDB.prepareStatement("DELETE FROM player where PLAYERID= ?")) {
             ps.setString(1, id);
             try {
-                ps.executeQuery();
+                ps.executeUpdate();
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
                 ps.cancel();
@@ -119,16 +119,16 @@ public class DBaccess implements InterfaceDBaccess {
      * @throws SQLException
      */
     @Override
-    public boolean updatePlayer(int id, String name,String surname, Date ddn, int rank) throws SQLException {
+    public boolean updatePlayer(int id, String name,String surname, String ddn, int rank) throws SQLException {
         boolean res = true;
-        connexionDB = ConnexionOracleFactory.openConnection();
+        connexionDB = ConnexionMysqlFactory.openConnection();
         try (PreparedStatement ps = connexionDB.prepareStatement("UPDATE player SET playername=? playersurname=? playerdatenaissance=? playerrank=? where id=?")){
             ps.setString(1, name);
             ps.setString(2, surname);
-            ps.setDate(3, ddn);
+            ps.setString(3, ddn);
             ps.setInt(4, rank);
             try{
-                ps.executeQuery();
+                ps.executeUpdate();
               } catch (SQLException e) {
                 System.err.println(e.getMessage());
                 ps.cancel();
