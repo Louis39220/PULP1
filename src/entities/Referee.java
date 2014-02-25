@@ -12,8 +12,8 @@ public class Referee extends VIP
     private int nbMatch;
     private String category;
 
-    public Referee(int nbMatch, String category, String vipId, String vipName, String vipSurname, Date vipBirthDate) {
-        super(vipId, vipName, vipSurname, vipBirthDate);
+    public Referee( String refId, String refName, String refSurname, Date refBirthDate, int nbMatch, String category) {
+        super(refId, refName, refSurname, refBirthDate);
         this.nbMatch = nbMatch;
         this.category = category;
     }
@@ -36,7 +36,7 @@ public class Referee extends VIP
 
     @Override
     public String toString() {
-        return super.toString() + "Referee{" + "nbMatch=" + nbMatch + ", category=" + category + '}';
+        return  "Referee{" +super.toString() + "\n nbMatch=" + nbMatch + "\n category=" + category + '}';
     }
     
     
