@@ -1,6 +1,6 @@
 
-import DBaccess.DBaccess;
-import java.sql.Date;
+import DAO.DaoFactory;
+import DAO.PlayerDaoImpl;
 import java.sql.SQLException;
 
 /*
@@ -15,16 +15,13 @@ import java.sql.SQLException;
 public class TestDB {
 
     public static void main(String[] args) throws SQLException {
+        PlayerDaoImpl pdao =  DaoFactory.getPlayerDao();
         try {
-            Date ddn;
-            
-            DBaccess dba = new DBaccess();
-            boolean insertPlayer = dba.insertPlayer("Louis", "Favret","08/10/1994" , 15);
+            pdao.insertPlayer("Louis", "FAVRET", "08/10/1994", 14);
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.println("Erreur lors de l'insertion:" + e.getMessage());
         }
-            
-        
+
     }
 
 }
