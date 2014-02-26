@@ -107,6 +107,7 @@ public class CoachDaoImpl implements CoachDao{
      * @param reput
      * @return
      * @throws SQLException
+     * @throws java.io.IOException
      */
     @Override
     public boolean updateCoach(int id, String name, String surname, String ddn, int pCoached, int reput) throws SQLException, IOException {
