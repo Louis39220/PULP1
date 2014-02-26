@@ -3,7 +3,10 @@ package TestDB;
 
 import DAO.DaoFactory;
 import DAO.PlayerDaoImpl;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,14 +19,14 @@ import java.sql.SQLException;
  */
 public class TestDB {
 
-    public static void main(String[] args) throws SQLException {
+    @SuppressWarnings("empty-statement")
+    public static void main(String[] args) throws SQLException, IOException {
         PlayerDaoImpl pdao =  DaoFactory.getPlayerDao();
         try {
             pdao.insertPlayer("Louis", "FAVRET", "08/10/1994", 14);
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.err.println("Erreur lors de l'insertion:" + e.getMessage());
         }
-
     }
 
 }

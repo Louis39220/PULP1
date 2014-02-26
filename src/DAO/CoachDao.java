@@ -6,6 +6,7 @@
 package DAO;
 
 import entities.Coach;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -15,14 +16,14 @@ import java.sql.SQLException;
  */
 public interface CoachDao {
 
-    public Coach selectCoach(int id) throws SQLException;
+    public Coach selectCoach(int id) throws SQLException, IOException;
 
-    public ResultSet selectAllCoach() throws SQLException;
+    public ResultSet selectAllCoach() throws SQLException, IOException;
 
-    public boolean insertCoach(String name, String Surname, String ddn, int pCoached, int reput) throws SQLException;
+    public boolean insertCoach(String name, String Surname, String ddn, int pCoached, int reput) throws SQLException, IOException;
 
-    public boolean deleteCoach(int id) throws SQLException;
+    public boolean deleteCoach(int id) throws SQLException, IOException;
 
-    public boolean updateCoach(int id, String name, String surname, String ddn, int pCoached, int reput) throws SQLException;
+    public boolean updateCoach(int id, String name, String surname, String ddn, int pCoached, int reput) throws SQLException, IOException;
 
 }
