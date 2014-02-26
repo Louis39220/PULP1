@@ -4,6 +4,10 @@
  */
 package InterfaceGraphique;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ludovic
@@ -15,6 +19,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
+        setVisible(true);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension d = tk.getScreenSize();
+        setLocation((d.width-this.getWidth()) / 2, (d.height-this.getHeight()) / 2);
     }
 
     /**
@@ -26,33 +34,212 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        gestionMatchs = new javax.swing.JDialog();
+        barreOutilsMatch = new javax.swing.JMenuBar();
+        menuFichierMatch = new javax.swing.JMenu();
+        menuQuitterMatch = new javax.swing.JMenuItem();
+        gestionVIP = new javax.swing.JDialog();
+        barreOutilsVIP = new javax.swing.JMenuBar();
+        menuFichierVIP = new javax.swing.JMenu();
+        menuQuitterVIP = new javax.swing.JMenuItem();
+        lbAccueil = new javax.swing.JLabel();
+        btMatchs = new javax.swing.JButton();
+        btVIP = new javax.swing.JButton();
+        barreOutilsPrincipal = new javax.swing.JMenuBar();
+        menuFichierPrinicpal = new javax.swing.JMenu();
+        menuQuitterPrincipal = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        gestionMatchs.setTitle("Gestion des Matchs");
+        gestionMatchs.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                gestionMatchsWindowClosing(evt);
+            }
+        });
 
-        jLabel1.setText("MENU PRINCIPAL");
+        menuFichierMatch.setText("Fichier");
+
+        menuQuitterMatch.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        menuQuitterMatch.setText("Quitter");
+        menuQuitterMatch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuQuitterMatchActionPerformed(evt);
+            }
+        });
+        menuFichierMatch.add(menuQuitterMatch);
+
+        barreOutilsMatch.add(menuFichierMatch);
+
+        gestionMatchs.setJMenuBar(barreOutilsMatch);
+
+        javax.swing.GroupLayout gestionMatchsLayout = new javax.swing.GroupLayout(gestionMatchs.getContentPane());
+        gestionMatchs.getContentPane().setLayout(gestionMatchsLayout);
+        gestionMatchsLayout.setHorizontalGroup(
+            gestionMatchsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        gestionMatchsLayout.setVerticalGroup(
+            gestionMatchsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 279, Short.MAX_VALUE)
+        );
+
+        gestionVIP.setTitle("Gestion des VIP");
+        gestionVIP.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                gestionVIPWindowClosing(evt);
+            }
+        });
+
+        menuFichierVIP.setText("Fichier");
+
+        menuQuitterVIP.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        menuQuitterVIP.setText("Quitter");
+        menuQuitterVIP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuQuitterVIPActionPerformed(evt);
+            }
+        });
+        menuFichierVIP.add(menuQuitterVIP);
+
+        barreOutilsVIP.add(menuFichierVIP);
+
+        gestionVIP.setJMenuBar(barreOutilsVIP);
+
+        javax.swing.GroupLayout gestionVIPLayout = new javax.swing.GroupLayout(gestionVIP.getContentPane());
+        gestionVIP.getContentPane().setLayout(gestionVIPLayout);
+        gestionVIPLayout.setHorizontalGroup(
+            gestionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        gestionVIPLayout.setVerticalGroup(
+            gestionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 279, Short.MAX_VALUE)
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Gestion du Grand Prix de Tennis de Lyon");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+
+        lbAccueil.setFont(new java.awt.Font("Tahoma", 2, 36)); // NOI18N
+        lbAccueil.setText("Accueil");
+
+        btMatchs.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btMatchs.setText("Gestion des matchs");
+        btMatchs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMatchsActionPerformed(evt);
+            }
+        });
+
+        btVIP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btVIP.setText("Gestion des VIP");
+        btVIP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVIPActionPerformed(evt);
+            }
+        });
+
+        menuFichierPrinicpal.setText("Fichier");
+
+        menuQuitterPrincipal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        menuQuitterPrincipal.setText("Quitter");
+        menuFichierPrinicpal.add(menuQuitterPrincipal);
+
+        barreOutilsPrincipal.add(menuFichierPrinicpal);
+
+        setJMenuBar(barreOutilsPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(jLabel1)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbAccueil, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(btVIP))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(btMatchs)))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(jLabel1)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(lbAccueil)
+                .addGap(62, 62, 62)
+                .addComponent(btMatchs)
+                .addGap(31, 31, 31)
+                .addComponent(btVIP)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        quitter();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void btMatchsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMatchsActionPerformed
+        dispose();
+        gestionMatchs.setVisible(true);
+    }//GEN-LAST:event_btMatchsActionPerformed
+
+    private void btVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVIPActionPerformed
+        dispose();
+        gestionVIP.setVisible(true);
+    }//GEN-LAST:event_btVIPActionPerformed
+
+    private void menuQuitterMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuQuitterMatchActionPerformed
+        gestionMatchs.setVisible(false);
+        setVisible(true);
+    }//GEN-LAST:event_menuQuitterMatchActionPerformed
+
+    private void gestionMatchsWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_gestionMatchsWindowClosing
+        gestionMatchs.setVisible(false);
+        setVisible(true);
+    }//GEN-LAST:event_gestionMatchsWindowClosing
+
+    private void menuQuitterVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuQuitterVIPActionPerformed
+        gestionVIP.setVisible(false);
+        setVisible(true);
+    }//GEN-LAST:event_menuQuitterVIPActionPerformed
+
+    private void gestionVIPWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_gestionVIPWindowClosing
+        gestionVIP.setVisible(false);
+        setVisible(true);
+    }//GEN-LAST:event_gestionVIPWindowClosing
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuBar barreOutilsMatch;
+    private javax.swing.JMenuBar barreOutilsPrincipal;
+    private javax.swing.JMenuBar barreOutilsVIP;
+    private javax.swing.JButton btMatchs;
+    private javax.swing.JButton btVIP;
+    private javax.swing.JDialog gestionMatchs;
+    private javax.swing.JDialog gestionVIP;
+    private javax.swing.JLabel lbAccueil;
+    private javax.swing.JMenu menuFichierMatch;
+    private javax.swing.JMenu menuFichierPrinicpal;
+    private javax.swing.JMenu menuFichierVIP;
+    private javax.swing.JMenuItem menuQuitterMatch;
+    private javax.swing.JMenuItem menuQuitterPrincipal;
+    private javax.swing.JMenuItem menuQuitterVIP;
     // End of variables declaration//GEN-END:variables
+
+    private void quitter() {
+        int rep = JOptionPane.showConfirmDialog(this, "Voulez-vous vraiment quitter ?", 
+                "Attention", JOptionPane.YES_NO_OPTION);
+        if (rep == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }
 }
