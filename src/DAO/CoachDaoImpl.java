@@ -8,11 +8,14 @@ package DAO;
 
 import connexion.ConnexionMysqlFactory;
 import entities.Coach;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,7 +28,7 @@ public class CoachDaoImpl implements CoachDao{
         this.connexionDB=conn;
     }
     @Override
-    public Coach selectCoach(int id) throws SQLException {
+    public Coach selectCoach(int id) throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         Coach c;
@@ -41,7 +44,7 @@ public class CoachDaoImpl implements CoachDao{
     }
 
     @Override
-    public ResultSet selectAllCoach() throws SQLException {
+    public ResultSet selectAllCoach() throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         try (Statement st = connexionDB.createStatement()) {
@@ -53,7 +56,7 @@ public class CoachDaoImpl implements CoachDao{
     }
 
     @Override
-    public boolean insertCoach(String name, String Surname, String ddn, int pCoached, int reput) throws SQLException {
+    public boolean insertCoach(String name, String Surname, String ddn, int pCoached, int reput) throws SQLException, IOException {
         boolean res = true;
         connexionDB = ConnexionMysqlFactory.getInstance();
         try (PreparedStatement PS = connexionDB.prepareStatement("INSERT INTO coach(coachName,coachSurname,coachDateNaissance,playerCoached,coachReputation) values(?,?,?,?,?)")) {
@@ -76,7 +79,7 @@ public class CoachDaoImpl implements CoachDao{
     }
 
     @Override
-    public boolean deleteCoach(int id) throws SQLException {
+    public boolean deleteCoach(int id) throws SQLException, IOException {
         boolean res = true;
         connexionDB = ConnexionMysqlFactory.getInstance();
         try (PreparedStatement ps = connexionDB.prepareStatement("DELETE FROM coach where coachId= ?")) {
@@ -106,7 +109,7 @@ public class CoachDaoImpl implements CoachDao{
      * @throws SQLException
      */
     @Override
-    public boolean updateCoach(int id, String name, String surname, String ddn, int pCoached, int reput) throws SQLException {
+    public boolean updateCoach(int id, String name, String surname, String ddn, int pCoached, int reput) throws SQLException, IOException {
         boolean res = true;
         connexionDB = ConnexionMysqlFactory.getInstance();
         try (PreparedStatement ps = connexionDB.prepareStatement("UPDATE coach SET coachName=? coachSurname=? coachDateNaissance=? playerCoached=? coachReputation=? where coachId=?")) {

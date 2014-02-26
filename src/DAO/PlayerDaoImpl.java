@@ -7,6 +7,7 @@ package DAO;
 
 import connexion.ConnexionMysqlFactory;
 import entities.Player;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +27,7 @@ public class PlayerDaoImpl implements PlayerDao {
     }
     
     @Override
-    public Player selectPlayer(int id) throws SQLException {
+    public Player selectPlayer(int id) throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         Player p;
@@ -42,7 +43,7 @@ public class PlayerDaoImpl implements PlayerDao {
     }
 
     @Override
-    public ResultSet selectAllPlayer() throws SQLException {
+    public ResultSet selectAllPlayer() throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         try (Statement st = connexionDB.createStatement()) {
@@ -54,7 +55,7 @@ public class PlayerDaoImpl implements PlayerDao {
     }
 
     @Override
-    public boolean insertPlayer(String name, String Surname, String ddn, int rank) throws SQLException {
+    public boolean insertPlayer(String name, String Surname, String ddn, int rank) throws SQLException, IOException {
         boolean res = true;
         connexionDB = ConnexionMysqlFactory.getInstance();
         try (PreparedStatement PS = connexionDB.prepareStatement("INSERT INTO player(PLAYERNAME,PLAYERSURNAME,PLAYERDATENAISSANCE,PLAYERRANK) values(?,?,?,?)")) {
@@ -76,7 +77,7 @@ public class PlayerDaoImpl implements PlayerDao {
     }
 
     @Override
-    public boolean deletePlayer(int id) throws SQLException {
+    public boolean deletePlayer(int id) throws SQLException, IOException {
         boolean res = true;
         connexionDB = ConnexionMysqlFactory.getInstance();
         try (PreparedStatement ps = connexionDB.prepareStatement("DELETE FROM player where PLAYERID= ?")) {
@@ -103,9 +104,10 @@ public class PlayerDaoImpl implements PlayerDao {
      * @param rank
      * @return
      * @throws SQLException
+     * @throws java.io.IOException
      */
     @Override
-    public boolean updatePlayer(int id, String name, String surname, String ddn, int rank) throws SQLException {
+    public boolean updatePlayer(int id, String name, String surname, String ddn, int rank) throws SQLException, IOException {
         boolean res = true;
         connexionDB = ConnexionMysqlFactory.getInstance();
         try (PreparedStatement ps = connexionDB.prepareStatement("UPDATE player SET playername=? playersurname=? playerdatenaissance=? playerrank=? where playerId=?")) {

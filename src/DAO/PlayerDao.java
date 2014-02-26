@@ -6,6 +6,7 @@
 package DAO;
 
 import entities.Player;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -15,14 +16,14 @@ import java.sql.SQLException;
  */
 public interface PlayerDao {
 
-    public Player selectPlayer(int id) throws SQLException;
+    public Player selectPlayer(int id) throws SQLException, IOException;
 
-    public ResultSet selectAllPlayer() throws SQLException;
+    public ResultSet selectAllPlayer() throws SQLException, IOException;
 
-    public boolean insertPlayer(String name, String Surname, String ddn, int rank) throws SQLException;
+    public boolean insertPlayer(String name, String Surname, String ddn, int rank) throws SQLException, IOException;
 
-    public boolean deletePlayer(int id) throws SQLException;
+    public boolean deletePlayer(int id) throws SQLException, IOException;
 
-    public boolean updatePlayer(int id, String name, String surname, String ddn, int rank) throws SQLException;
+    public boolean updatePlayer(int id, String name, String surname, String ddn, int rank) throws SQLException, IOException;
 
 }

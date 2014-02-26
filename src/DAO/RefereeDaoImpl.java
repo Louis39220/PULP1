@@ -7,6 +7,7 @@ package DAO;
 
 import connexion.ConnexionMysqlFactory;
 import entities.Coach;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +29,7 @@ public class RefereeDaoImpl implements RefereeDao {
     
 
     @Override
-    public Coach selectReferee(int id) throws SQLException {
+    public Coach selectReferee(int id) throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         Coach c;
@@ -44,7 +45,7 @@ public class RefereeDaoImpl implements RefereeDao {
     }
 
     @Override
-    public ResultSet selectAllReferee() throws SQLException {
+    public ResultSet selectAllReferee() throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         try (Statement st = connexionDB.createStatement()) {
@@ -56,7 +57,7 @@ public class RefereeDaoImpl implements RefereeDao {
     }
 
     @Override
-    public boolean insertReferee(String name, String Surname, String ddn, int nbMatch, String categorie) throws SQLException {
+    public boolean insertReferee(String name, String Surname, String ddn, int nbMatch, String categorie) throws SQLException, IOException {
         boolean res = true;
         connexionDB = ConnexionMysqlFactory.getInstance();
         try (PreparedStatement PS = connexionDB.prepareStatement("INSERT INTO referee(refereeName,refereeSurname,refereeDateNaissance,refereeNbMatch,refereeCategorie) values(?,?,?,?,?)")) {
@@ -79,7 +80,7 @@ public class RefereeDaoImpl implements RefereeDao {
     }
 
     @Override
-    public boolean deleteReferee(int id) throws SQLException {
+    public boolean deleteReferee(int id) throws SQLException, IOException {
         boolean res = true;
         connexionDB = ConnexionMysqlFactory.getInstance();
         try (PreparedStatement ps = connexionDB.prepareStatement("DELETE FROM referee where refereeId= ?")) {
@@ -109,7 +110,7 @@ public class RefereeDaoImpl implements RefereeDao {
      * @throws SQLException
      */
     @Override
-    public boolean updateReferee(int id, String name, String surname, String ddn, int nbMatch, String categorie) throws SQLException {
+    public boolean updateReferee(int id, String name, String surname, String ddn, int nbMatch, String categorie) throws SQLException, IOException {
         boolean res = true;
         connexionDB = ConnexionMysqlFactory.getInstance();
         try (PreparedStatement ps = connexionDB.prepareStatement("UPDATE coach SET refereeName=? refereeSurname=? refereeDateNaissance=? refereeNbMatch=? refereeReputation=? where refereeId=?")) {
