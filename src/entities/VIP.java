@@ -1,21 +1,19 @@
 
 package entities;
 
-import java.util.Date;
-
 /**
  *
  * @author Jérôme
  */
 public abstract class VIP {
-    protected String id;
+    protected int id;
     protected String name;
     protected String surname;
-    protected Date birthDate;
+    protected String birthDate;
 
 
 
-    public VIP(String id, String name, String surname, Date birthDate) {
+    public VIP(int id, String name, String surname, String birthDate) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -24,11 +22,11 @@ public abstract class VIP {
     
     
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -48,11 +46,11 @@ public abstract class VIP {
         this.surname = surname;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
     

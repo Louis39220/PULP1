@@ -1,7 +1,7 @@
 
 package entities;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -12,7 +12,7 @@ public class Player extends VIP{
     
     private int playerRank;
 
-    public Player(String playerId, String playerName, String playerSurname, Date playerBirthDate, int playerRank) {
+    public Player(int playerId, String playerName, String playerSurname, String playerBirthDate, int playerRank) {
         super(playerId, playerName, playerSurname, playerBirthDate);
         this.playerRank = playerRank;
     }
