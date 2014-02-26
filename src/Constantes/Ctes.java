@@ -25,4 +25,6 @@ public class Ctes {
     public static final int PLANNING_Y_MODIF = 50;
     public static final int PLANNING_X_SUPP = 200;
     public static final int PLANNING_Y_SUPP = 50;
+    public static final int PLANNING_X_RETOUR = 200;
+    public static final int PLANNING_Y_RETOUR = 50;
 }
