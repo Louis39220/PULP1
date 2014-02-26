@@ -89,6 +89,7 @@ public class DBaccess implements InterfaceDBaccess {
         return res;
     }
 
+    @Override
     public boolean deletePlayer(String id) throws SQLException {
         boolean res = true;
         connexionDB = ConnexionOracleFactory.openConnection();
@@ -97,6 +98,38 @@ public class DBaccess implements InterfaceDBaccess {
             try {
                 ps.executeQuery();
             } catch (SQLException e) {
+                System.err.println(e.getMessage());
+                ps.cancel();
+                res = false;
+            }
+            ps.close();
+            connexionDB.close();
+        }
+        return res;
+    }
+
+    /**
+     *
+     * @param id
+     * @param name
+     * @param surname
+     * @param ddn
+     * @param rank
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public boolean updatePlayer(int id, String name,String surname, Date ddn, int rank) throws SQLException {
+        boolean res = true;
+        connexionDB = ConnexionOracleFactory.openConnection();
+        try (PreparedStatement ps = connexionDB.prepareStatement("UPDATE player SET playername=? playersurname=? playerdatenaissance=? playerrank=? where id=?")){
+            ps.setString(1, name);
+            ps.setString(2, surname);
+            ps.setDate(3, ddn);
+            ps.setInt(4, rank);
+            try{
+                ps.executeQuery();
+              } catch (SQLException e) {
                 System.err.println(e.getMessage());
                 ps.cancel();
                 res = false;

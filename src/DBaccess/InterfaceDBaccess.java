@@ -26,6 +26,8 @@ public interface InterfaceDBaccess {
 
     public boolean deletePlayer(String id) throws SQLException;
     
+    public boolean updatePlayer(int id, String name,String surname, Date ddn, int rank) throws SQLException;
+    
     
     
 }

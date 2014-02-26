@@ -12,8 +12,8 @@ public class Coach extends VIP
     private Player playerCoached;
     private int reputation;
 
-    public Coach(Player playerCoached, int reputation, String vipId, String vipName, String vipSurname, Date vipBirthDate) {
-        super(vipId, vipName, vipSurname, vipBirthDate);
+    public Coach(String coachId, String coachName, String coachSurname, Date coachBirthDate, Player playerCoached, int reputation) {
+        super(coachId, coachName, coachSurname, coachBirthDate);
         this.playerCoached = playerCoached;
         this.reputation = reputation;
     }
@@ -36,7 +36,7 @@ public class Coach extends VIP
 
     @Override
     public String toString() {
-        return super.toString() + "Coach{" + "playerCoached=" + playerCoached + ", reputation=" + reputation + '}';
+        return "Coach{" + super.toString()  + "\n playerCoached=" + playerCoached + "\n reputation=" + reputation + '}';
     }
     
     

@@ -12,8 +12,8 @@ public class Player extends VIP{
     
     private int playerRank;
 
-    public Player(String vipId, String vipName, String vipSurname, Date vipBirthDate, int playerRank) {
-        super(vipId, vipName, vipSurname, vipBirthDate);
+    public Player(String playerId, String playerName, String playerSurname, Date playerBirthDate, int playerRank) {
+        super(playerId, playerName, playerSurname, playerBirthDate);
         this.playerRank = playerRank;
     }
     
@@ -27,8 +27,10 @@ public class Player extends VIP{
 
     @Override
     public String toString() {
-        return super.toString() + "Player{" + "playerRank=" + playerRank + '}';
+        return "Player{" + super.toString()+ "playerRank=" + playerRank + '}';
     }
+
+ 
     
 
 }
