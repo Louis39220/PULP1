@@ -67,7 +67,7 @@ public class MatchDaoImpl implements MatchDao {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         Match m;
-        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM match WHERE matchTerrain= ?")) {
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM match WHERE matchLieu= ?")) {
             PS.setInt(1, numTerrain);
             rs = PS.executeQuery();
         }
