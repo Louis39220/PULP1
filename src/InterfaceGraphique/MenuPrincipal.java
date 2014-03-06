@@ -7,17 +7,19 @@ package InterfaceGraphique;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.border.TitledBorder;
 
 /**
  *
  * @author Ludovic
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-
+    private int jour;
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
+        jour = 22;
         initComponents();
         setVisible(true);
         Toolkit tk = Toolkit.getDefaultToolkit();
@@ -213,6 +215,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panGestion.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestion"));
 
         btPrec.setText("<< Jour précédent");
+        btPrec.setEnabled(false);
 
         btSuiv.setText("Jour suivant >>");
 
@@ -261,42 +264,109 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         btGroupCourts.add(btCourtCentral);
         btCourtCentral.setText("Court central");
+        btCourtCentral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCourtCentralActionPerformed(evt);
+            }
+        });
 
         btGroupCourts.add(btCourtAnnexe);
         btCourtAnnexe.setText("Court annexe");
+        btCourtAnnexe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCourtAnnexeActionPerformed(evt);
+            }
+        });
 
         btGroupCourts.add(btCourtEntrainement1);
         btCourtEntrainement1.setText("Court d'entrainement 1");
+        btCourtEntrainement1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCourtEntrainement1ActionPerformed(evt);
+            }
+        });
 
         btGroupCourts.add(btCourtEntrainement2);
         btCourtEntrainement2.setText("Court d'entrainement 2");
+        btCourtEntrainement2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCourtEntrainement2ActionPerformed(evt);
+            }
+        });
 
         btGroupCourts.add(btCourtEntrainement3);
         btCourtEntrainement3.setText("Court d'entrainement 3");
+        btCourtEntrainement3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCourtEntrainement3ActionPerformed(evt);
+            }
+        });
 
         btGroupCourts.add(btCourtEntrainement4);
         btCourtEntrainement4.setText("Court d'entrainement 4");
+        btCourtEntrainement4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCourtEntrainement4ActionPerformed(evt);
+            }
+        });
 
         btGroupCourts.add(btCourtTous);
+        btCourtTous.setSelected(true);
         btCourtTous.setText("Tous les courts");
+        btCourtTous.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCourtTousActionPerformed(evt);
+            }
+        });
 
         btGroupHeures.add(bt8h);
+        bt8h.setSelected(true);
         bt8h.setText("8h");
+        bt8h.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt8hActionPerformed(evt);
+            }
+        });
 
         btGroupHeures.add(bt11h);
         bt11h.setText("11h");
+        bt11h.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt11hActionPerformed(evt);
+            }
+        });
 
         btGroupHeures.add(bt15h);
         bt15h.setText("15h");
+        bt15h.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt15hActionPerformed(evt);
+            }
+        });
 
         btGroupHeures.add(bt18h);
         bt18h.setText("18h");
+        bt18h.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt18hActionPerformed(evt);
+            }
+        });
 
         btGroupHeures.add(bt21h);
         bt21h.setText("21h");
+        bt21h.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt21hActionPerformed(evt);
+            }
+        });
 
         btGroupHeures.add(btToutesHeures);
         btToutesHeures.setText("Toutes les horaires");
+        btToutesHeures.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btToutesHeuresActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panSelectLayout = new javax.swing.GroupLayout(panSelect);
         panSelect.setLayout(panSelectLayout);
@@ -550,6 +620,71 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setVisible(true);
     }//GEN-LAST:event_gestionVIPWindowClosing
 
+    private void btCourtCentralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtCentralActionPerformed
+        if (!btToutesHeures.isSelected()) btToutesHeures.setSelected(true);
+        afficherMatchs();
+    }//GEN-LAST:event_btCourtCentralActionPerformed
+
+    private void btCourtAnnexeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtAnnexeActionPerformed
+        if (!btToutesHeures.isSelected()) btToutesHeures.setSelected(true);
+        afficherMatchs();
+    }//GEN-LAST:event_btCourtAnnexeActionPerformed
+
+    private void btCourtEntrainement1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtEntrainement1ActionPerformed
+        if (!btToutesHeures.isSelected()) btToutesHeures.setSelected(true);
+        afficherMatchs();
+    }//GEN-LAST:event_btCourtEntrainement1ActionPerformed
+
+    private void btCourtEntrainement2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtEntrainement2ActionPerformed
+        if (!btToutesHeures.isSelected()) btToutesHeures.setSelected(true);
+        afficherMatchs();
+    }//GEN-LAST:event_btCourtEntrainement2ActionPerformed
+
+    private void btCourtEntrainement3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtEntrainement3ActionPerformed
+        if (!btToutesHeures.isSelected()) btToutesHeures.setSelected(true);
+        afficherMatchs();
+    }//GEN-LAST:event_btCourtEntrainement3ActionPerformed
+
+    private void btCourtEntrainement4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtEntrainement4ActionPerformed
+        if (!btToutesHeures.isSelected()) btToutesHeures.setSelected(true);
+        afficherMatchs();
+    }//GEN-LAST:event_btCourtEntrainement4ActionPerformed
+
+    private void btCourtTousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtTousActionPerformed
+        if (btToutesHeures.isSelected()) bt8h.setSelected(true);
+        afficherMatchs();
+    }//GEN-LAST:event_btCourtTousActionPerformed
+
+    private void bt8hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt8hActionPerformed
+        if (!btCourtTous.isSelected()) btCourtTous.setSelected(true);
+        afficherMatchs();
+    }//GEN-LAST:event_bt8hActionPerformed
+
+    private void bt11hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt11hActionPerformed
+        if (!btCourtTous.isSelected()) btCourtTous.setSelected(true);
+        afficherMatchs();
+    }//GEN-LAST:event_bt11hActionPerformed
+
+    private void bt15hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt15hActionPerformed
+        if (!btCourtTous.isSelected()) btCourtTous.setSelected(true);
+        afficherMatchs();
+    }//GEN-LAST:event_bt15hActionPerformed
+
+    private void bt18hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt18hActionPerformed
+        if (!btCourtTous.isSelected()) btCourtTous.setSelected(true);
+        afficherMatchs();
+    }//GEN-LAST:event_bt18hActionPerformed
+
+    private void bt21hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt21hActionPerformed
+        if (!btCourtTous.isSelected()) btCourtTous.setSelected(true);
+        afficherMatchs();
+    }//GEN-LAST:event_bt21hActionPerformed
+
+    private void btToutesHeuresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btToutesHeuresActionPerformed
+        if (btCourtTous.isSelected()) btCourtCentral.setSelected(true);
+        afficherMatchs();
+    }//GEN-LAST:event_btToutesHeuresActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barreOutilsMatch;
     private javax.swing.JMenuBar barreOutilsPrincipal;
@@ -605,6 +740,44 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 "Attention", JOptionPane.YES_NO_OPTION);
         if (rep == JOptionPane.YES_OPTION) {
             System.exit(0);
+        }
+    }
+    
+    private void afficherMatchs() {
+        lbNumJour.setText(Integer.toString(jour)+"/01");
+        if (jour == 22) btPrec.setEnabled(false);
+        else if (jour == 30) btSuiv.setEnabled(false);
+        
+        if (btToutesHeures.isSelected()) {
+            //Mise à jour des bordures des panels
+            panMatch6.setVisible(false);
+            panMatch1.setBorder(new TitledBorder("8h"));
+            panMatch2.setBorder(new TitledBorder("11h"));
+            panMatch3.setBorder(new TitledBorder("15h"));
+            panMatch4.setBorder(new TitledBorder("18h"));
+            panMatch5.setBorder(new TitledBorder("21h"));
+            //Mise à jour du label indiquant la sélection
+            if (btCourtCentral.isSelected()) lbSelected.setText("Court central");
+            else if (btCourtAnnexe.isSelected()) lbSelected.setText("Court annexe");
+            else if (btCourtEntrainement1.isSelected()) lbSelected.setText("Court d'entrainement 1");
+            else if (btCourtEntrainement2.isSelected()) lbSelected.setText("Court d'entrainement 2");
+            else if (btCourtEntrainement3.isSelected()) lbSelected.setText("Court d'entrainement 3");
+            else if (btCourtEntrainement4.isSelected()) lbSelected.setText("Court d'entrainement 4");
+        }
+        else {
+            //Mise à jour des bordures des panels
+            panMatch6.setVisible(true);
+            panMatch1.setBorder(new TitledBorder("Court central"));
+            panMatch2.setBorder(new TitledBorder("Court annexe"));
+            panMatch3.setBorder(new TitledBorder("Court d'entrainement 1"));
+            panMatch4.setBorder(new TitledBorder("Court d'entrainement 2"));
+            panMatch5.setBorder(new TitledBorder("Court d'entrainement 3"));
+            //Mise à jour du label indiquant la sélection
+            if (bt8h.isSelected()) lbSelected.setText("8h");
+            if (bt11h.isSelected()) lbSelected.setText("11h");
+            if (bt15h.isSelected()) lbSelected.setText("15h");
+            if (bt18h.isSelected()) lbSelected.setText("18h");
+            if (bt21h.isSelected()) lbSelected.setText("21h");
         }
     }
 }
