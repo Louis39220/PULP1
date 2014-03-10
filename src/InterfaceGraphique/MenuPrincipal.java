@@ -27,6 +27,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setLocation((d.width-this.getWidth()) / 2, (d.height-this.getHeight()) / 2);
         gestionMatchs.setSize(1100, 700);
         gestionMatchs.setLocation((d.width-gestionMatchs.getWidth()) / 2, (d.height-gestionMatchs.getHeight()) / 2);
+        courtChoice.add("Tous");
+        courtChoice.add("Court central");
+        courtChoice.add("Court annexe");
+        courtChoice.add("Court d'entrainement 1");
+        courtChoice.add("Court d'entrainement 2");
+        courtChoice.add("Court d'entrainement 3");
+        courtChoice.add("Court d'entrainement 4");
+        heureChoice.add("Tous");
+        heureChoice.add("8h");
+        heureChoice.add("11h");
+        heureChoice.add("15h");
+        heureChoice.add("18h");
+        heureChoice.add("21h");
     }
 
     /**
@@ -56,19 +69,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btSupp = new javax.swing.JButton();
         btRetour = new javax.swing.JButton();
         panSelect = new javax.swing.JPanel();
-        btCourtCentral = new javax.swing.JRadioButton();
-        btCourtAnnexe = new javax.swing.JRadioButton();
-        btCourtEntrainement1 = new javax.swing.JRadioButton();
-        btCourtEntrainement2 = new javax.swing.JRadioButton();
-        btCourtEntrainement3 = new javax.swing.JRadioButton();
-        btCourtEntrainement4 = new javax.swing.JRadioButton();
-        btCourtTous = new javax.swing.JRadioButton();
-        bt8h = new javax.swing.JRadioButton();
-        bt11h = new javax.swing.JRadioButton();
-        bt15h = new javax.swing.JRadioButton();
-        bt18h = new javax.swing.JRadioButton();
-        bt21h = new javax.swing.JRadioButton();
-        btToutesHeures = new javax.swing.JRadioButton();
+        courtChoice = new java.awt.Choice();
+        heureChoice = new java.awt.Choice();
         lbSelected = new javax.swing.JLabel();
         barreOutilsMatch = new javax.swing.JMenuBar();
         menuFichierMatch = new javax.swing.JMenu();
@@ -79,6 +81,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuQuitterVIP = new javax.swing.JMenuItem();
         btGroupHeures = new javax.swing.ButtonGroup();
         btGroupCourts = new javax.swing.ButtonGroup();
+        fenAddMatch = new javax.swing.JDialog();
         lbAccueil = new javax.swing.JLabel();
         btMatchs = new javax.swing.JButton();
         btVIP = new javax.swing.JButton();
@@ -216,8 +219,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         btPrec.setText("<< Jour précédent");
         btPrec.setEnabled(false);
+        btPrec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPrecActionPerformed(evt);
+            }
+        });
 
         btSuiv.setText("Jour suivant >>");
+        btSuiv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSuivActionPerformed(evt);
+            }
+        });
 
         btAdd.setText("Ajouter un match");
 
@@ -262,109 +275,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         panSelect.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection"));
 
-        btGroupCourts.add(btCourtCentral);
-        btCourtCentral.setText("Court central");
-        btCourtCentral.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCourtCentralActionPerformed(evt);
+        courtChoice.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                courtChoiceItemStateChanged(evt);
             }
         });
 
-        btGroupCourts.add(btCourtAnnexe);
-        btCourtAnnexe.setText("Court annexe");
-        btCourtAnnexe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCourtAnnexeActionPerformed(evt);
-            }
-        });
-
-        btGroupCourts.add(btCourtEntrainement1);
-        btCourtEntrainement1.setText("Court d'entrainement 1");
-        btCourtEntrainement1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCourtEntrainement1ActionPerformed(evt);
-            }
-        });
-
-        btGroupCourts.add(btCourtEntrainement2);
-        btCourtEntrainement2.setText("Court d'entrainement 2");
-        btCourtEntrainement2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCourtEntrainement2ActionPerformed(evt);
-            }
-        });
-
-        btGroupCourts.add(btCourtEntrainement3);
-        btCourtEntrainement3.setText("Court d'entrainement 3");
-        btCourtEntrainement3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCourtEntrainement3ActionPerformed(evt);
-            }
-        });
-
-        btGroupCourts.add(btCourtEntrainement4);
-        btCourtEntrainement4.setText("Court d'entrainement 4");
-        btCourtEntrainement4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCourtEntrainement4ActionPerformed(evt);
-            }
-        });
-
-        btGroupCourts.add(btCourtTous);
-        btCourtTous.setSelected(true);
-        btCourtTous.setText("Tous les courts");
-        btCourtTous.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCourtTousActionPerformed(evt);
-            }
-        });
-
-        btGroupHeures.add(bt8h);
-        bt8h.setSelected(true);
-        bt8h.setText("8h");
-        bt8h.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt8hActionPerformed(evt);
-            }
-        });
-
-        btGroupHeures.add(bt11h);
-        bt11h.setText("11h");
-        bt11h.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt11hActionPerformed(evt);
-            }
-        });
-
-        btGroupHeures.add(bt15h);
-        bt15h.setText("15h");
-        bt15h.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt15hActionPerformed(evt);
-            }
-        });
-
-        btGroupHeures.add(bt18h);
-        bt18h.setText("18h");
-        bt18h.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt18hActionPerformed(evt);
-            }
-        });
-
-        btGroupHeures.add(bt21h);
-        bt21h.setText("21h");
-        bt21h.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt21hActionPerformed(evt);
-            }
-        });
-
-        btGroupHeures.add(btToutesHeures);
-        btToutesHeures.setText("Toutes les horaires");
-        btToutesHeures.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btToutesHeuresActionPerformed(evt);
+        heureChoice.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                heureChoiceItemStateChanged(evt);
             }
         });
 
@@ -373,56 +292,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panSelectLayout.setHorizontalGroup(
             panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panSelectLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panSelectLayout.createSequentialGroup()
-                        .addComponent(btCourtCentral)
-                        .addGap(18, 18, 18)
-                        .addComponent(btCourtAnnexe)
-                        .addGap(18, 18, 18)
-                        .addComponent(btCourtEntrainement1)
-                        .addGap(18, 18, 18)
-                        .addComponent(btCourtEntrainement2)
-                        .addGap(18, 18, 18)
-                        .addComponent(btCourtEntrainement3)
-                        .addGap(18, 18, 18)
-                        .addComponent(btCourtEntrainement4)
-                        .addGap(18, 18, 18)
-                        .addComponent(btCourtTous))
-                    .addGroup(panSelectLayout.createSequentialGroup()
-                        .addComponent(bt8h)
-                        .addGap(18, 18, 18)
-                        .addComponent(bt11h)
-                        .addGap(18, 18, 18)
-                        .addComponent(bt15h)
-                        .addGap(18, 18, 18)
-                        .addComponent(bt18h)
-                        .addGap(18, 18, 18)
-                        .addComponent(bt21h)
-                        .addGap(18, 18, 18)
-                        .addComponent(btToutesHeures)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(162, 162, 162)
+                .addComponent(courtChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(heureChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(362, Short.MAX_VALUE))
         );
         panSelectLayout.setVerticalGroup(
             panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panSelectLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btCourtCentral)
-                    .addComponent(btCourtAnnexe)
-                    .addComponent(btCourtEntrainement1)
-                    .addComponent(btCourtEntrainement2)
-                    .addComponent(btCourtEntrainement3)
-                    .addComponent(btCourtEntrainement4)
-                    .addComponent(btCourtTous))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt8h)
-                    .addComponent(bt11h)
-                    .addComponent(bt15h)
-                    .addComponent(bt18h)
-                    .addComponent(bt21h)
-                    .addComponent(btToutesHeures)))
+                .addContainerGap()
+                .addGroup(panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(courtChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(heureChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         lbSelected.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -447,9 +330,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         gestionMatchs.getContentPane().setLayout(gestionMatchsLayout);
         gestionMatchsLayout.setHorizontalGroup(
             gestionMatchsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gestionMatchsLayout.createSequentialGroup()
-                .addGroup(gestionMatchsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, gestionMatchsLayout.createSequentialGroup()
+            .addGroup(gestionMatchsLayout.createSequentialGroup()
+                .addGroup(gestionMatchsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gestionMatchsLayout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addComponent(lbPlanning)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -457,14 +340,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addGap(153, 153, 153)
                         .addComponent(lbSelected)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, gestionMatchsLayout.createSequentialGroup()
+                    .addGroup(gestionMatchsLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(panGestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, gestionMatchsLayout.createSequentialGroup()
+                    .addGroup(gestionMatchsLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(gestionMatchsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panPlanning, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(panPlanning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(gestionMatchsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         gestionMatchsLayout.setVerticalGroup(
@@ -481,7 +365,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(panSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panGestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         gestionVIP.setTitle("Gestion des VIP");
@@ -515,6 +399,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         gestionVIPLayout.setVerticalGroup(
             gestionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 279, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout fenAddMatchLayout = new javax.swing.GroupLayout(fenAddMatch.getContentPane());
+        fenAddMatch.getContentPane().setLayout(fenAddMatchLayout);
+        fenAddMatchLayout.setHorizontalGroup(
+            fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        fenAddMatchLayout.setVerticalGroup(
+            fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -620,88 +515,33 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setVisible(true);
     }//GEN-LAST:event_gestionVIPWindowClosing
 
-    private void btCourtCentralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtCentralActionPerformed
-        if (!btToutesHeures.isSelected()) btToutesHeures.setSelected(true);
-        afficherMatchs();
-    }//GEN-LAST:event_btCourtCentralActionPerformed
+    private void btPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrecActionPerformed
+        if (jour != 22) {
+            jour--;
+            afficherMatchs();
+        }
+    }//GEN-LAST:event_btPrecActionPerformed
 
-    private void btCourtAnnexeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtAnnexeActionPerformed
-        if (!btToutesHeures.isSelected()) btToutesHeures.setSelected(true);
-        afficherMatchs();
-    }//GEN-LAST:event_btCourtAnnexeActionPerformed
+    private void btSuivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSuivActionPerformed
+        if (jour != 30) {
+            jour++;
+            afficherMatchs();
+        }
+    }//GEN-LAST:event_btSuivActionPerformed
 
-    private void btCourtEntrainement1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtEntrainement1ActionPerformed
-        if (!btToutesHeures.isSelected()) btToutesHeures.setSelected(true);
+    private void courtChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_courtChoiceItemStateChanged
         afficherMatchs();
-    }//GEN-LAST:event_btCourtEntrainement1ActionPerformed
+    }//GEN-LAST:event_courtChoiceItemStateChanged
 
-    private void btCourtEntrainement2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtEntrainement2ActionPerformed
-        if (!btToutesHeures.isSelected()) btToutesHeures.setSelected(true);
+    private void heureChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_heureChoiceItemStateChanged
         afficherMatchs();
-    }//GEN-LAST:event_btCourtEntrainement2ActionPerformed
-
-    private void btCourtEntrainement3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtEntrainement3ActionPerformed
-        if (!btToutesHeures.isSelected()) btToutesHeures.setSelected(true);
-        afficherMatchs();
-    }//GEN-LAST:event_btCourtEntrainement3ActionPerformed
-
-    private void btCourtEntrainement4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtEntrainement4ActionPerformed
-        if (!btToutesHeures.isSelected()) btToutesHeures.setSelected(true);
-        afficherMatchs();
-    }//GEN-LAST:event_btCourtEntrainement4ActionPerformed
-
-    private void btCourtTousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCourtTousActionPerformed
-        if (btToutesHeures.isSelected()) bt8h.setSelected(true);
-        afficherMatchs();
-    }//GEN-LAST:event_btCourtTousActionPerformed
-
-    private void bt8hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt8hActionPerformed
-        if (!btCourtTous.isSelected()) btCourtTous.setSelected(true);
-        afficherMatchs();
-    }//GEN-LAST:event_bt8hActionPerformed
-
-    private void bt11hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt11hActionPerformed
-        if (!btCourtTous.isSelected()) btCourtTous.setSelected(true);
-        afficherMatchs();
-    }//GEN-LAST:event_bt11hActionPerformed
-
-    private void bt15hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt15hActionPerformed
-        if (!btCourtTous.isSelected()) btCourtTous.setSelected(true);
-        afficherMatchs();
-    }//GEN-LAST:event_bt15hActionPerformed
-
-    private void bt18hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt18hActionPerformed
-        if (!btCourtTous.isSelected()) btCourtTous.setSelected(true);
-        afficherMatchs();
-    }//GEN-LAST:event_bt18hActionPerformed
-
-    private void bt21hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt21hActionPerformed
-        if (!btCourtTous.isSelected()) btCourtTous.setSelected(true);
-        afficherMatchs();
-    }//GEN-LAST:event_bt21hActionPerformed
-
-    private void btToutesHeuresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btToutesHeuresActionPerformed
-        if (btCourtTous.isSelected()) btCourtCentral.setSelected(true);
-        afficherMatchs();
-    }//GEN-LAST:event_btToutesHeuresActionPerformed
+    }//GEN-LAST:event_heureChoiceItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barreOutilsMatch;
     private javax.swing.JMenuBar barreOutilsPrincipal;
     private javax.swing.JMenuBar barreOutilsVIP;
-    private javax.swing.JRadioButton bt11h;
-    private javax.swing.JRadioButton bt15h;
-    private javax.swing.JRadioButton bt18h;
-    private javax.swing.JRadioButton bt21h;
-    private javax.swing.JRadioButton bt8h;
     private javax.swing.JButton btAdd;
-    private javax.swing.JRadioButton btCourtAnnexe;
-    private javax.swing.JRadioButton btCourtCentral;
-    private javax.swing.JRadioButton btCourtEntrainement1;
-    private javax.swing.JRadioButton btCourtEntrainement2;
-    private javax.swing.JRadioButton btCourtEntrainement3;
-    private javax.swing.JRadioButton btCourtEntrainement4;
-    private javax.swing.JRadioButton btCourtTous;
     private javax.swing.ButtonGroup btGroupCourts;
     private javax.swing.ButtonGroup btGroupHeures;
     private javax.swing.JButton btMatchs;
@@ -710,10 +550,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btRetour;
     private javax.swing.JButton btSuiv;
     private javax.swing.JButton btSupp;
-    private javax.swing.JRadioButton btToutesHeures;
     private javax.swing.JButton btVIP;
+    private java.awt.Choice courtChoice;
+    private javax.swing.JDialog fenAddMatch;
     private javax.swing.JDialog gestionMatchs;
     private javax.swing.JDialog gestionVIP;
+    private java.awt.Choice heureChoice;
     private javax.swing.JLabel lbAccueil;
     private javax.swing.JLabel lbNumJour;
     private javax.swing.JLabel lbPlanning;
@@ -747,9 +589,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lbNumJour.setText(Integer.toString(jour)+"/01");
         if (jour == 22) btPrec.setEnabled(false);
         else if (jour == 30) btSuiv.setEnabled(false);
+        else {
+            btPrec.setEnabled(true);
+            btSuiv.setEnabled(true);
+        }
         
-        if (btToutesHeures.isSelected()) {
+        if (courtChoice.getSelectedItem().equals("Tous")) {
+            if (heureChoice.getSelectedItem().equals("Tous")) {
+                //Générer erreur
+            }
+            else {
+                //Mise à jour des bordures des panels
+                panMatch2.setVisible(true);
+                panMatch3.setVisible(true);
+                panMatch4.setVisible(true);
+                panMatch5.setVisible(true);
+                panMatch6.setVisible(true);
+                panMatch1.setBorder(new TitledBorder("Court central"));
+                panMatch2.setBorder(new TitledBorder("Court annexe"));
+                panMatch3.setBorder(new TitledBorder("Court d'entrainement 1"));
+                panMatch4.setBorder(new TitledBorder("Court d'entrainement 2"));
+                panMatch5.setBorder(new TitledBorder("Court d'entrainement 3"));
+                //Mise à jour du label indiquant la sélection
+                lbSelected.setText(heureChoice.getSelectedItem());
+            }
+        }
+        else if (heureChoice.getSelectedItem().equals("Tous")) {
             //Mise à jour des bordures des panels
+            panMatch2.setVisible(true);
+            panMatch3.setVisible(true);
+            panMatch4.setVisible(true);
+            panMatch5.setVisible(true);
             panMatch6.setVisible(false);
             panMatch1.setBorder(new TitledBorder("8h"));
             panMatch2.setBorder(new TitledBorder("11h"));
@@ -757,27 +627,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
             panMatch4.setBorder(new TitledBorder("18h"));
             panMatch5.setBorder(new TitledBorder("21h"));
             //Mise à jour du label indiquant la sélection
-            if (btCourtCentral.isSelected()) lbSelected.setText("Court central");
-            else if (btCourtAnnexe.isSelected()) lbSelected.setText("Court annexe");
-            else if (btCourtEntrainement1.isSelected()) lbSelected.setText("Court d'entrainement 1");
-            else if (btCourtEntrainement2.isSelected()) lbSelected.setText("Court d'entrainement 2");
-            else if (btCourtEntrainement3.isSelected()) lbSelected.setText("Court d'entrainement 3");
-            else if (btCourtEntrainement4.isSelected()) lbSelected.setText("Court d'entrainement 4");
+            lbSelected.setText(courtChoice.getSelectedItem());
         }
         else {
             //Mise à jour des bordures des panels
-            panMatch6.setVisible(true);
-            panMatch1.setBorder(new TitledBorder("Court central"));
-            panMatch2.setBorder(new TitledBorder("Court annexe"));
-            panMatch3.setBorder(new TitledBorder("Court d'entrainement 1"));
-            panMatch4.setBorder(new TitledBorder("Court d'entrainement 2"));
-            panMatch5.setBorder(new TitledBorder("Court d'entrainement 3"));
+            panMatch2.setVisible(false);
+            panMatch3.setVisible(false);
+            panMatch4.setVisible(false);
+            panMatch5.setVisible(false);
+            panMatch6.setVisible(false);
+            panMatch1.setBorder(new TitledBorder(courtChoice.getSelectedItem() + " - " + 
+                    heureChoice.getSelectedItem()));
             //Mise à jour du label indiquant la sélection
-            if (bt8h.isSelected()) lbSelected.setText("8h");
-            if (bt11h.isSelected()) lbSelected.setText("11h");
-            if (bt15h.isSelected()) lbSelected.setText("15h");
-            if (bt18h.isSelected()) lbSelected.setText("18h");
-            if (bt21h.isSelected()) lbSelected.setText("21h");
+            lbSelected.setText(courtChoice.getSelectedItem() + " - " + heureChoice.getSelectedItem());
         }
     }
 }
