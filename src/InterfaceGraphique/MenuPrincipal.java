@@ -7,22 +7,39 @@ package InterfaceGraphique;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.border.TitledBorder;
 
 /**
  *
  * @author Ludovic
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-
+    private int jour;
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
+        jour = 22;
         initComponents();
         setVisible(true);
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
         setLocation((d.width-this.getWidth()) / 2, (d.height-this.getHeight()) / 2);
+        gestionMatchs.setSize(1100, 700);
+        gestionMatchs.setLocation((d.width-gestionMatchs.getWidth()) / 2, (d.height-gestionMatchs.getHeight()) / 2);
+        courtChoice.add("Tous");
+        courtChoice.add("Court central");
+        courtChoice.add("Court annexe");
+        courtChoice.add("Court d'entrainement 1");
+        courtChoice.add("Court d'entrainement 2");
+        courtChoice.add("Court d'entrainement 3");
+        courtChoice.add("Court d'entrainement 4");
+        heureChoice.add("Tous");
+        heureChoice.add("8h");
+        heureChoice.add("11h");
+        heureChoice.add("15h");
+        heureChoice.add("18h");
+        heureChoice.add("21h");
     }
 
     /**
@@ -35,6 +52,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         gestionMatchs = new javax.swing.JDialog();
+        lbPlanning = new javax.swing.JLabel();
+        lbNumJour = new javax.swing.JLabel();
+        panPlanning = new javax.swing.JPanel();
+        panMatch1 = new javax.swing.JPanel();
+        panMatch2 = new javax.swing.JPanel();
+        panMatch3 = new javax.swing.JPanel();
+        panMatch4 = new javax.swing.JPanel();
+        panMatch5 = new javax.swing.JPanel();
+        panMatch6 = new javax.swing.JPanel();
+        panGestion = new javax.swing.JPanel();
+        btPrec = new javax.swing.JButton();
+        btSuiv = new javax.swing.JButton();
+        btAdd = new javax.swing.JButton();
+        btModif = new javax.swing.JButton();
+        btSupp = new javax.swing.JButton();
+        btRetour = new javax.swing.JButton();
+        panSelect = new javax.swing.JPanel();
+        courtChoice = new java.awt.Choice();
+        heureChoice = new java.awt.Choice();
+        lbSelected = new javax.swing.JLabel();
         barreOutilsMatch = new javax.swing.JMenuBar();
         menuFichierMatch = new javax.swing.JMenu();
         menuQuitterMatch = new javax.swing.JMenuItem();
@@ -42,6 +79,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         barreOutilsVIP = new javax.swing.JMenuBar();
         menuFichierVIP = new javax.swing.JMenu();
         menuQuitterVIP = new javax.swing.JMenuItem();
+        btGroupHeures = new javax.swing.ButtonGroup();
+        btGroupCourts = new javax.swing.ButtonGroup();
+        fenAddMatch = new javax.swing.JDialog();
         lbAccueil = new javax.swing.JLabel();
         btMatchs = new javax.swing.JButton();
         btVIP = new javax.swing.JButton();
@@ -55,6 +95,221 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 gestionMatchsWindowClosing(evt);
             }
         });
+
+        lbPlanning.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbPlanning.setText("Planning des matchs : ");
+
+        lbNumJour.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbNumJour.setText("22/01");
+
+        panPlanning.setBorder(javax.swing.BorderFactory.createTitledBorder("Planning"));
+
+        panMatch1.setBorder(javax.swing.BorderFactory.createTitledBorder("Court central"));
+
+        javax.swing.GroupLayout panMatch1Layout = new javax.swing.GroupLayout(panMatch1);
+        panMatch1.setLayout(panMatch1Layout);
+        panMatch1Layout.setHorizontalGroup(
+            panMatch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panMatch1Layout.setVerticalGroup(
+            panMatch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        panMatch2.setBorder(javax.swing.BorderFactory.createTitledBorder("Court annexe"));
+
+        javax.swing.GroupLayout panMatch2Layout = new javax.swing.GroupLayout(panMatch2);
+        panMatch2.setLayout(panMatch2Layout);
+        panMatch2Layout.setHorizontalGroup(
+            panMatch2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 188, Short.MAX_VALUE)
+        );
+        panMatch2Layout.setVerticalGroup(
+            panMatch2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        panMatch3.setBorder(javax.swing.BorderFactory.createTitledBorder("Court d'entrainement 1"));
+
+        javax.swing.GroupLayout panMatch3Layout = new javax.swing.GroupLayout(panMatch3);
+        panMatch3.setLayout(panMatch3Layout);
+        panMatch3Layout.setHorizontalGroup(
+            panMatch3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 216, Short.MAX_VALUE)
+        );
+        panMatch3Layout.setVerticalGroup(
+            panMatch3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 156, Short.MAX_VALUE)
+        );
+
+        panMatch4.setBorder(javax.swing.BorderFactory.createTitledBorder("Court d'entrainement 2"));
+
+        javax.swing.GroupLayout panMatch4Layout = new javax.swing.GroupLayout(panMatch4);
+        panMatch4.setLayout(panMatch4Layout);
+        panMatch4Layout.setHorizontalGroup(
+            panMatch4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 177, Short.MAX_VALUE)
+        );
+        panMatch4Layout.setVerticalGroup(
+            panMatch4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 163, Short.MAX_VALUE)
+        );
+
+        panMatch5.setBorder(javax.swing.BorderFactory.createTitledBorder("Court d'entrainement 3"));
+
+        javax.swing.GroupLayout panMatch5Layout = new javax.swing.GroupLayout(panMatch5);
+        panMatch5.setLayout(panMatch5Layout);
+        panMatch5Layout.setHorizontalGroup(
+            panMatch5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panMatch5Layout.setVerticalGroup(
+            panMatch5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        panMatch6.setBorder(javax.swing.BorderFactory.createTitledBorder("Court d'entrainement 6"));
+
+        javax.swing.GroupLayout panMatch6Layout = new javax.swing.GroupLayout(panMatch6);
+        panMatch6.setLayout(panMatch6Layout);
+        panMatch6Layout.setHorizontalGroup(
+            panMatch6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panMatch6Layout.setVerticalGroup(
+            panMatch6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout panPlanningLayout = new javax.swing.GroupLayout(panPlanning);
+        panPlanning.setLayout(panPlanningLayout);
+        panPlanningLayout.setHorizontalGroup(
+            panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panPlanningLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panMatch4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panMatch2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panMatch3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panPlanningLayout.setVerticalGroup(
+            panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panPlanningLayout.createSequentialGroup()
+                .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(panMatch3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panMatch4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        panGestion.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestion"));
+
+        btPrec.setText("<< Jour précédent");
+        btPrec.setEnabled(false);
+        btPrec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPrecActionPerformed(evt);
+            }
+        });
+
+        btSuiv.setText("Jour suivant >>");
+        btSuiv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSuivActionPerformed(evt);
+            }
+        });
+
+        btAdd.setText("Ajouter un match");
+
+        btModif.setText("Modifier un match");
+
+        btSupp.setText("Supprimer un match");
+
+        btRetour.setText("Retour");
+
+        javax.swing.GroupLayout panGestionLayout = new javax.swing.GroupLayout(panGestion);
+        panGestion.setLayout(panGestionLayout);
+        panGestionLayout.setHorizontalGroup(
+            panGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panGestionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btPrec)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btAdd)
+                .addGap(18, 18, 18)
+                .addComponent(btModif)
+                .addGap(18, 18, 18)
+                .addComponent(btSupp)
+                .addGap(18, 18, 18)
+                .addComponent(btRetour)
+                .addGap(93, 93, 93)
+                .addComponent(btSuiv)
+                .addContainerGap())
+        );
+        panGestionLayout.setVerticalGroup(
+            panGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panGestionLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btPrec)
+                    .addComponent(btAdd)
+                    .addComponent(btModif)
+                    .addComponent(btSupp)
+                    .addComponent(btRetour)
+                    .addComponent(btSuiv))
+                .addContainerGap())
+        );
+
+        panSelect.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection"));
+
+        courtChoice.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                courtChoiceItemStateChanged(evt);
+            }
+        });
+
+        heureChoice.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                heureChoiceItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panSelectLayout = new javax.swing.GroupLayout(panSelect);
+        panSelect.setLayout(panSelectLayout);
+        panSelectLayout.setHorizontalGroup(
+            panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panSelectLayout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(courtChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(heureChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(362, Short.MAX_VALUE))
+        );
+        panSelectLayout.setVerticalGroup(
+            panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panSelectLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(courtChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(heureChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        lbSelected.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbSelected.setText("8h");
 
         menuFichierMatch.setText("Fichier");
 
@@ -75,11 +330,42 @@ public class MenuPrincipal extends javax.swing.JFrame {
         gestionMatchs.getContentPane().setLayout(gestionMatchsLayout);
         gestionMatchsLayout.setHorizontalGroup(
             gestionMatchsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(gestionMatchsLayout.createSequentialGroup()
+                .addGroup(gestionMatchsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gestionMatchsLayout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(lbPlanning)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbNumJour)
+                        .addGap(153, 153, 153)
+                        .addComponent(lbSelected)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(gestionMatchsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panGestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(gestionMatchsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panPlanning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(gestionMatchsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         gestionMatchsLayout.setVerticalGroup(
             gestionMatchsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(gestionMatchsLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(gestionMatchsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbPlanning)
+                    .addComponent(lbNumJour)
+                    .addComponent(lbSelected))
+                .addGap(18, 18, 18)
+                .addComponent(panPlanning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panGestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         gestionVIP.setTitle("Gestion des VIP");
@@ -113,6 +399,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         gestionVIPLayout.setVerticalGroup(
             gestionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 279, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout fenAddMatchLayout = new javax.swing.GroupLayout(fenAddMatch.getContentPane());
+        fenAddMatch.getContentPane().setLayout(fenAddMatchLayout);
+        fenAddMatchLayout.setHorizontalGroup(
+            fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        fenAddMatchLayout.setVerticalGroup(
+            fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -218,21 +515,66 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setVisible(true);
     }//GEN-LAST:event_gestionVIPWindowClosing
 
+    private void btPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrecActionPerformed
+        if (jour != 22) {
+            jour--;
+            afficherMatchs();
+        }
+    }//GEN-LAST:event_btPrecActionPerformed
+
+    private void btSuivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSuivActionPerformed
+        if (jour != 30) {
+            jour++;
+            afficherMatchs();
+        }
+    }//GEN-LAST:event_btSuivActionPerformed
+
+    private void courtChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_courtChoiceItemStateChanged
+        afficherMatchs();
+    }//GEN-LAST:event_courtChoiceItemStateChanged
+
+    private void heureChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_heureChoiceItemStateChanged
+        afficherMatchs();
+    }//GEN-LAST:event_heureChoiceItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barreOutilsMatch;
     private javax.swing.JMenuBar barreOutilsPrincipal;
     private javax.swing.JMenuBar barreOutilsVIP;
+    private javax.swing.JButton btAdd;
+    private javax.swing.ButtonGroup btGroupCourts;
+    private javax.swing.ButtonGroup btGroupHeures;
     private javax.swing.JButton btMatchs;
+    private javax.swing.JButton btModif;
+    private javax.swing.JButton btPrec;
+    private javax.swing.JButton btRetour;
+    private javax.swing.JButton btSuiv;
+    private javax.swing.JButton btSupp;
     private javax.swing.JButton btVIP;
+    private java.awt.Choice courtChoice;
+    private javax.swing.JDialog fenAddMatch;
     private javax.swing.JDialog gestionMatchs;
     private javax.swing.JDialog gestionVIP;
+    private java.awt.Choice heureChoice;
     private javax.swing.JLabel lbAccueil;
+    private javax.swing.JLabel lbNumJour;
+    private javax.swing.JLabel lbPlanning;
+    private javax.swing.JLabel lbSelected;
     private javax.swing.JMenu menuFichierMatch;
     private javax.swing.JMenu menuFichierPrinicpal;
     private javax.swing.JMenu menuFichierVIP;
     private javax.swing.JMenuItem menuQuitterMatch;
     private javax.swing.JMenuItem menuQuitterPrincipal;
     private javax.swing.JMenuItem menuQuitterVIP;
+    private javax.swing.JPanel panGestion;
+    private javax.swing.JPanel panMatch1;
+    private javax.swing.JPanel panMatch2;
+    private javax.swing.JPanel panMatch3;
+    private javax.swing.JPanel panMatch4;
+    private javax.swing.JPanel panMatch5;
+    private javax.swing.JPanel panMatch6;
+    private javax.swing.JPanel panPlanning;
+    private javax.swing.JPanel panSelect;
     // End of variables declaration//GEN-END:variables
 
     private void quitter() {
@@ -240,6 +582,64 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 "Attention", JOptionPane.YES_NO_OPTION);
         if (rep == JOptionPane.YES_OPTION) {
             System.exit(0);
+        }
+    }
+    
+    private void afficherMatchs() {
+        lbNumJour.setText(Integer.toString(jour)+"/01");
+        if (jour == 22) btPrec.setEnabled(false);
+        else if (jour == 30) btSuiv.setEnabled(false);
+        else {
+            btPrec.setEnabled(true);
+            btSuiv.setEnabled(true);
+        }
+        
+        if (courtChoice.getSelectedItem().equals("Tous")) {
+            if (heureChoice.getSelectedItem().equals("Tous")) {
+                //Générer erreur
+            }
+            else {
+                //Mise à jour des bordures des panels
+                panMatch2.setVisible(true);
+                panMatch3.setVisible(true);
+                panMatch4.setVisible(true);
+                panMatch5.setVisible(true);
+                panMatch6.setVisible(true);
+                panMatch1.setBorder(new TitledBorder("Court central"));
+                panMatch2.setBorder(new TitledBorder("Court annexe"));
+                panMatch3.setBorder(new TitledBorder("Court d'entrainement 1"));
+                panMatch4.setBorder(new TitledBorder("Court d'entrainement 2"));
+                panMatch5.setBorder(new TitledBorder("Court d'entrainement 3"));
+                //Mise à jour du label indiquant la sélection
+                lbSelected.setText(heureChoice.getSelectedItem());
+            }
+        }
+        else if (heureChoice.getSelectedItem().equals("Tous")) {
+            //Mise à jour des bordures des panels
+            panMatch2.setVisible(true);
+            panMatch3.setVisible(true);
+            panMatch4.setVisible(true);
+            panMatch5.setVisible(true);
+            panMatch6.setVisible(false);
+            panMatch1.setBorder(new TitledBorder("8h"));
+            panMatch2.setBorder(new TitledBorder("11h"));
+            panMatch3.setBorder(new TitledBorder("15h"));
+            panMatch4.setBorder(new TitledBorder("18h"));
+            panMatch5.setBorder(new TitledBorder("21h"));
+            //Mise à jour du label indiquant la sélection
+            lbSelected.setText(courtChoice.getSelectedItem());
+        }
+        else {
+            //Mise à jour des bordures des panels
+            panMatch2.setVisible(false);
+            panMatch3.setVisible(false);
+            panMatch4.setVisible(false);
+            panMatch5.setVisible(false);
+            panMatch6.setVisible(false);
+            panMatch1.setBorder(new TitledBorder(courtChoice.getSelectedItem() + " - " + 
+                    heureChoice.getSelectedItem()));
+            //Mise à jour du label indiquant la sélection
+            lbSelected.setText(courtChoice.getSelectedItem() + " - " + heureChoice.getSelectedItem());
         }
     }
 }
