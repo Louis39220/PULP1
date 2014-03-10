@@ -61,14 +61,29 @@ public class MatchDaoImpl implements MatchDao {
         connexionDB.close();
         return rs;
     }
+    
+    @Override
+    public ResultSet selectMatchByDateByHour(String date, int matchTrancheHoraire) throws SQLException, IOException {
+        connexionDB = ConnexionMysqlFactory.getInstance();
+        ResultSet rs;
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM match WHERE matchDate= ? AND matchTrancheHoraire=?")) {
+            PS.setString(1, date);
+            PS.setInt(2, matchTrancheHoraire);
+            rs = PS.executeQuery();
+        }
+        rs.close();
+        connexionDB.close();
+        return rs;
+    }
 
     @Override
-    public ResultSet selectMatchByTerrain(int numTerrain) throws SQLException, IOException {
+    public ResultSet selectMatchByTerrainByDate( String date, int numTerrain) throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         Match m;
-        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM match WHERE matchLieu= ?")) {
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM match WHERE matchLieu= ? AND matchDate=?")) {
             PS.setInt(1, numTerrain);
+            PS.setString(2, date);
             rs = PS.executeQuery();
         }
         rs.close();
@@ -140,6 +155,20 @@ public class MatchDaoImpl implements MatchDao {
         }
         return res;
 
+    }
+
+    @Override
+    public ResultSet selectMatchByTerrain(int numTerrain) throws SQLException, IOException {
+               connexionDB = ConnexionMysqlFactory.getInstance();
+        ResultSet rs;
+        Match m;
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM match WHERE matchLieu= ?")) {
+            PS.setInt(1, numTerrain);
+            rs = PS.executeQuery();
+        }
+        rs.close();
+        connexionDB.close();
+        return rs;
     }
 
 }
