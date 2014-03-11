@@ -25,7 +25,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
         setLocation((d.width-this.getWidth()) / 2, (d.height-this.getHeight()) / 2);
-        gestionMatchs.setSize(1100, 700);
+        gestionMatchs.setSize(1035, 720);
         gestionMatchs.setLocation((d.width-gestionMatchs.getWidth()) / 2, (d.height-gestionMatchs.getHeight()) / 2);
         courtChoice.add("Tous");
         courtChoice.add("Court central");
@@ -40,6 +40,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         heureChoice.add("15h");
         heureChoice.add("18h");
         heureChoice.add("21h");
+        heureChoice.select("8h");
     }
 
     /**
@@ -56,11 +57,47 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lbNumJour = new javax.swing.JLabel();
         panPlanning = new javax.swing.JPanel();
         panMatch1 = new javax.swing.JPanel();
+        match1J1 = new javax.swing.JLabel();
+        match1J2 = new javax.swing.JLabel();
+        match1vs = new javax.swing.JLabel();
+        match1J3 = new javax.swing.JLabel();
+        match1J4 = new javax.swing.JLabel();
+        match1Plus = new javax.swing.JButton();
         panMatch2 = new javax.swing.JPanel();
+        match2J1 = new javax.swing.JLabel();
+        match2J2 = new javax.swing.JLabel();
+        match2vs = new javax.swing.JLabel();
+        match2J3 = new javax.swing.JLabel();
+        match2J4 = new javax.swing.JLabel();
+        match2Pus = new javax.swing.JButton();
         panMatch3 = new javax.swing.JPanel();
+        match3J1 = new javax.swing.JLabel();
+        match3J2 = new javax.swing.JLabel();
+        match3vs = new javax.swing.JLabel();
+        match3J3 = new javax.swing.JLabel();
+        match3J4 = new javax.swing.JLabel();
+        match3Plus = new javax.swing.JButton();
         panMatch4 = new javax.swing.JPanel();
+        match4J1 = new javax.swing.JLabel();
+        match4J2 = new javax.swing.JLabel();
+        match4vs = new javax.swing.JLabel();
+        match4J3 = new javax.swing.JLabel();
+        match4J4 = new javax.swing.JLabel();
+        match4Plus = new javax.swing.JButton();
         panMatch5 = new javax.swing.JPanel();
+        match5J1 = new javax.swing.JLabel();
+        match5J2 = new javax.swing.JLabel();
+        match5vs = new javax.swing.JLabel();
+        match5J3 = new javax.swing.JLabel();
+        match5J4 = new javax.swing.JLabel();
+        match5Plus = new javax.swing.JButton();
         panMatch6 = new javax.swing.JPanel();
+        match6J1 = new javax.swing.JLabel();
+        match6J2 = new javax.swing.JLabel();
+        match6vs = new javax.swing.JLabel();
+        match6J3 = new javax.swing.JLabel();
+        match6J4 = new javax.swing.JLabel();
+        match6Plus = new javax.swing.JButton();
         panGestion = new javax.swing.JPanel();
         btPrec = new javax.swing.JButton();
         btSuiv = new javax.swing.JButton();
@@ -71,6 +108,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panSelect = new javax.swing.JPanel();
         courtChoice = new java.awt.Choice();
         heureChoice = new java.awt.Choice();
+        lbSelectCourt = new javax.swing.JLabel();
+        lbSelectHeure = new javax.swing.JLabel();
         lbSelected = new javax.swing.JLabel();
         barreOutilsMatch = new javax.swing.JMenuBar();
         menuFichierMatch = new javax.swing.JMenu();
@@ -79,8 +118,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         barreOutilsVIP = new javax.swing.JMenuBar();
         menuFichierVIP = new javax.swing.JMenu();
         menuQuitterVIP = new javax.swing.JMenuItem();
-        btGroupHeures = new javax.swing.ButtonGroup();
-        btGroupCourts = new javax.swing.ButtonGroup();
         fenAddMatch = new javax.swing.JDialog();
         lbAccueil = new javax.swing.JLabel();
         btMatchs = new javax.swing.JButton();
@@ -106,80 +143,348 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         panMatch1.setBorder(javax.swing.BorderFactory.createTitledBorder("Court central"));
 
+        match1J1.setText("Joueur 1");
+
+        match1J2.setText("& Joueur 2");
+
+        match1vs.setText("VS");
+
+        match1J3.setText("Joueur 3");
+
+        match1J4.setText("& Joueur 4");
+
+        match1Plus.setText("+");
+
         javax.swing.GroupLayout panMatch1Layout = new javax.swing.GroupLayout(panMatch1);
         panMatch1.setLayout(panMatch1Layout);
         panMatch1Layout.setHorizontalGroup(
             panMatch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panMatch1Layout.createSequentialGroup()
+                .addGroup(panMatch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panMatch1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panMatch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(match1J1)
+                            .addComponent(match1J2)))
+                    .addGroup(panMatch1Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(match1vs))
+                    .addGroup(panMatch1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(match1J3))
+                    .addGroup(panMatch1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(match1J4))
+                    .addGroup(panMatch1Layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(match1Plus)))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         panMatch1Layout.setVerticalGroup(
             panMatch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panMatch1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(match1J1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match1J2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(match1vs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match1J3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match1J4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(match1Plus)
+                .addContainerGap())
         );
 
         panMatch2.setBorder(javax.swing.BorderFactory.createTitledBorder("Court annexe"));
+
+        match2J1.setText("Joueur 1");
+
+        match2J2.setText("& Joueur 2");
+
+        match2vs.setText("VS");
+
+        match2J3.setText("Joueur 3");
+
+        match2J4.setText("& Joueur 4");
+
+        match2Pus.setText("+");
 
         javax.swing.GroupLayout panMatch2Layout = new javax.swing.GroupLayout(panMatch2);
         panMatch2.setLayout(panMatch2Layout);
         panMatch2Layout.setHorizontalGroup(
             panMatch2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
+            .addGroup(panMatch2Layout.createSequentialGroup()
+                .addGroup(panMatch2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panMatch2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panMatch2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(match2J1)
+                            .addComponent(match2J2)))
+                    .addGroup(panMatch2Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(match2vs))
+                    .addGroup(panMatch2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(match2J3))
+                    .addGroup(panMatch2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(match2J4)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panMatch2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(match2Pus)
+                .addGap(133, 133, 133))
         );
         panMatch2Layout.setVerticalGroup(
             panMatch2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panMatch2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(match2J1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match2J2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match2vs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match2J3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match2J4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(match2Pus)
+                .addContainerGap())
         );
 
         panMatch3.setBorder(javax.swing.BorderFactory.createTitledBorder("Court d'entrainement 1"));
+        panMatch3.setPreferredSize(new java.awt.Dimension(347, 168));
+
+        match3J1.setText("Joueur 1");
+
+        match3J2.setText("& Joueur 2");
+
+        match3vs.setText("VS");
+
+        match3J3.setText("Joueur 3");
+
+        match3J4.setText("& Joueur 4");
+
+        match3Plus.setText("+");
 
         javax.swing.GroupLayout panMatch3Layout = new javax.swing.GroupLayout(panMatch3);
         panMatch3.setLayout(panMatch3Layout);
         panMatch3Layout.setHorizontalGroup(
             panMatch3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 216, Short.MAX_VALUE)
+            .addGroup(panMatch3Layout.createSequentialGroup()
+                .addGroup(panMatch3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panMatch3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panMatch3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(match3J1)
+                            .addComponent(match3J2)))
+                    .addGroup(panMatch3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(match3J3))
+                    .addGroup(panMatch3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(match3J4))
+                    .addGroup(panMatch3Layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(match3vs)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panMatch3Layout.createSequentialGroup()
+                .addGap(0, 132, Short.MAX_VALUE)
+                .addComponent(match3Plus)
+                .addGap(133, 133, 133))
         );
         panMatch3Layout.setVerticalGroup(
             panMatch3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 156, Short.MAX_VALUE)
+            .addGroup(panMatch3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(match3J1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match3J2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match3vs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match3J3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match3J4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(match3Plus)
+                .addContainerGap())
         );
 
         panMatch4.setBorder(javax.swing.BorderFactory.createTitledBorder("Court d'entrainement 2"));
+
+        match4J1.setText("Joueur 1");
+
+        match4J2.setText("& Joueur 2");
+
+        match4vs.setText("VS");
+
+        match4J3.setText("Joueur 3");
+
+        match4J4.setText("& Joueur 4");
+
+        match4Plus.setText("+");
 
         javax.swing.GroupLayout panMatch4Layout = new javax.swing.GroupLayout(panMatch4);
         panMatch4.setLayout(panMatch4Layout);
         panMatch4Layout.setHorizontalGroup(
             panMatch4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 177, Short.MAX_VALUE)
+            .addGroup(panMatch4Layout.createSequentialGroup()
+                .addGroup(panMatch4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panMatch4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panMatch4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(match4J1)
+                            .addComponent(match4J2)))
+                    .addGroup(panMatch4Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(match4vs))
+                    .addGroup(panMatch4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(match4J3))
+                    .addGroup(panMatch4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(match4J4))
+                    .addGroup(panMatch4Layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(match4Plus)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panMatch4Layout.setVerticalGroup(
             panMatch4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 163, Short.MAX_VALUE)
+            .addGroup(panMatch4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(match4J1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match4J2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match4vs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match4J3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match4J4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(match4Plus)
+                .addContainerGap())
         );
 
         panMatch5.setBorder(javax.swing.BorderFactory.createTitledBorder("Court d'entrainement 3"));
+
+        match5J1.setText("Joueur 1");
+
+        match5J2.setText("& Joueur 2");
+
+        match5vs.setText("VS");
+
+        match5J3.setText("Joueur 3");
+
+        match5J4.setText("& Joueur 4");
+
+        match5Plus.setText("+");
 
         javax.swing.GroupLayout panMatch5Layout = new javax.swing.GroupLayout(panMatch5);
         panMatch5.setLayout(panMatch5Layout);
         panMatch5Layout.setHorizontalGroup(
             panMatch5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panMatch5Layout.createSequentialGroup()
+                .addGroup(panMatch5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panMatch5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panMatch5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(match5J1)
+                            .addComponent(match5J2)))
+                    .addGroup(panMatch5Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(match5vs))
+                    .addGroup(panMatch5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(match5J3))
+                    .addGroup(panMatch5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(match5J4))
+                    .addGroup(panMatch5Layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(match5Plus)))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         panMatch5Layout.setVerticalGroup(
             panMatch5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panMatch5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(match5J1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match5J2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match5vs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match5J3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match5J4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(match5Plus)
+                .addContainerGap())
         );
 
         panMatch6.setBorder(javax.swing.BorderFactory.createTitledBorder("Court d'entrainement 6"));
+
+        match6J1.setText("Joueur 1");
+
+        match6J2.setText("& Joueur 2");
+
+        match6vs.setText("VS");
+
+        match6J3.setText("Joueur 3");
+
+        match6J4.setText("& Joueur 4");
+
+        match6Plus.setText("+");
 
         javax.swing.GroupLayout panMatch6Layout = new javax.swing.GroupLayout(panMatch6);
         panMatch6.setLayout(panMatch6Layout);
         panMatch6Layout.setHorizontalGroup(
             panMatch6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panMatch6Layout.createSequentialGroup()
+                .addGroup(panMatch6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panMatch6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panMatch6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(match6J1)
+                            .addComponent(match6J2)))
+                    .addGroup(panMatch6Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(match6vs))
+                    .addGroup(panMatch6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(match6J3))
+                    .addGroup(panMatch6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(match6J4)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panMatch6Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(match6Plus)
+                .addGap(133, 133, 133))
         );
         panMatch6Layout.setVerticalGroup(
             panMatch6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panMatch6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(match6J1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match6J2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match6vs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match6J3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(match6J4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(match6Plus)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout panPlanningLayout = new javax.swing.GroupLayout(panPlanning);
@@ -189,23 +494,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(panPlanningLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panMatch4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panMatch1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(panMatch1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panMatch2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panMatch5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panMatch3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panMatch6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(panMatch6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch3, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panPlanningLayout.setVerticalGroup(
             panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panPlanningLayout.createSequentialGroup()
                 .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(panMatch3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch3, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                     .addComponent(panMatch1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panMatch2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -239,6 +544,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btSupp.setText("Supprimer un match");
 
         btRetour.setText("Retour");
+        btRetour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRetourActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panGestionLayout = new javax.swing.GroupLayout(panGestion);
         panGestion.setLayout(panGestionLayout);
@@ -247,7 +557,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(panGestionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btPrec)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
                 .addComponent(btAdd)
                 .addGap(18, 18, 18)
                 .addComponent(btModif)
@@ -255,7 +565,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(btSupp)
                 .addGap(18, 18, 18)
                 .addComponent(btRetour)
-                .addGap(93, 93, 93)
+                .addGap(126, 126, 126)
                 .addComponent(btSuiv)
                 .addContainerGap())
         );
@@ -287,24 +597,34 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lbSelectCourt.setText("Sélection du court");
+
+        lbSelectHeure.setText("Sélection de l'horaire");
+
         javax.swing.GroupLayout panSelectLayout = new javax.swing.GroupLayout(panSelect);
         panSelect.setLayout(panSelectLayout);
         panSelectLayout.setHorizontalGroup(
             panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panSelectLayout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(courtChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(132, 132, 132)
+                .addComponent(lbSelectCourt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(courtChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(132, 132, 132)
+                .addComponent(lbSelectHeure)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(heureChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(362, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panSelectLayout.setVerticalGroup(
             panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panSelectLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbSelectCourt)
                     .addComponent(courtChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(heureChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(heureChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbSelectHeure))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -337,9 +657,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addComponent(lbPlanning)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbNumJour)
-                        .addGap(153, 153, 153)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbSelected)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(82, 82, 82))
                     .addGroup(gestionMatchsLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(panGestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -365,7 +685,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(panSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panGestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         gestionVIP.setTitle("Gestion des VIP");
@@ -530,20 +850,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btSuivActionPerformed
 
     private void courtChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_courtChoiceItemStateChanged
-        afficherMatchs();
+        if (courtChoice.getSelectedItem().equals("Tous") && heureChoice.getSelectedItem().equals("Tous")) {
+            JOptionPane.showMessageDialog(this, "Impossible d'afficher tous les terrains pour toutes "
+                    + "les horaires.", "Erreur", JOptionPane.OK_OPTION);
+            courtChoice.select("Court central");
+        }
+        else
+            afficherMatchs();
     }//GEN-LAST:event_courtChoiceItemStateChanged
 
     private void heureChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_heureChoiceItemStateChanged
-        afficherMatchs();
+        if (courtChoice.getSelectedItem().equals("Tous") && heureChoice.getSelectedItem().equals("Tous")) {
+            JOptionPane.showMessageDialog(this, "Impossible d'afficher tous les terrains pour toutes "
+                    + "les horaires.", "Erreur", JOptionPane.OK_OPTION);
+            heureChoice.select("8h");
+        }
+        else
+            afficherMatchs();
     }//GEN-LAST:event_heureChoiceItemStateChanged
+
+    private void btRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRetourActionPerformed
+        gestionMatchs.setVisible(false);
+        setVisible(true);
+    }//GEN-LAST:event_btRetourActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barreOutilsMatch;
     private javax.swing.JMenuBar barreOutilsPrincipal;
     private javax.swing.JMenuBar barreOutilsVIP;
     private javax.swing.JButton btAdd;
-    private javax.swing.ButtonGroup btGroupCourts;
-    private javax.swing.ButtonGroup btGroupHeures;
     private javax.swing.JButton btMatchs;
     private javax.swing.JButton btModif;
     private javax.swing.JButton btPrec;
@@ -559,7 +894,45 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbAccueil;
     private javax.swing.JLabel lbNumJour;
     private javax.swing.JLabel lbPlanning;
+    private javax.swing.JLabel lbSelectCourt;
+    private javax.swing.JLabel lbSelectHeure;
     private javax.swing.JLabel lbSelected;
+    private javax.swing.JLabel match1J1;
+    private javax.swing.JLabel match1J2;
+    private javax.swing.JLabel match1J3;
+    private javax.swing.JLabel match1J4;
+    private javax.swing.JButton match1Plus;
+    private javax.swing.JLabel match1vs;
+    private javax.swing.JLabel match2J1;
+    private javax.swing.JLabel match2J2;
+    private javax.swing.JLabel match2J3;
+    private javax.swing.JLabel match2J4;
+    private javax.swing.JButton match2Pus;
+    private javax.swing.JLabel match2vs;
+    private javax.swing.JLabel match3J1;
+    private javax.swing.JLabel match3J2;
+    private javax.swing.JLabel match3J3;
+    private javax.swing.JLabel match3J4;
+    private javax.swing.JButton match3Plus;
+    private javax.swing.JLabel match3vs;
+    private javax.swing.JLabel match4J1;
+    private javax.swing.JLabel match4J2;
+    private javax.swing.JLabel match4J3;
+    private javax.swing.JLabel match4J4;
+    private javax.swing.JButton match4Plus;
+    private javax.swing.JLabel match4vs;
+    private javax.swing.JLabel match5J1;
+    private javax.swing.JLabel match5J2;
+    private javax.swing.JLabel match5J3;
+    private javax.swing.JLabel match5J4;
+    private javax.swing.JButton match5Plus;
+    private javax.swing.JLabel match5vs;
+    private javax.swing.JLabel match6J1;
+    private javax.swing.JLabel match6J2;
+    private javax.swing.JLabel match6J3;
+    private javax.swing.JLabel match6J4;
+    private javax.swing.JButton match6Plus;
+    private javax.swing.JLabel match6vs;
     private javax.swing.JMenu menuFichierMatch;
     private javax.swing.JMenu menuFichierPrinicpal;
     private javax.swing.JMenu menuFichierVIP;
