@@ -4,8 +4,11 @@
  */
 package InterfaceGraphique;
 
+import DAO.DaoFactory;
+import DAO.MatchDao;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
@@ -968,24 +971,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         
         if (courtChoice.getSelectedItem().equals("Tous")) {
-            if (heureChoice.getSelectedItem().equals("Tous")) {
-                //Générer erreur
-            }
-            else {
-                //Mise à jour des bordures des panels
-                panMatch2.setVisible(true);
-                panMatch3.setVisible(true);
-                panMatch4.setVisible(true);
-                panMatch5.setVisible(true);
-                panMatch6.setVisible(true);
-                panMatch1.setBorder(new TitledBorder("Court central"));
-                panMatch2.setBorder(new TitledBorder("Court annexe"));
-                panMatch3.setBorder(new TitledBorder("Court d'entrainement 1"));
-                panMatch4.setBorder(new TitledBorder("Court d'entrainement 2"));
-                panMatch5.setBorder(new TitledBorder("Court d'entrainement 3"));
-                //Mise à jour du label indiquant la sélection
-                lbSelected.setText(heureChoice.getSelectedItem());
-            }
+            //Mise à jour des bordures des panels
+            panMatch2.setVisible(true);
+            panMatch3.setVisible(true);
+            panMatch4.setVisible(true);
+            panMatch5.setVisible(true);
+            panMatch6.setVisible(true);
+            panMatch1.setBorder(new TitledBorder("Court central"));
+            panMatch2.setBorder(new TitledBorder("Court annexe"));
+            panMatch3.setBorder(new TitledBorder("Court d'entrainement 1"));
+            panMatch4.setBorder(new TitledBorder("Court d'entrainement 2"));
+            panMatch5.setBorder(new TitledBorder("Court d'entrainement 3"));
+            //Mise à jour du label indiquant la sélection
+            lbSelected.setText(heureChoice.getSelectedItem());
+            MatchDao mdao = DaoFactory.getMatchDao();
+            ResultSet rs;
+            remplirPlanning(rs);
         }
         else if (heureChoice.getSelectedItem().equals("Tous")) {
             //Mise à jour des bordures des panels
@@ -1001,6 +1002,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             panMatch5.setBorder(new TitledBorder("21h"));
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem());
+            ResultSet rs;
+            remplirPlanning(rs);
         }
         else {
             //Mise à jour des bordures des panels
@@ -1013,6 +1016,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     heureChoice.getSelectedItem()));
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem() + " - " + heureChoice.getSelectedItem());
+            ResultSet rs;
+            remplirPlanning(rs);
         }
+    }
+    
+    private void remplirPlanning(ResultSet rs) {
+        
     }
 }
