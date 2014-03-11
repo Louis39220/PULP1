@@ -2,6 +2,7 @@ package TestDB;
 
 
 import DAO.DaoFactory;
+import DAO.MatchDao;
 import DAO.PlayerDao;
 import DAO.PlayerDaoImpl;
 import java.io.IOException;
@@ -22,9 +23,9 @@ public class TestDB {
 
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws SQLException, IOException {
-        PlayerDao pdao =  DaoFactory.getPlayerDao();
+        MatchDao pdao =  DaoFactory.getMatchDao();
         try {
-            pdao.insertPlayer("Louis", "FAVRET", "08/10/1994", 14);
+            System.out.println(pdao.selectIdMatchByTerrainByDate(3, 26));
         } catch (IOException | SQLException e) {
             System.err.println("Erreur lors de l'insertion:" + e.getMessage());
         }
