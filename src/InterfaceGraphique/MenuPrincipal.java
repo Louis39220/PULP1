@@ -7,6 +7,7 @@ package InterfaceGraphique;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 
 /**
@@ -40,6 +41,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         heureChoice.add("15h");
         heureChoice.add("18h");
         heureChoice.add("21h");
+        
+        gestionVIP.setSize(650, 500);
+        gestionVIP.setLocation((d.width-gestionMatchs.getWidth()) / 2, (d.height-gestionMatchs.getHeight()) / 2);
+        remplirTableVIP(tableVIP);
     }
 
     /**
@@ -76,6 +81,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuFichierMatch = new javax.swing.JMenu();
         menuQuitterMatch = new javax.swing.JMenuItem();
         gestionVIP = new javax.swing.JDialog();
+        panListeVIP = new javax.swing.JPanel();
+        scrollTableVIP = new javax.swing.JScrollPane();
+        tableVIP = new javax.swing.JTable();
+        panGestionVIP = new javax.swing.JPanel();
+        btnSuppr = new javax.swing.JButton();
+        btnConsult = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         barreOutilsVIP = new javax.swing.JMenuBar();
         menuFichierVIP = new javax.swing.JMenu();
         menuQuitterVIP = new javax.swing.JMenuItem();
@@ -375,6 +387,94 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        panListeVIP.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste VIP"));
+
+        tableVIP.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "NOM", "PRENOM", "DATE DE NAISSANCE"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollTableVIP.setViewportView(tableVIP);
+
+        javax.swing.GroupLayout panListeVIPLayout = new javax.swing.GroupLayout(panListeVIP);
+        panListeVIP.setLayout(panListeVIPLayout);
+        panListeVIPLayout.setHorizontalGroup(
+            panListeVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panListeVIPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollTableVIP, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panListeVIPLayout.setVerticalGroup(
+            panListeVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panListeVIPLayout.createSequentialGroup()
+                .addComponent(scrollTableVIP, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panGestionVIP.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestion VIP"));
+
+        btnSuppr.setText("Supprimer");
+        btnSuppr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupprActionPerformed(evt);
+            }
+        });
+
+        btnConsult.setText("Consulter relations & actions VIP");
+        btnConsult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultActionPerformed(evt);
+            }
+        });
+
+        btnAdd.setText("Ajouter");
+
+        javax.swing.GroupLayout panGestionVIPLayout = new javax.swing.GroupLayout(panGestionVIP);
+        panGestionVIP.setLayout(panGestionVIPLayout);
+        panGestionVIPLayout.setHorizontalGroup(
+            panGestionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panGestionVIPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnSuppr)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConsult)
+                .addGap(82, 82, 82)
+                .addComponent(btnAdd)
+                .addContainerGap())
+        );
+        panGestionVIPLayout.setVerticalGroup(
+            panGestionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panGestionVIPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panGestionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSuppr)
+                    .addComponent(btnConsult)
+                    .addComponent(btnAdd))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
         menuFichierVIP.setText("Fichier");
 
         menuQuitterVIP.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
@@ -394,11 +494,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         gestionVIP.getContentPane().setLayout(gestionVIPLayout);
         gestionVIPLayout.setHorizontalGroup(
             gestionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(gestionVIPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(gestionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panListeVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panGestionVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         gestionVIPLayout.setVerticalGroup(
             gestionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(gestionVIPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panListeVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panGestionVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout fenAddMatchLayout = new javax.swing.GroupLayout(fenAddMatch.getContentPane());
@@ -537,6 +647,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         afficherMatchs();
     }//GEN-LAST:event_heureChoiceItemStateChanged
 
+    private void btnSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSupprActionPerformed
+
+    private void btnConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barreOutilsMatch;
     private javax.swing.JMenuBar barreOutilsPrincipal;
@@ -551,6 +669,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btSuiv;
     private javax.swing.JButton btSupp;
     private javax.swing.JButton btVIP;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnConsult;
+    private javax.swing.JButton btnSuppr;
     private java.awt.Choice courtChoice;
     private javax.swing.JDialog fenAddMatch;
     private javax.swing.JDialog gestionMatchs;
@@ -567,6 +688,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuQuitterPrincipal;
     private javax.swing.JMenuItem menuQuitterVIP;
     private javax.swing.JPanel panGestion;
+    private javax.swing.JPanel panGestionVIP;
+    private javax.swing.JPanel panListeVIP;
     private javax.swing.JPanel panMatch1;
     private javax.swing.JPanel panMatch2;
     private javax.swing.JPanel panMatch3;
@@ -575,6 +698,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panMatch6;
     private javax.swing.JPanel panPlanning;
     private javax.swing.JPanel panSelect;
+    private javax.swing.JScrollPane scrollTableVIP;
+    private javax.swing.JTable tableVIP;
     // End of variables declaration//GEN-END:variables
 
     private void quitter() {
@@ -641,5 +766,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem() + " - " + heureChoice.getSelectedItem());
         }
+    }
+    
+    private void remplirTableVIP(JTable tableVIP)
+    {
+        int i = 0;
+        
+        while(i < tableVIP.getRowCount())
+                {
+                tableVIP.setValueAt(0,i,0);
+                tableVIP.setValueAt("DANGUIN",i,1);
+                tableVIP.setValueAt("Jérôme",i,2);
+                tableVIP.setValueAt("30/07/1994",i,3);
+                
+                if(tableVIP.getSelectedRow() == tableVIP.getRowCount())
+                
+                i++;
+                }
     }
 }
