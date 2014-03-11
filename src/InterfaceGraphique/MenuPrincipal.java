@@ -6,9 +6,18 @@ package InterfaceGraphique;
 
 import DAO.DaoFactory;
 import DAO.MatchDao;
+import DAO.PlayerDao;
+import entities.Match;
+import entities.Player;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
@@ -840,15 +849,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrecActionPerformed
         if (jour != 22) {
-            jour--;
-            afficherMatchs();
+            try {
+                jour--;
+                afficherMatchs();
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btPrecActionPerformed
 
     private void btSuivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSuivActionPerformed
         if (jour != 30) {
-            jour++;
-            afficherMatchs();
+            try {
+                jour++;
+                afficherMatchs();
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btSuivActionPerformed
 
@@ -859,7 +876,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             courtChoice.select("Court central");
         }
         else
+            try {
             afficherMatchs();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_courtChoiceItemStateChanged
 
     private void heureChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_heureChoiceItemStateChanged
@@ -869,7 +890,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             heureChoice.select("8h");
         }
         else
+            try {
             afficherMatchs();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_heureChoiceItemStateChanged
 
     private void btRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRetourActionPerformed
@@ -961,7 +986,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private void afficherMatchs() {
+    private void afficherMatchs() throws IOException, SQLException {
         lbNumJour.setText(Integer.toString(jour)+"/01");
         if (jour == 22) btPrec.setEnabled(false);
         else if (jour == 30) btSuiv.setEnabled(false);
@@ -985,8 +1010,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(heureChoice.getSelectedItem());
             MatchDao mdao = DaoFactory.getMatchDao();
-            ResultSet rs;
-            remplirPlanning(rs);
+            remplirPlanningHeures(mdao.selectMatchByDateByHour(Integer.toString(jour)+"/01/2013", 
+                    Integer.parseInt(heureChoice.getSelectedItem())));
         }
         else if (heureChoice.getSelectedItem().equals("Tous")) {
             //Mise à jour des bordures des panels
@@ -1002,8 +1027,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             panMatch5.setBorder(new TitledBorder("21h"));
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem());
-            ResultSet rs;
-            remplirPlanning(rs);
+            MatchDao mdao = DaoFactory.getMatchDao();
+            remplirPlanningCourts(mdao.selectMatchByTerrainByDate(Integer.toString(jour)+"/01/2013", 
+                    affecteNumCourt(courtChoice.getSelectedItem())));
         }
         else {
             //Mise à jour des bordures des panels
@@ -1016,12 +1042,361 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     heureChoice.getSelectedItem()));
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem() + " - " + heureChoice.getSelectedItem());
-            ResultSet rs;
-            remplirPlanning(rs);
+            MatchDao mdao = DaoFactory.getMatchDao();
+            remplirPlanningCourtHeure(mdao.selectMatchByDateByHour(Integer.toString(jour)+"/01/2013", 
+                    Integer.parseInt(heureChoice.getSelectedItem())));
         }
     }
     
-    private void remplirPlanning(ResultSet rs) {
+    private int affecteNumCourt(String terrain) {
+        if (terrain.equals("Court central")) return 1;
+        else if (terrain.equals("Court annexe")) return 2;
+        else if (terrain.equals("Court d'entrainement 1")) return 3;
+        else if (terrain.equals("Court d'entrainement 2")) return 4;
+        else if (terrain.equals("Court d'entrainement 3")) return 5;
+        else return 6;
+    }
+    
+    private void remplirPlanningCourtHeure(ResultSet rs) throws SQLException, IOException {
+        List<Match> matchs = new ArrayList<>();
         
+        while (rs.next()) {
+            Match m = new Match(rs.getInt("ID"), rs.getInt("IDP1"), rs.getInt("IDP2"), rs.getInt("IDP3"), 
+                    rs.getInt("IDP4"), rs.getInt("JOUR"), rs.getInt("HEURE"), rs.getInt("TERRAIN"), 
+                    rs.getInt("IDARBCHAISE"), rs.getInt("IDARBFILET"), rs.getInt("IDRAMASS1"), 
+                    rs.getInt("IDRAMASS2"), rs.getInt("SIMPLE"));
+            matchs.add(m);
+        }
+        
+        if (matchs.size() == 1) {
+            PlayerDao pdao = DaoFactory.getPlayerDao();
+            Player p = pdao.selectPlayer(matchs.get(5).getIdP1());
+            match6J1.setText(p.getSurname() + " " + p.getName());
+            p = pdao.selectPlayer(matchs.get(5).getIdP3());
+            match6J3.setText(p.getSurname() + " " + p.getName());
+            match6vs.setText("VS");
+            if (matchs.get(5).isSimple() == 0) {
+                p = pdao.selectPlayer(matchs.get(5).getIdP2());
+                match6J2.setText(p.getSurname() + " " + p.getName());
+                p = pdao.selectPlayer(matchs.get(5).getIdP4());
+                match6J4.setText(p.getSurname() + " " + p.getName());
+            }
+        }
+        else {
+            match6vs.setText("Aucun match sur ce cours à cette heure.");
+            match6J1.setText("");
+            match6J2.setText("");
+            match6J3.setText("");
+            match6J4.setText("");
+        }
+    }
+    
+    private void remplirPlanningCourts(ResultSet rs) throws SQLException, IOException {
+        List<Match> matchs = new ArrayList<>();
+        
+        while (rs.next()) {
+            Match m = new Match(rs.getInt("ID"), rs.getInt("IDP1"), rs.getInt("IDP2"), rs.getInt("IDP3"), 
+                    rs.getInt("IDP4"), rs.getInt("JOUR"), rs.getInt("HEURE"), rs.getInt("TERRAIN"), 
+                    rs.getInt("IDARBCHAISE"), rs.getInt("IDARBFILET"), rs.getInt("IDRAMASS1"), 
+                    rs.getInt("IDRAMASS2"), rs.getInt("SIMPLE"));
+            matchs.add(m);
+        }
+        
+        for (int i = 1 ; i <= 6 ; i++) {
+            switch (i) {
+                case 1:
+                    for (Match m : matchs) {
+                        if (m.getIdTerrain() == 1) {
+                            PlayerDao pdao = DaoFactory.getPlayerDao();
+                            Player p = pdao.selectPlayer(m.getIdP1());
+                            match1J1.setText(p.getSurname() + " " + p.getName());
+                            p = pdao.selectPlayer(m.getIdP3());
+                            match1J3.setText(p.getSurname() + " " + p.getName());
+                            match1vs.setText("VS");
+                            if (m.isSimple() == 0) {
+                                p = pdao.selectPlayer(m.getIdP2());
+                                match1J2.setText(p.getSurname() + " " + p.getName());
+                                p = pdao.selectPlayer(m.getIdP4());
+                                match1J4.setText(p.getSurname() + " " + p.getName());
+                            }
+                        }
+                        else {
+                            match1vs.setText("Aucun match sur ce cours à cette heure.");
+                            match1J1.setText("");
+                            match1J2.setText("");
+                            match1J3.setText("");
+                            match1J4.setText("");
+                        }
+                    }
+                    break;
+                case 2:
+                    for (Match m : matchs) {
+                        if (m.getIdTerrain() == 2) {
+                            PlayerDao pdao = DaoFactory.getPlayerDao();
+                            Player p = pdao.selectPlayer(m.getIdP1());
+                            match2J1.setText(p.getSurname() + " " + p.getName());
+                            p = pdao.selectPlayer(m.getIdP3());
+                            match2J3.setText(p.getSurname() + " " + p.getName());
+                            match2vs.setText("VS");
+                            if (m.isSimple() == 0) {
+                                p = pdao.selectPlayer(m.getIdP2());
+                                match2J2.setText(p.getSurname() + " " + p.getName());
+                                p = pdao.selectPlayer(m.getIdP4());
+                                match2J4.setText(p.getSurname() + " " + p.getName());
+                            }
+                        }
+                        else {
+                            match2vs.setText("Aucun match sur ce cours à cette heure.");
+                            match2J1.setText("");
+                            match2J2.setText("");
+                            match2J3.setText("");
+                            match2J4.setText("");
+                        }
+                    }
+                    break;
+                case 3:
+                    for (Match m : matchs) {
+                        if (m.getIdTerrain() == 3) {
+                            PlayerDao pdao = DaoFactory.getPlayerDao();
+                            Player p = pdao.selectPlayer(m.getIdP1());
+                            match3J1.setText(p.getSurname() + " " + p.getName());
+                            p = pdao.selectPlayer(m.getIdP3());
+                            match3J3.setText(p.getSurname() + " " + p.getName());
+                            match3vs.setText("VS");
+                            if (m.isSimple() == 0) {
+                                p = pdao.selectPlayer(m.getIdP2());
+                                match3J2.setText(p.getSurname() + " " + p.getName());
+                                p = pdao.selectPlayer(m.getIdP4());
+                                match3J4.setText(p.getSurname() + " " + p.getName());
+                            }
+                        }
+                        else {
+                            match3vs.setText("Aucun match sur ce cours à cette heure.");
+                            match3J1.setText("");
+                            match3J2.setText("");
+                            match3J3.setText("");
+                            match3J4.setText("");
+                        }
+                    }
+                    break;
+                case 4:
+                    for (Match m : matchs) {
+                        if (m.getIdTerrain() == 4) {
+                            PlayerDao pdao = DaoFactory.getPlayerDao();
+                            Player p = pdao.selectPlayer(m.getIdP1());
+                            match4J1.setText(p.getSurname() + " " + p.getName());
+                            p = pdao.selectPlayer(m.getIdP3());
+                            match4J3.setText(p.getSurname() + " " + p.getName());
+                            match4vs.setText("VS");
+                            if (m.isSimple() == 0) {
+                                p = pdao.selectPlayer(m.getIdP2());
+                                match4J2.setText(p.getSurname() + " " + p.getName());
+                                p = pdao.selectPlayer(m.getIdP4());
+                                match4J4.setText(p.getSurname() + " " + p.getName());
+                            }
+                        }
+                        else {
+                            match4vs.setText("Aucun match sur ce cours à cette heure.");
+                            match4J1.setText("");
+                            match4J2.setText("");
+                            match4J3.setText("");
+                            match4J4.setText("");
+                        }
+                    }
+                    break;
+                case 5:
+                    for (Match m : matchs) {
+                        if (m.getIdTerrain() == 5) {
+                            PlayerDao pdao = DaoFactory.getPlayerDao();
+                            Player p = pdao.selectPlayer(m.getIdP1());
+                            match5J1.setText(p.getSurname() + " " + p.getName());
+                            p = pdao.selectPlayer(m.getIdP3());
+                            match5J3.setText(p.getSurname() + " " + p.getName());
+                            match5vs.setText("VS");
+                            if (m.isSimple() == 0) {
+                                p = pdao.selectPlayer(m.getIdP2());
+                                match5J2.setText(p.getSurname() + " " + p.getName());
+                                p = pdao.selectPlayer(m.getIdP4());
+                                match5J4.setText(p.getSurname() + " " + p.getName());
+                            }
+                        }
+                        else {
+                            match5vs.setText("Aucun match sur ce cours à cette heure.");
+                            match5J1.setText("");
+                            match5J2.setText("");
+                            match5J3.setText("");
+                            match5J4.setText("");
+                        }
+                    }
+                    break;
+                case 6:
+                    for (Match m : matchs) {
+                        if (m.getIdTerrain() == 6) {
+                            PlayerDao pdao = DaoFactory.getPlayerDao();
+                            Player p = pdao.selectPlayer(m.getIdP1());
+                            match6J1.setText(p.getSurname() + " " + p.getName());
+                            p = pdao.selectPlayer(m.getIdP3());
+                            match6J3.setText(p.getSurname() + " " + p.getName());
+                            match6vs.setText("VS");
+                            if (m.isSimple() == 0) {
+                                p = pdao.selectPlayer(m.getIdP2());
+                                match6J2.setText(p.getSurname() + " " + p.getName());
+                                p = pdao.selectPlayer(m.getIdP4());
+                                match6J4.setText(p.getSurname() + " " + p.getName());
+                            }
+                        }
+                        else {
+                            match6vs.setText("Aucun match sur ce cours à cette heure.");
+                            match6J1.setText("");
+                            match6J2.setText("");
+                            match6J3.setText("");
+                            match6J4.setText("");
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+    
+    private void remplirPlanningHeures(ResultSet rs) throws SQLException, IOException {
+        List<Match> matchs = new ArrayList<>();
+        
+        while (rs.next()) {
+            Match m = new Match(rs.getInt("ID"), rs.getInt("IDP1"), rs.getInt("IDP2"), rs.getInt("IDP3"), 
+                    rs.getInt("IDP4"), rs.getInt("JOUR"), rs.getInt("HEURE"), rs.getInt("TERRAIN"), 
+                    rs.getInt("IDARBCHAISE"), rs.getInt("IDARBFILET"), rs.getInt("IDRAMASS1"), 
+                    rs.getInt("IDRAMASS2"), rs.getInt("SIMPLE"));
+            matchs.add(m);
+        }
+        
+        for (int i = 1 ; i <= 6 ; i++) {
+            switch (i) {
+                case 1:
+                    for (Match m : matchs) {
+                        if (m.getHeure() == 8) {
+                            PlayerDao pdao = DaoFactory.getPlayerDao();
+                            Player p = pdao.selectPlayer(m.getIdP1());
+                            match1J1.setText(p.getSurname() + " " + p.getName());
+                            p = pdao.selectPlayer(m.getIdP3());
+                            match1J3.setText(p.getSurname() + " " + p.getName());
+                            match1vs.setText("VS");
+                            if (m.isSimple() == 0) {
+                                p = pdao.selectPlayer(m.getIdP2());
+                                match1J2.setText(p.getSurname() + " " + p.getName());
+                                p = pdao.selectPlayer(m.getIdP4());
+                                match1J4.setText(p.getSurname() + " " + p.getName());
+                            }
+                        }
+                        else {
+                            match1vs.setText("Aucun match sur ce cours à cette heure.");
+                            match1J1.setText("");
+                            match1J2.setText("");
+                            match1J3.setText("");
+                            match1J4.setText("");
+                        }
+                    }
+                    break;
+                case 2:
+                    for (Match m : matchs) {
+                        if (m.getHeure() == 11) {
+                            PlayerDao pdao = DaoFactory.getPlayerDao();
+                            Player p = pdao.selectPlayer(m.getIdP1());
+                            match2J1.setText(p.getSurname() + " " + p.getName());
+                            p = pdao.selectPlayer(m.getIdP3());
+                            match2J3.setText(p.getSurname() + " " + p.getName());
+                            match2vs.setText("VS");
+                            if (m.isSimple() == 0) {
+                                p = pdao.selectPlayer(m.getIdP2());
+                                match2J2.setText(p.getSurname() + " " + p.getName());
+                                p = pdao.selectPlayer(m.getIdP4());
+                                match2J4.setText(p.getSurname() + " " + p.getName());
+                            }
+                        }
+                        else {
+                            match2vs.setText("Aucun match sur ce cours à cette heure.");
+                            match2J1.setText("");
+                            match2J2.setText("");
+                            match2J3.setText("");
+                            match2J4.setText("");
+                        }
+                    }
+                    break;
+                case 3:
+                    for (Match m : matchs) {
+                        if (m.getHeure() == 15) {
+                            PlayerDao pdao = DaoFactory.getPlayerDao();
+                            Player p = pdao.selectPlayer(m.getIdP1());
+                            match3J1.setText(p.getSurname() + " " + p.getName());
+                            p = pdao.selectPlayer(m.getIdP3());
+                            match3J3.setText(p.getSurname() + " " + p.getName());
+                            match3vs.setText("VS");
+                            if (m.isSimple() == 0) {
+                                p = pdao.selectPlayer(m.getIdP2());
+                                match3J2.setText(p.getSurname() + " " + p.getName());
+                                p = pdao.selectPlayer(m.getIdP4());
+                                match3J4.setText(p.getSurname() + " " + p.getName());
+                            }
+                        }
+                        else {
+                            match3vs.setText("Aucun match sur ce cours à cette heure.");
+                            match3J1.setText("");
+                            match3J2.setText("");
+                            match3J3.setText("");
+                            match3J4.setText("");
+                        }
+                    }
+                    break;
+                case 4:
+                    for (Match m : matchs) {
+                        if (m.getHeure() == 18) {
+                            PlayerDao pdao = DaoFactory.getPlayerDao();
+                            Player p = pdao.selectPlayer(m.getIdP1());
+                            match4J1.setText(p.getSurname() + " " + p.getName());
+                            p = pdao.selectPlayer(m.getIdP3());
+                            match4J3.setText(p.getSurname() + " " + p.getName());
+                            match4vs.setText("VS");
+                            if (m.isSimple() == 0) {
+                                p = pdao.selectPlayer(m.getIdP2());
+                                match4J2.setText(p.getSurname() + " " + p.getName());
+                                p = pdao.selectPlayer(m.getIdP4());
+                                match4J4.setText(p.getSurname() + " " + p.getName());
+                            }
+                        }
+                        else {
+                            match4vs.setText("Aucun match sur ce cours à cette heure.");
+                            match4J1.setText("");
+                            match4J2.setText("");
+                            match4J3.setText("");
+                            match4J4.setText("");
+                        }
+                    }
+                    break;
+                case 5:
+                    for (Match m : matchs) {
+                        if (m.getHeure() == 21) {
+                            PlayerDao pdao = DaoFactory.getPlayerDao();
+                            Player p = pdao.selectPlayer(m.getIdP1());
+                            match5J1.setText(p.getSurname() + " " + p.getName());
+                            p = pdao.selectPlayer(m.getIdP3());
+                            match5J3.setText(p.getSurname() + " " + p.getName());
+                            match5vs.setText("VS");
+                            if (m.isSimple() == 0) {
+                                p = pdao.selectPlayer(m.getIdP2());
+                                match5J2.setText(p.getSurname() + " " + p.getName());
+                                p = pdao.selectPlayer(m.getIdP4());
+                                match5J4.setText(p.getSurname() + " " + p.getName());
+                            }
+                        }
+                        else {
+                            match5vs.setText("Aucun match sur ce cours à cette heure.");
+                            match5J1.setText("");
+                            match5J2.setText("");
+                            match5J3.setText("");
+                            match5J4.setText("");
+                        }
+                    }
+                    break;
+            }
+        }
     }
 }
