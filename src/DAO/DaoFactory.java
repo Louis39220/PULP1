@@ -35,4 +35,9 @@ public class DaoFactory {
         return new CoachDaoImpl(conn);
     }
     
+       public static MatchDaoImpl getMatchDAao() throws IOException, SQLException{
+        conn = ConnexionMysqlFactory.getInstance();
+        return new MatchDaoImpl(conn);
+    }
+    
 }

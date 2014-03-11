@@ -2,6 +2,7 @@ package TestDB;
 
 
 import DAO.DaoFactory;
+import DAO.PlayerDao;
 import DAO.PlayerDaoImpl;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ public class TestDB {
 
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws SQLException, IOException {
-        PlayerDaoImpl pdao =  DaoFactory.getPlayerDao();
+        PlayerDao pdao =  DaoFactory.getPlayerDao();
         try {
             pdao.insertPlayer("Louis", "FAVRET", "08/10/1994", 14);
         } catch (IOException | SQLException e) {
