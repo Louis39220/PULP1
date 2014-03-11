@@ -4,7 +4,6 @@
  */
 package InterfaceGraphique;
 
-import DAO.PlayerDao;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -12,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import DAO.DaoFactory;
 import DAO.MatchDao;
+import DAO.Match_playerDaoImpl;
 import DAO.PlayerDao;
 import entities.Match;
 import entities.Player;
@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -1224,7 +1225,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(heureChoice.getSelectedItem());
             MatchDao mdao = DaoFactory.getMatchDao();
-            remplirPlanningHeures(mdao.selectMatchByDateByHour(Integer.toString(jour)+"/01/2013", 
+            remplirPlanningHeures(mdao.selectMatchByDateByHour(jour, 
                     Integer.parseInt(heureChoice.getSelectedItem())));
         }
         else if (heureChoice.getSelectedItem().equals("Tous")) {
@@ -1242,7 +1243,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem());
             MatchDao mdao = DaoFactory.getMatchDao();
-            remplirPlanningCourts(mdao.selectMatchByTerrainByDate(Integer.toString(jour)+"/01/2013", 
+            remplirPlanningCourts(mdao.selectMatchByTerrainByDate(jour, 
                     affecteNumCourt(courtChoice.getSelectedItem())));
         }
         else {
@@ -1257,7 +1258,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem() + " - " + heureChoice.getSelectedItem());
             MatchDao mdao = DaoFactory.getMatchDao();
-            remplirPlanningCourtHeure(mdao.selectMatchByDateByHour(Integer.toString(jour)+"/01/2013", 
+            remplirPlanningCourtHeure(mdao.selectMatchByDateByHour(jour, 
                     Integer.parseInt(heureChoice.getSelectedItem())));
         }
     }
@@ -1273,7 +1274,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private void remplirPlanning(JLabel j1, JLabel j2, JLabel j3, JLabel j4, JLabel vs, Match m) throws IOException, SQLException {
         PlayerDao pdao = DaoFactory.getPlayerDao();
-        Player p = pdao.selectPlayer(m.getIdP1());
+        Match_playerDaoImpl mdao = DaoFactory.getMatchPlayerDao();
+        Player p = pdao.selectPlayer(mdao.selectIdPlayer(m.getIdMatch()));
+        
         j1.setText(p.getSurname() + " " + p.getName());
         p = pdao.selectPlayer(m.getIdP3());
         j3.setText(p.getSurname() + " " + p.getName());
@@ -1298,10 +1301,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         List<Match> matchs = new ArrayList<>();
         
         while (rs.next()) {
-            Match m = new Match(rs.getInt("ID"), rs.getInt("IDP1"), rs.getInt("IDP2"), rs.getInt("IDP3"), 
-                    rs.getInt("IDP4"), rs.getInt("JOUR"), rs.getInt("HEURE"), rs.getInt("TERRAIN"), 
-                    rs.getInt("IDARBCHAISE"), rs.getInt("IDARBFILET"), rs.getInt("IDRAMASS1"), 
-                    rs.getInt("IDRAMASS2"), rs.getInt("SIMPLE"));
+            Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
             matchs.add(m);
         }
         
@@ -1313,10 +1313,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         List<Match> matchs = new ArrayList<>();
         
         while (rs.next()) {
-            Match m = new Match(rs.getInt("ID"), rs.getInt("IDP1"), rs.getInt("IDP2"), rs.getInt("IDP3"), 
-                    rs.getInt("IDP4"), rs.getInt("JOUR"), rs.getInt("HEURE"), rs.getInt("TERRAIN"), 
-                    rs.getInt("IDARBCHAISE"), rs.getInt("IDARBFILET"), rs.getInt("IDRAMASS1"), 
-                    rs.getInt("IDRAMASS2"), rs.getInt("SIMPLE"));
+            Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
             matchs.add(m);
         }
         
@@ -1366,10 +1363,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         List<Match> matchs = new ArrayList<>();
         
         while (rs.next()) {
-            Match m = new Match(rs.getInt("ID"), rs.getInt("IDP1"), rs.getInt("IDP2"), rs.getInt("IDP3"), 
-                    rs.getInt("IDP4"), rs.getInt("JOUR"), rs.getInt("HEURE"), rs.getInt("TERRAIN"), 
-                    rs.getInt("IDARBCHAISE"), rs.getInt("IDARBFILET"), rs.getInt("IDRAMASS1"), 
-                    rs.getInt("IDRAMASS2"), rs.getInt("SIMPLE"));
+            Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
             matchs.add(m);
         }
         
