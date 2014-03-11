@@ -35,7 +35,8 @@ public class DaoFactory {
         return new CoachDaoImpl(conn);
     }
     
-       public static MatchDaoImpl getMatchDAao() throws IOException, SQLException{
+    //retourne un objet Match interagissant avec la BDD
+    public static MatchDaoImpl getMatchDao() throws IOException, SQLException{
         conn = ConnexionMysqlFactory.getInstance();
         return new MatchDaoImpl(conn);
     }
