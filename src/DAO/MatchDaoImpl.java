@@ -54,9 +54,24 @@ public class MatchDaoImpl implements MatchDao {
         }
         rs.close();
         connexionDB.close();
+        return id;   
+    }
+    
+    @Override
+    public int selectIdMatchByDateByHour(int date, int trancheHoraire) throws SQLException, IOException{
+        connexionDB = ConnexionMysqlFactory.getInstance();
+        ResultSet rs;
+        int id;
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT matchId FROM pulp.match WHERE matchTrancheHoraire= ? AND matchDate=?")) {
+            PS.setInt(1, trancheHoraire);
+            PS.setInt(2, date);
+            rs = PS.executeQuery();
+            rs.next();
+            id = rs.getInt("matchId");
+        }
+        rs.close();
+        connexionDB.close();
         return id;
-        
-        
     }
     
     @Override

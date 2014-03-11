@@ -20,6 +20,8 @@ public interface MatchDao {
     public Match selectMatch(int id) throws SQLException, IOException;
     
     public int selectIdMatchByTerrainByDate(int numTerrain, int date) throws SQLException, IOException;
+    
+    public int selectIdMatchByDateByHour(int date, int trancheHoraire) throws SQLException, IOException;
 
     public ResultSet selectAllMatch() throws SQLException, IOException;
 
