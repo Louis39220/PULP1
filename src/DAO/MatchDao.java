@@ -22,6 +22,10 @@ public interface MatchDao {
     public ResultSet selectAllMatch() throws SQLException, IOException;
 
     public ResultSet selectMatchByDate(String Date) throws SQLException, IOException;
+    
+    public ResultSet selectMatchByTerrainByDate( String date, int numTerrain) throws SQLException, IOException;
+    
+    public ResultSet selectMatchByDateByHour(String date, int matchTrancheHoraire) throws SQLException, IOException;
 
     public ResultSet selectMatchByTerrain(int numTerrain) throws SQLException, IOException;
 
