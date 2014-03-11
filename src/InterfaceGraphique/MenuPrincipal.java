@@ -1268,6 +1268,29 @@ public class MenuPrincipal extends javax.swing.JFrame {
         else return 6;
     }
     
+    private void remplirPlanning(JLabel j1, JLabel j2, JLabel j3, JLabel j4, JLabel vs, Match m) throws IOException, SQLException {
+        PlayerDao pdao = DaoFactory.getPlayerDao();
+        Player p = pdao.selectPlayer(m.getIdP1());
+        j1.setText(p.getSurname() + " " + p.getName());
+        p = pdao.selectPlayer(m.getIdP3());
+        j3.setText(p.getSurname() + " " + p.getName());
+        vs.setText("VS");
+        if (m.isSimple() == 0) {
+            p = pdao.selectPlayer(m.getIdP2());
+            j2.setText(p.getSurname() + " " + p.getName());
+            p = pdao.selectPlayer(m.getIdP4());
+            j4.setText(p.getSurname() + " " + p.getName());
+        }
+    }
+    
+    private void matchVide(JLabel j1, JLabel j2, JLabel j3, JLabel j4, JLabel vs) {
+        vs.setText("Aucun match sur ce cours à cette heure.");
+        j1.setText("");
+        j2.setText("");
+        j3.setText("");
+        j4.setText("");
+    }
+    
     private void remplirPlanningCourtHeure(ResultSet rs) throws SQLException, IOException {
         List<Match> matchs = new ArrayList<>();
         
@@ -1279,27 +1302,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             matchs.add(m);
         }
         
-        if (matchs.size() == 1) {
-            PlayerDao pdao = DaoFactory.getPlayerDao();
-            Player p = pdao.selectPlayer(matchs.get(5).getIdP1());
-            match6J1.setText(p.getSurname() + " " + p.getName());
-            p = pdao.selectPlayer(matchs.get(5).getIdP3());
-            match6J3.setText(p.getSurname() + " " + p.getName());
-            match6vs.setText("VS");
-            if (matchs.get(5).isSimple() == 0) {
-                p = pdao.selectPlayer(matchs.get(5).getIdP2());
-                match6J2.setText(p.getSurname() + " " + p.getName());
-                p = pdao.selectPlayer(matchs.get(5).getIdP4());
-                match6J4.setText(p.getSurname() + " " + p.getName());
-            }
-        }
-        else {
-            match6vs.setText("Aucun match sur ce cours à cette heure.");
-            match6J1.setText("");
-            match6J2.setText("");
-            match6J3.setText("");
-            match6J4.setText("");
-        }
+        if (matchs.size() == 1) remplirPlanning(match6J1, match6J2, match6J3, match6J4, match6vs, matchs.get(5));
+        else matchVide(match6J1, match6J2, match6J3, match6J4, match6vs);
     }
     
     private void remplirPlanningCourts(ResultSet rs) throws SQLException, IOException {
@@ -1317,152 +1321,38 @@ public class MenuPrincipal extends javax.swing.JFrame {
             switch (i) {
                 case 1:
                     for (Match m : matchs) {
-                        if (m.getIdTerrain() == 1) {
-                            PlayerDao pdao = DaoFactory.getPlayerDao();
-                            Player p = pdao.selectPlayer(m.getIdP1());
-                            match1J1.setText(p.getSurname() + " " + p.getName());
-                            p = pdao.selectPlayer(m.getIdP3());
-                            match1J3.setText(p.getSurname() + " " + p.getName());
-                            match1vs.setText("VS");
-                            if (m.isSimple() == 0) {
-                                p = pdao.selectPlayer(m.getIdP2());
-                                match1J2.setText(p.getSurname() + " " + p.getName());
-                                p = pdao.selectPlayer(m.getIdP4());
-                                match1J4.setText(p.getSurname() + " " + p.getName());
-                            }
-                        }
-                        else {
-                            match1vs.setText("Aucun match sur ce cours à cette heure.");
-                            match1J1.setText("");
-                            match1J2.setText("");
-                            match1J3.setText("");
-                            match1J4.setText("");
-                        }
+                        if (m.getIdTerrain() == 1) remplirPlanning(match1J1, match1J2, match1J3, match1J4, match1vs, m);
+                        else matchVide(match1J1, match1J2, match1J3, match1J4, match1vs);
                     }
                     break;
                 case 2:
                     for (Match m : matchs) {
-                        if (m.getIdTerrain() == 2) {
-                            PlayerDao pdao = DaoFactory.getPlayerDao();
-                            Player p = pdao.selectPlayer(m.getIdP1());
-                            match2J1.setText(p.getSurname() + " " + p.getName());
-                            p = pdao.selectPlayer(m.getIdP3());
-                            match2J3.setText(p.getSurname() + " " + p.getName());
-                            match2vs.setText("VS");
-                            if (m.isSimple() == 0) {
-                                p = pdao.selectPlayer(m.getIdP2());
-                                match2J2.setText(p.getSurname() + " " + p.getName());
-                                p = pdao.selectPlayer(m.getIdP4());
-                                match2J4.setText(p.getSurname() + " " + p.getName());
-                            }
-                        }
-                        else {
-                            match2vs.setText("Aucun match sur ce cours à cette heure.");
-                            match2J1.setText("");
-                            match2J2.setText("");
-                            match2J3.setText("");
-                            match2J4.setText("");
-                        }
+                        if (m.getIdTerrain() == 2) remplirPlanning(match2J1, match2J2, match2J3, match2J4, match2vs, m);
+                        else matchVide(match2J1, match2J2, match2J3, match2J4, match2vs);
                     }
                     break;
                 case 3:
                     for (Match m : matchs) {
-                        if (m.getIdTerrain() == 3) {
-                            PlayerDao pdao = DaoFactory.getPlayerDao();
-                            Player p = pdao.selectPlayer(m.getIdP1());
-                            match3J1.setText(p.getSurname() + " " + p.getName());
-                            p = pdao.selectPlayer(m.getIdP3());
-                            match3J3.setText(p.getSurname() + " " + p.getName());
-                            match3vs.setText("VS");
-                            if (m.isSimple() == 0) {
-                                p = pdao.selectPlayer(m.getIdP2());
-                                match3J2.setText(p.getSurname() + " " + p.getName());
-                                p = pdao.selectPlayer(m.getIdP4());
-                                match3J4.setText(p.getSurname() + " " + p.getName());
-                            }
-                        }
-                        else {
-                            match3vs.setText("Aucun match sur ce cours à cette heure.");
-                            match3J1.setText("");
-                            match3J2.setText("");
-                            match3J3.setText("");
-                            match3J4.setText("");
-                        }
+                        if (m.getIdTerrain() == 3) remplirPlanning(match3J1, match3J2, match3J3, match3J4, match3vs, m);
+                        else matchVide(match3J1, match3J2, match3J3, match3J4, match3vs);
                     }
                     break;
                 case 4:
                     for (Match m : matchs) {
-                        if (m.getIdTerrain() == 4) {
-                            PlayerDao pdao = DaoFactory.getPlayerDao();
-                            Player p = pdao.selectPlayer(m.getIdP1());
-                            match4J1.setText(p.getSurname() + " " + p.getName());
-                            p = pdao.selectPlayer(m.getIdP3());
-                            match4J3.setText(p.getSurname() + " " + p.getName());
-                            match4vs.setText("VS");
-                            if (m.isSimple() == 0) {
-                                p = pdao.selectPlayer(m.getIdP2());
-                                match4J2.setText(p.getSurname() + " " + p.getName());
-                                p = pdao.selectPlayer(m.getIdP4());
-                                match4J4.setText(p.getSurname() + " " + p.getName());
-                            }
-                        }
-                        else {
-                            match4vs.setText("Aucun match sur ce cours à cette heure.");
-                            match4J1.setText("");
-                            match4J2.setText("");
-                            match4J3.setText("");
-                            match4J4.setText("");
-                        }
+                        if (m.getIdTerrain() == 4) remplirPlanning(match4J1, match4J2, match4J3, match4J4, match4vs, m);
+                        else matchVide(match4J1, match4J2, match4J3, match4J4, match4vs);
                     }
                     break;
                 case 5:
                     for (Match m : matchs) {
-                        if (m.getIdTerrain() == 5) {
-                            PlayerDao pdao = DaoFactory.getPlayerDao();
-                            Player p = pdao.selectPlayer(m.getIdP1());
-                            match5J1.setText(p.getSurname() + " " + p.getName());
-                            p = pdao.selectPlayer(m.getIdP3());
-                            match5J3.setText(p.getSurname() + " " + p.getName());
-                            match5vs.setText("VS");
-                            if (m.isSimple() == 0) {
-                                p = pdao.selectPlayer(m.getIdP2());
-                                match5J2.setText(p.getSurname() + " " + p.getName());
-                                p = pdao.selectPlayer(m.getIdP4());
-                                match5J4.setText(p.getSurname() + " " + p.getName());
-                            }
-                        }
-                        else {
-                            match5vs.setText("Aucun match sur ce cours à cette heure.");
-                            match5J1.setText("");
-                            match5J2.setText("");
-                            match5J3.setText("");
-                            match5J4.setText("");
-                        }
+                        if (m.getIdTerrain() == 5) remplirPlanning(match5J1, match5J2, match5J3, match5J4, match5vs, m);
+                        else matchVide(match5J1, match5J2, match5J3, match5J4, match5vs);
                     }
                     break;
                 case 6:
                     for (Match m : matchs) {
-                        if (m.getIdTerrain() == 6) {
-                            PlayerDao pdao = DaoFactory.getPlayerDao();
-                            Player p = pdao.selectPlayer(m.getIdP1());
-                            match6J1.setText(p.getSurname() + " " + p.getName());
-                            p = pdao.selectPlayer(m.getIdP3());
-                            match6J3.setText(p.getSurname() + " " + p.getName());
-                            match6vs.setText("VS");
-                            if (m.isSimple() == 0) {
-                                p = pdao.selectPlayer(m.getIdP2());
-                                match6J2.setText(p.getSurname() + " " + p.getName());
-                                p = pdao.selectPlayer(m.getIdP4());
-                                match6J4.setText(p.getSurname() + " " + p.getName());
-                            }
-                        }
-                        else {
-                            match6vs.setText("Aucun match sur ce cours à cette heure.");
-                            match6J1.setText("");
-                            match6J2.setText("");
-                            match6J3.setText("");
-                            match6J4.setText("");
-                        }
+                        if (m.getIdTerrain() == 6) remplirPlanning(match6J1, match6J2, match6J3, match6J4, match6vs, m);
+                        else matchVide(match6J1, match6J2, match6J3, match6J4, match6vs);
                     }
                     break;
             }
@@ -1484,127 +1374,32 @@ public class MenuPrincipal extends javax.swing.JFrame {
             switch (i) {
                 case 1:
                     for (Match m : matchs) {
-                        if (m.getHeure() == 8) {
-                            PlayerDao pdao = DaoFactory.getPlayerDao();
-                            Player p = pdao.selectPlayer(m.getIdP1());
-                            match1J1.setText(p.getSurname() + " " + p.getName());
-                            p = pdao.selectPlayer(m.getIdP3());
-                            match1J3.setText(p.getSurname() + " " + p.getName());
-                            match1vs.setText("VS");
-                            if (m.isSimple() == 0) {
-                                p = pdao.selectPlayer(m.getIdP2());
-                                match1J2.setText(p.getSurname() + " " + p.getName());
-                                p = pdao.selectPlayer(m.getIdP4());
-                                match1J4.setText(p.getSurname() + " " + p.getName());
-                            }
-                        }
-                        else {
-                            match1vs.setText("Aucun match sur ce cours à cette heure.");
-                            match1J1.setText("");
-                            match1J2.setText("");
-                            match1J3.setText("");
-                            match1J4.setText("");
-                        }
+                        if (m.getHeure() == 8) remplirPlanning(match1J1, match1J2, match1J3, match1J4, match1vs, m);
+                        else matchVide(match1J1, match1J2, match1J3, match1J4, match1vs);
                     }
                     break;
                 case 2:
                     for (Match m : matchs) {
-                        if (m.getHeure() == 11) {
-                            PlayerDao pdao = DaoFactory.getPlayerDao();
-                            Player p = pdao.selectPlayer(m.getIdP1());
-                            match2J1.setText(p.getSurname() + " " + p.getName());
-                            p = pdao.selectPlayer(m.getIdP3());
-                            match2J3.setText(p.getSurname() + " " + p.getName());
-                            match2vs.setText("VS");
-                            if (m.isSimple() == 0) {
-                                p = pdao.selectPlayer(m.getIdP2());
-                                match2J2.setText(p.getSurname() + " " + p.getName());
-                                p = pdao.selectPlayer(m.getIdP4());
-                                match2J4.setText(p.getSurname() + " " + p.getName());
-                            }
-                        }
-                        else {
-                            match2vs.setText("Aucun match sur ce cours à cette heure.");
-                            match2J1.setText("");
-                            match2J2.setText("");
-                            match2J3.setText("");
-                            match2J4.setText("");
-                        }
+                        if (m.getHeure() == 11) remplirPlanning(match2J1, match2J2, match2J3, match2J4, match2vs, m);
+                        else matchVide(match2J1, match2J2, match2J3, match2J4, match2vs);
                     }
                     break;
                 case 3:
                     for (Match m : matchs) {
-                        if (m.getHeure() == 15) {
-                            PlayerDao pdao = DaoFactory.getPlayerDao();
-                            Player p = pdao.selectPlayer(m.getIdP1());
-                            match3J1.setText(p.getSurname() + " " + p.getName());
-                            p = pdao.selectPlayer(m.getIdP3());
-                            match3J3.setText(p.getSurname() + " " + p.getName());
-                            match3vs.setText("VS");
-                            if (m.isSimple() == 0) {
-                                p = pdao.selectPlayer(m.getIdP2());
-                                match3J2.setText(p.getSurname() + " " + p.getName());
-                                p = pdao.selectPlayer(m.getIdP4());
-                                match3J4.setText(p.getSurname() + " " + p.getName());
-                            }
-                        }
-                        else {
-                            match3vs.setText("Aucun match sur ce cours à cette heure.");
-                            match3J1.setText("");
-                            match3J2.setText("");
-                            match3J3.setText("");
-                            match3J4.setText("");
-                        }
+                        if (m.getHeure() == 15) remplirPlanning(match3J1, match3J2, match3J3, match3J4, match3vs, m);
+                        else matchVide(match3J1, match3J2, match3J3, match3J4, match3vs);
                     }
                     break;
                 case 4:
                     for (Match m : matchs) {
-                        if (m.getHeure() == 18) {
-                            PlayerDao pdao = DaoFactory.getPlayerDao();
-                            Player p = pdao.selectPlayer(m.getIdP1());
-                            match4J1.setText(p.getSurname() + " " + p.getName());
-                            p = pdao.selectPlayer(m.getIdP3());
-                            match4J3.setText(p.getSurname() + " " + p.getName());
-                            match4vs.setText("VS");
-                            if (m.isSimple() == 0) {
-                                p = pdao.selectPlayer(m.getIdP2());
-                                match4J2.setText(p.getSurname() + " " + p.getName());
-                                p = pdao.selectPlayer(m.getIdP4());
-                                match4J4.setText(p.getSurname() + " " + p.getName());
-                            }
-                        }
-                        else {
-                            match4vs.setText("Aucun match sur ce cours à cette heure.");
-                            match4J1.setText("");
-                            match4J2.setText("");
-                            match4J3.setText("");
-                            match4J4.setText("");
-                        }
+                        if (m.getHeure() == 18) remplirPlanning(match4J1, match4J2, match4J3, match4J4, match4vs, m);
+                        else matchVide(match4J1, match4J2, match4J3, match4J4, match4vs);
                     }
                     break;
                 case 5:
                     for (Match m : matchs) {
-                        if (m.getHeure() == 21) {
-                            PlayerDao pdao = DaoFactory.getPlayerDao();
-                            Player p = pdao.selectPlayer(m.getIdP1());
-                            match5J1.setText(p.getSurname() + " " + p.getName());
-                            p = pdao.selectPlayer(m.getIdP3());
-                            match5J3.setText(p.getSurname() + " " + p.getName());
-                            match5vs.setText("VS");
-                            if (m.isSimple() == 0) {
-                                p = pdao.selectPlayer(m.getIdP2());
-                                match5J2.setText(p.getSurname() + " " + p.getName());
-                                p = pdao.selectPlayer(m.getIdP4());
-                                match5J4.setText(p.getSurname() + " " + p.getName());
-                            }
-                        }
-                        else {
-                            match5vs.setText("Aucun match sur ce cours à cette heure.");
-                            match5J1.setText("");
-                            match5J2.setText("");
-                            match5J3.setText("");
-                            match5J4.setText("");
-                        }
+                        if (m.getHeure() == 21) remplirPlanning(match5J1, match5J2, match5J3, match5J4, match5vs, m);
+                        else matchVide(match5J1, match5J2, match5J3, match5J4, match5vs);
                     }
                     break;
             }
