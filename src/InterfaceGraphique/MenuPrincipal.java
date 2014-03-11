@@ -4,11 +4,13 @@
  */
 package InterfaceGraphique;
 
+import DAO.PlayerDao;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -125,7 +127,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panGestionVIP = new javax.swing.JPanel();
         btnSuppr = new javax.swing.JButton();
         btnConsult = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
+        panAjoutVIP = new javax.swing.JPanel();
+        txtFieldBirthdate = new javax.swing.JTextField();
+        nom = new javax.swing.JLabel();
+        prenom = new javax.swing.JLabel();
+        birthdate = new javax.swing.JLabel();
+        txtFieldPrenom = new javax.swing.JTextField();
+        txtFieldNom = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         barreOutilsVIP = new javax.swing.JMenuBar();
         menuFichierVIP = new javax.swing.JMenu();
         menuQuitterVIP = new javax.swing.JMenuItem();
@@ -768,7 +777,67 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnAdd.setText("Ajouter");
+        panAjoutVIP.setBorder(javax.swing.BorderFactory.createTitledBorder("Ajout d'un VIP"));
+
+        nom.setText("Nom :");
+
+        prenom.setText("Prénom :");
+
+        birthdate.setText("Date de naissance (jj/mm/aaa) :");
+
+        txtFieldNom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldNomActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Ajouter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panAjoutVIPLayout = new javax.swing.GroupLayout(panAjoutVIP);
+        panAjoutVIP.setLayout(panAjoutVIPLayout);
+        panAjoutVIPLayout.setHorizontalGroup(
+            panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(birthdate)
+                    .addComponent(prenom)
+                    .addComponent(nom))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFieldPrenom)
+                    .addComponent(txtFieldBirthdate)
+                    .addComponent(txtFieldNom, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panAjoutVIPLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+        panAjoutVIPLayout.setVerticalGroup(
+            panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nom)
+                    .addComponent(txtFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(prenom)
+                    .addComponent(txtFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(birthdate)
+                    .addComponent(txtFieldBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout panGestionVIPLayout = new javax.swing.GroupLayout(panGestionVIP);
         panGestionVIP.setLayout(panGestionVIPLayout);
@@ -776,11 +845,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
             panGestionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panGestionVIPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnSuppr)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnConsult)
-                .addGap(82, 82, 82)
-                .addComponent(btnAdd)
+                .addGroup(panGestionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panAjoutVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panGestionVIPLayout.createSequentialGroup()
+                        .addComponent(btnConsult)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSuppr)))
                 .addContainerGap())
         );
         panGestionVIPLayout.setVerticalGroup(
@@ -788,10 +858,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(panGestionVIPLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panGestionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSuppr)
                     .addComponent(btnConsult)
-                    .addComponent(btnAdd))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(btnSuppr))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panAjoutVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         menuFichierVIP.setText("Fichier");
@@ -826,8 +897,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panListeVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panGestionVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panGestionVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout fenAddMatchLayout = new javax.swing.GroupLayout(fenAddMatch.getContentPane());
@@ -984,17 +1055,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btRetourActionPerformed
 
     private void btnSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprActionPerformed
-        // TODO add your handling code here:
+        supprimerVIP(tableVIP);
     }//GEN-LAST:event_btnSupprActionPerformed
 
     private void btnConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConsultActionPerformed
 
+    private void txtFieldNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFieldNomActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ajouterVIP(tableVIP);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barreOutilsMatch;
     private javax.swing.JMenuBar barreOutilsPrincipal;
     private javax.swing.JMenuBar barreOutilsVIP;
+    private javax.swing.JLabel birthdate;
     private javax.swing.JButton btAdd;
     private javax.swing.JButton btMatchs;
     private javax.swing.JButton btModif;
@@ -1003,7 +1083,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btSuiv;
     private javax.swing.JButton btSupp;
     private javax.swing.JButton btVIP;
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnConsult;
     private javax.swing.JButton btnSuppr;
     private java.awt.Choice courtChoice;
@@ -1011,6 +1090,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JDialog gestionMatchs;
     private javax.swing.JDialog gestionVIP;
     private java.awt.Choice heureChoice;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lbAccueil;
     private javax.swing.JLabel lbNumJour;
     private javax.swing.JLabel lbPlanning;
@@ -1059,6 +1139,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuQuitterMatch;
     private javax.swing.JMenuItem menuQuitterPrincipal;
     private javax.swing.JMenuItem menuQuitterVIP;
+    private javax.swing.JLabel nom;
+    private javax.swing.JPanel panAjoutVIP;
     private javax.swing.JPanel panGestion;
     private javax.swing.JPanel panGestionVIP;
     private javax.swing.JPanel panListeVIP;
@@ -1070,8 +1152,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panMatch6;
     private javax.swing.JPanel panPlanning;
     private javax.swing.JPanel panSelect;
+    private javax.swing.JLabel prenom;
     private javax.swing.JScrollPane scrollTableVIP;
     private javax.swing.JTable tableVIP;
+    private javax.swing.JTextField txtFieldBirthdate;
+    private javax.swing.JTextField txtFieldNom;
+    private javax.swing.JTextField txtFieldPrenom;
     // End of variables declaration//GEN-END:variables
 
     private void quitter() {
@@ -1151,9 +1237,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 tableVIP.setValueAt("Jérôme",i,2);
                 tableVIP.setValueAt("30/07/1994",i,3);
                 
-                if(tableVIP.getSelectedRow() == tableVIP.getRowCount())
+                //if(tableVIP.getSelectedRow() == tableVIP.getRowCount())
                 
                 i++;
                 }
+    }
+    
+    private void supprimerVIP(JTable tableVIP)
+    {
+        tableVIP.remove(tableVIP.getSelectedRow());
+    }
+    
+    private void ajouterVIP(JTable tableVIP)
+    {
+        DefaultTableModel model = new DefaultTableModel(); 
+        tableVIP = new JTable(model);
+        
+        int lastRow = tableVIP.getRowCount();
+        lastRow = lastRow++;
+        model.addRow(new String[]{Integer.toString(lastRow),txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText()}); 
+
     }
 }
