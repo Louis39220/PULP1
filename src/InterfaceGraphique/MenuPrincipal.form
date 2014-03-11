@@ -20,9 +20,9 @@
                           <Component id="lbPlanning" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lbNumJour" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="lbSelected" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -56,7 +56,7 @@
                   <Component id="panSelect" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="panGestion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="23" max="32767" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -93,20 +93,20 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="panMatch4" max="32767" attributes="0"/>
                           <Component id="panMatch1" max="32767" attributes="0"/>
+                          <Component id="panMatch4" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="panMatch2" max="32767" attributes="0"/>
                           <Component id="panMatch5" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="panMatch3" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="panMatch6" max="32767" attributes="0"/>
+                          <Component id="panMatch3" pref="318" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -114,7 +114,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="panMatch3" max="32767" attributes="0"/>
+                          <Component id="panMatch3" pref="179" max="32767" attributes="0"/>
                           <Component id="panMatch1" alignment="0" max="32767" attributes="0"/>
                           <Component id="panMatch2" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -141,15 +141,88 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="match1J1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="match1J2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                                  <Component id="match1vs" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="match1J3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="match1J4" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                                  <Component id="match1Plus" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="133" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match1J1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match1J2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="match1vs" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match1J3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match1J4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                          <Component id="match1Plus" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="match1J1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Joueur 1"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match1J2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&amp; Joueur 2"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match1vs">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="VS"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match1J3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Joueur 3"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match1J4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&amp; Joueur 4"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="match1Plus">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="panMatch2">
               <Properties>
@@ -163,15 +236,89 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="188" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="match2J1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="match2J2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                                  <Component id="match2vs" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="match2J3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="match2J4" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="match2Pus" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match2J1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match2J2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match2vs" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match2J3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match2J4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="17" max="32767" attributes="0"/>
+                          <Component id="match2Pus" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="match2J1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Joueur 1"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match2J2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&amp; Joueur 2"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match2vs">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="VS"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match2J3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Joueur 3"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match2J4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&amp; Joueur 4"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="match2Pus">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="panMatch3">
               <Properties>
@@ -180,20 +327,97 @@
                     <TitledBorder title="Court d&apos;entrainement 1"/>
                   </Border>
                 </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[347, 168]"/>
+                </Property>
               </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="216" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="match3J1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="match3J2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="match3J3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="match3J4" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                                  <Component id="match3vs" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="132" max="32767" attributes="0"/>
+                          <Component id="match3Plus" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="156" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match3J1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match3J2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match3vs" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match3J3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match3J4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="17" max="32767" attributes="0"/>
+                          <Component id="match3Plus" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="match3J1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Joueur 1"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match3J2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&amp; Joueur 2"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match3vs">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="VS"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match3J3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Joueur 3"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match3J4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&amp; Joueur 4"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="match3Plus">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="panMatch4">
               <Properties>
@@ -207,15 +431,88 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="177" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="match4J1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="match4J2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                  <Component id="match4vs" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="match4J3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="match4J4" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                                  <Component id="match4Plus" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="163" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match4J1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match4J2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match4vs" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match4J3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match4J4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="24" max="32767" attributes="0"/>
+                          <Component id="match4Plus" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="match4J1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Joueur 1"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match4J2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&amp; Joueur 2"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match4vs">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="VS"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match4J3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Joueur 3"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match4J4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&amp; Joueur 4"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="match4Plus">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="panMatch5">
               <Properties>
@@ -229,15 +526,88 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="match5J1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="match5J2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                                  <Component id="match5vs" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="match5J3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="match5J4" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                                  <Component id="match5Plus" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="133" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match5J1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match5J2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match5vs" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match5J3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match5J4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="24" max="32767" attributes="0"/>
+                          <Component id="match5Plus" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="match5J1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Joueur 1"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match5J2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&amp; Joueur 2"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match5vs">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="VS"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match5J3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Joueur 3"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match5J4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&amp; Joueur 4"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="match5Plus">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="panMatch6">
               <Properties>
@@ -251,15 +621,89 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="match6J1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="match6J2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                                  <Component id="match6vs" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="match6J3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="match6J4" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="match6Plus" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match6J1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match6J2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match6vs" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match6J3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="match6J4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="24" max="32767" attributes="0"/>
+                          <Component id="match6Plus" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="match6J1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Joueur 1"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match6J2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&amp; Joueur 2"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match6vs">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="VS"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match6J3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Joueur 3"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="match6J4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&amp; Joueur 4"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="match6Plus">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
             </Container>
           </SubComponents>
         </Container>
@@ -278,15 +722,15 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btPrec" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="126" max="32767" attributes="0"/>
                       <Component id="btAdd" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="btModif" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btSupp" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btRetour" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
                       <Component id="btSuiv" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -346,6 +790,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Retour"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRetourActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -362,11 +809,15 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
-                      <Component id="courtChoice" min="-2" pref="231" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                      <Component id="lbSelectCourt" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="courtChoice" min="-2" pref="225" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                      <Component id="lbSelectHeure" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="heureChoice" min="-2" pref="160" max="-2" attributes="0"/>
-                      <EmptySpace pref="362" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -375,8 +826,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lbSelectCourt" min="-2" max="-2" attributes="0"/>
                           <Component id="courtChoice" min="-2" max="-2" attributes="0"/>
                           <Component id="heureChoice" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbSelectHeure" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -393,6 +846,16 @@
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="heureChoiceItemStateChanged"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbSelectCourt">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S&#xe9;lection du court"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbSelectHeure">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S&#xe9;lection de l&apos;horaire"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -626,10 +1089,6 @@
         </Menu>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.ButtonGroup" name="btGroupHeures">
-    </Component>
-    <Component class="javax.swing.ButtonGroup" name="btGroupCourts">
-    </Component>
     <Container class="javax.swing.JDialog" name="fenAddMatch">
 
       <Layout>

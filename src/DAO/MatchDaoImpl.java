@@ -21,6 +21,10 @@ import java.sql.Statement;
 public class MatchDaoImpl implements MatchDao {
 
     private Connection connexionDB;
+    
+     public MatchDaoImpl(Connection conn){
+        this.connexionDB=conn;
+    }
 
     @Override
     public Match selectMatch(int id) throws SQLException, IOException {
