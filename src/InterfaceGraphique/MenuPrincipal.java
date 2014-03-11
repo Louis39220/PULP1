@@ -43,7 +43,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         heureChoice.add("21h");
         
         gestionVIP.setSize(650, 500);
-        gestionVIP.setLocation((d.width-gestionMatchs.getWidth()) / 2, (d.height-gestionMatchs.getHeight()) / 2);
+        gestionVIP.setLocation((d.width-gestionVIP.getWidth()) / 2, (d.height-gestionVIP.getHeight()) / 2);
         remplirTableVIP(tableVIP);
     }
 
