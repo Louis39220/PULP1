@@ -4,6 +4,7 @@
  */
 package InterfaceGraphique;
 
+import DAO.CoachDao;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -13,8 +14,11 @@ import DAO.DaoFactory;
 import DAO.MatchDao;
 import DAO.Match_playerDaoImpl;
 import DAO.PlayerDao;
+import DAO.RefereeDao;
+import entities.Coach;
 import entities.Match;
 import entities.Player;
+import entities.Referee;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -744,7 +748,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         tableVIP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "NOM", "PRENOM", "DATE DE NAISSANCE"
@@ -1504,18 +1508,42 @@ public class MenuPrincipal extends javax.swing.JFrame {
     {
         PlayerDao pdao = DaoFactory.getPlayerDao();
         List<Player> allPlayer = pdao.selectAllPlayer();
+        
+        CoachDao cdao = DaoFactory.getCoachDao();
+        List<Coach> allCoach = cdao.selectAllCoach();
+        
+        RefereeDao rdao = DaoFactory.getRefereeDao();
+        List<Referee> allReferee = rdao.selectAllReferee();
+        
         int i = 0;
         for(Player p : allPlayer)
         {
             String nomP = p.getName();
             String prenomP = p.getSurname();
             String birthdateP = p.getBirthDate();
+            int idP = p.getId();
             
-            tableVIP.setValueAt(i,i,0);
-            tableVIP.setValueAt(nomP,i,1);
-            tableVIP.setValueAt(prenomP,i,2);
-            tableVIP.setValueAt(birthdateP,i,3);
+            ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{idP,nomP,prenomP,birthdateP});
+            i++;
+        }
+        for(Coach c : allCoach)
+        {
+            String nomC = c.getName();
+            String prenomC = c.getSurname();
+            String birthdateC = c.getBirthDate();
+            int idC = c.getId();
             
+            ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{idC,nomC,prenomC,birthdateC});
+            i++;
+        }
+        for(Referee r : allReferee)
+        {
+            String nomR = r.getName();
+            String prenomR = r.getSurname();
+            String birthdateR = r.getBirthDate();
+            int idR = r.getId();
+            
+            ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{idR,nomR,prenomR,birthdateR});
             i++;
         }
 
@@ -1523,7 +1551,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private void supprimerVIP(JTable tableVIP)
     {
-        tableVIP.remove(tableVIP.getSelectedRow());
+        ((DefaultTableModel)tableVIP.getModel()).removeRow(tableVIP.getSelectedRow());
     }
     
     private void ajouterVIP(JTable tableVIP)
@@ -1531,8 +1559,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         int lastRow = tableVIP.getRowCount() - 1;
         int row = lastRow++;
         
-        DefaultTableModel model = (DefaultTableModel) tableVIP.getModel();
-        model.addRow(new Object[]{row,txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText()});
+        ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{row,txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText()});
         
     }
 }
