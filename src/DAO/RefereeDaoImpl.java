@@ -69,7 +69,7 @@ public class RefereeDaoImpl implements RefereeDao {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         Statement st = connexionDB.createStatement();
-        rs = st.executeQuery("SELECT * FROM referee WHERE refereeCategorie=ligne");
+        rs = st.executeQuery("SELECT * FROM referee WHERE refereeCategorie='ligne'");
         Random rand = new Random(); 
         List<Referee> lr = new ArrayList<>();
         while(rs.next()){
@@ -78,7 +78,7 @@ public class RefereeDaoImpl implements RefereeDao {
         int alea;
         List<Referee> lr8 = new ArrayList<>();
         for(int i=0;i<8;i++){
-            alea = rand.nextInt(lr.size())+1;
+            alea = rand.nextInt(lr.size());
             lr8.add(lr.get(alea));
             lr.remove(alea);
         }

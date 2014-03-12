@@ -7,6 +7,7 @@ package DAO;
 
 import connexion.ConnexionMysqlFactory;
 import entities.Match;
+import entities.Referee;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -160,7 +161,9 @@ public class MatchDaoImpl implements MatchDao {
                     res = false;
                 }
                 Match m1 = selectMatchByTerrainByDateByHour(m.getJour(),m.getIdTerrain(),m.getHeure());
-                
+                RefereeDao rdao = DaoFactory.getRefereeDao();
+                List<Referee> lr = new ArrayList<Referee>();
+                lr = rdao.selectRandom8RefereeLine();
                 PreparedStatement ps1 = connexionDB.prepareStatement("INSERT INTO attribmatch(matchId,idP1,idP2,idAc,idAf,idTr1,idTr2,idA1,idA2,idA3,idA4,idA5,idA6,idA7,idA8) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 ps1.setInt(1, m1.getIdMatch());
                 ps1.setInt(2, m1.getIdP1());
@@ -169,6 +172,9 @@ public class MatchDaoImpl implements MatchDao {
                 ps1.setInt(5, m1.getIdArbitreFilet());
                 ps1.setInt(6, m1.getIdTeamRamasseur1());
                 ps1.setInt(7, m1.getIdTeamRamasseur2());
+                for(int i=0;i<8;i++){
+                    ps1.setInt(i+8, lr.get(i).getId());
+                }
                 ps1.executeUpdate();
                 PS.close();
                 ps1.close();

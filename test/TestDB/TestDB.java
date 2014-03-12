@@ -29,7 +29,7 @@ public class TestDB {
     public static void main(String[] args) throws SQLException, IOException {
         RefereeDaoImpl rdao =  DaoFactory.getRefereeDao();
         try {
-            System.out.println(rdao.selectRandom8RefereeLine().toString());
+            System.out.println(rdao.selectRandom8RefereeLine().toString()+"\n");
         } catch (IOException | SQLException e) {
             System.err.println("Erreur lors de l'insertion:" + e.getMessage());
         }
