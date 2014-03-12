@@ -1910,7 +1910,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         RefereeDao rdao = DaoFactory.getRefereeDao();
         List<Referee> allReferee = rdao.selectAllReferee();
         
-        int i = 0;
         for(Player p : allPlayer)
         {
             String nomP = p.getName();
@@ -1919,7 +1918,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             int idP = p.getId();
             
             ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{idP,nomP,prenomP,birthdateP});
-            i++;
         }
         for(Coach c : allCoach)
         {
@@ -1929,7 +1927,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             int idC = c.getId();
             
             ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{idC,nomC,prenomC,birthdateC});
-            i++;
         }
         for(Referee r : allReferee)
         {
@@ -1939,7 +1936,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             int idR = r.getId();
             
             ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{idR,nomR,prenomR,birthdateR});
-            i++;
         }
 
     }
