@@ -51,9 +51,9 @@ public class RefereeDaoImpl implements RefereeDao {
     public List<Referee> selectAllReferee() throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
-        try (Statement st = connexionDB.createStatement()) {
-            rs = st.executeQuery("SELECT * FROM referee");
-        }
+        Statement st = connexionDB.createStatement();
+        rs = st.executeQuery("SELECT * FROM referee");
+
         List<Referee> lr = new ArrayList<>();
         while(rs.next()){
             lr.add(new Referee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)));
