@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -34,7 +36,7 @@ public class PlayerDaoImpl implements PlayerDao {
         try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM player WHERE playerId= ?")) {
             PS.setInt(1, id);
             rs = PS.executeQuery();
-            p = rs.getObject(id, Player.class);
+            p = (Player) rs.getObject(id, Player.class);
         }
         rs.close();
         connexionDB.close();
@@ -44,15 +46,18 @@ public class PlayerDaoImpl implements PlayerDao {
     
 
     @Override
-    public ResultSet selectAllPlayer() throws SQLException, IOException {
+    public List<Player> selectAllPlayer() throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
-        try (Statement st = connexionDB.createStatement()) {
-            rs = st.executeQuery("SELECT * FROM player");
+        Statement st = connexionDB.createStatement();
+        rs = st.executeQuery("SELECT * FROM player");
+        List<Player> lp =new ArrayList<>();
+        while(rs.next()){
+            lp.add(new Player(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4),rs.getInt(5)));
         }
         rs.close();
         connexionDB.close();
-        return rs;
+        return lp;
     }
 
     @Override

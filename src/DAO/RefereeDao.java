@@ -6,9 +6,11 @@
 package DAO;
 
 import entities.Coach;
+import entities.Referee;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -18,7 +20,7 @@ public interface RefereeDao {
 
     public Coach selectReferee(int id) throws SQLException, IOException;
 
-    public ResultSet selectAllReferee() throws SQLException, IOException, IOException;
+    public List<Referee> selectAllReferee() throws SQLException, IOException;
 
     public boolean insertReferee(String name, String Surname, String ddn, int nbMatch, String categorie) throws SQLException, IOException;
 

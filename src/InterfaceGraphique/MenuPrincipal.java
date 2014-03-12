@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
+import oracle.net.aso.p;
 
 
 /**
@@ -35,7 +36,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    public MenuPrincipal() throws IOException, SQLException {
         jour = 22;
         initComponents();
         setVisible(true);
@@ -60,7 +61,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         heureChoice.select("8h");
 
         
-        gestionVIP.setSize(650, 500);
+        gestionVIP.setSize(650, 660);
         gestionVIP.setLocation((d.width-gestionVIP.getWidth()) / 2, (d.height-gestionVIP.getHeight()) / 2);
         remplirTableVIP(tableVIP);
     }
@@ -150,57 +151,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         birthdate = new javax.swing.JLabel();
         txtFieldPrenom = new javax.swing.JTextField();
         txtFieldNom = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        ajouterVIP = new javax.swing.JButton();
         barreOutilsVIP = new javax.swing.JMenuBar();
         menuFichierVIP = new javax.swing.JMenu();
         menuQuitterVIP = new javax.swing.JMenuItem();
         fenAddMatch = new javax.swing.JDialog();
-        addFen_PanJoueurs = new javax.swing.JPanel();
-        addFen_btMatchSimple = new javax.swing.JRadioButton();
-        addFen_btMatchDouble = new javax.swing.JRadioButton();
-        addFen_lbTypeMatch = new javax.swing.JLabel();
-        addFen_lbJ1 = new javax.swing.JLabel();
-        addFen_lbJ2 = new javax.swing.JLabel();
-        addFen_lbVs = new javax.swing.JLabel();
-        addFen_lbJ3 = new javax.swing.JLabel();
-        addFen_lbJ4 = new javax.swing.JLabel();
-        addFen_choiceJ1 = new java.awt.Choice();
-        addFen_choiceJ2 = new java.awt.Choice();
-        addFen_choiceJ3 = new java.awt.Choice();
-        addFen_choiceJ4 = new java.awt.Choice();
-        addFen_PanHeure = new javax.swing.JPanel();
-        addFen_lbChoixHeure = new javax.swing.JLabel();
-        addFen_choiceHeure = new java.awt.Choice();
-        addFen_PanCourt = new javax.swing.JPanel();
-        addFen_lbChoixCourt = new javax.swing.JLabel();
-        addFen_choiceCourt = new java.awt.Choice();
-        addFen_PanArbitre = new javax.swing.JPanel();
-        addFen_lbArbitreChaise = new javax.swing.JLabel();
-        addFen_lbArbitreFilet = new javax.swing.JLabel();
-        addFen_lbArbitre1 = new javax.swing.JLabel();
-        addFen_lbArbitre2 = new javax.swing.JLabel();
-        addFen_lbArbitre3 = new javax.swing.JLabel();
-        addFen_lbArbitre4 = new javax.swing.JLabel();
-        addFen_lbArbitre5 = new javax.swing.JLabel();
-        addFen_lbArbitre6 = new javax.swing.JLabel();
-        addFen_lbArbitre7 = new javax.swing.JLabel();
-        addFen_lbArbitre8 = new javax.swing.JLabel();
-        addFen_choiceArbitreChaise = new java.awt.Choice();
-        addFen_choiceArbitreFilet = new java.awt.Choice();
-        addFen_choiceArbitre1 = new java.awt.Choice();
-        addFen_choiceArbitre2 = new java.awt.Choice();
-        addFen_choiceArbitre3 = new java.awt.Choice();
-        addFen_choiceArbitre4 = new java.awt.Choice();
-        addFen_choiceArbitre5 = new java.awt.Choice();
-        addFen_choiceArbitre6 = new java.awt.Choice();
-        addFen_choiceArbitre7 = new java.awt.Choice();
-        addFen_choiceArbitre8 = new java.awt.Choice();
-        addFen_PanRamass = new javax.swing.JPanel();
-        addFen_lbRamass1 = new javax.swing.JLabel();
-        addFen_lbRamass2 = new javax.swing.JLabel();
-        addFen_choiceRamass1 = new java.awt.Choice();
-        addFen_choiceRamass2 = new java.awt.Choice();
-        addFen_btGroupTypeMatch = new javax.swing.ButtonGroup();
+        gestionRelationActionVIP = new javax.swing.JDialog();
+        panTable = new javax.swing.JPanel();
+        scrollTable = new javax.swing.JScrollPane();
+        tableConsultVIP = new javax.swing.JTable();
+        btnSupRelationActionVIP = new javax.swing.JButton();
+        panAjoutRelationActionVIP = new javax.swing.JPanel();
+        barreOutilVIPconsult = new javax.swing.JMenuBar();
+        fichierVIPconsult = new javax.swing.JMenu();
         lbAccueil = new javax.swing.JLabel();
         btMatchs = new javax.swing.JButton();
         btVIP = new javax.swing.JButton();
@@ -781,9 +744,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         tableVIP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -853,10 +813,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ajouter");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ajouterVIP.setText("Ajouter");
+        ajouterVIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ajouterVIPActionPerformed(evt);
             }
         });
 
@@ -878,7 +838,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panAjoutVIPLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(ajouterVIP)
                 .addContainerGap())
         );
         panAjoutVIPLayout.setVerticalGroup(
@@ -897,7 +857,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(birthdate)
                     .addComponent(txtFieldBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(ajouterVIP)
                 .addContainerGap())
         );
 
@@ -1445,16 +1405,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSupprActionPerformed
 
     private void btnConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        gestionRelationActionVIP.setVisible(true);
     }//GEN-LAST:event_btnConsultActionPerformed
 
     private void txtFieldNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNomActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFieldNomActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ajouterVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterVIPActionPerformed
         ajouterVIP(tableVIP);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ajouterVIPActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addFen_PanArbitre;
@@ -1516,13 +1477,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btSupp;
     private javax.swing.JButton btVIP;
     private javax.swing.JButton btnConsult;
+    private javax.swing.JButton btnSupRelationActionVIP;
     private javax.swing.JButton btnSuppr;
     private java.awt.Choice courtChoice;
     private javax.swing.JDialog fenAddMatch;
+    private javax.swing.JMenu fichierVIPconsult;
     private javax.swing.JDialog gestionMatchs;
+    private javax.swing.JDialog gestionRelationActionVIP;
     private javax.swing.JDialog gestionVIP;
     private java.awt.Choice heureChoice;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lbAccueil;
     private javax.swing.JLabel lbNumJour;
     private javax.swing.JLabel lbPlanning;
@@ -1572,6 +1535,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuQuitterPrincipal;
     private javax.swing.JMenuItem menuQuitterVIP;
     private javax.swing.JLabel nom;
+    private javax.swing.JPanel panAjoutRelationActionVIP;
     private javax.swing.JPanel panAjoutVIP;
     private javax.swing.JPanel panGestion;
     private javax.swing.JPanel panGestionVIP;
@@ -1584,8 +1548,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panMatch6;
     private javax.swing.JPanel panPlanning;
     private javax.swing.JPanel panSelect;
+    private javax.swing.JPanel panTable;
     private javax.swing.JLabel prenom;
+    private javax.swing.JScrollPane scrollTable;
     private javax.swing.JScrollPane scrollTableVIP;
+    private javax.swing.JTable tableConsultVIP;
     private javax.swing.JTable tableVIP;
     private javax.swing.JTextField txtFieldBirthdate;
     private javax.swing.JTextField txtFieldNom;
@@ -1802,21 +1769,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private void remplirTableVIP(JTable tableVIP)
+    private void remplirTableVIP(JTable tableVIP) throws IOException, SQLException
     {
+        PlayerDao pdao = DaoFactory.getPlayerDao();
+        List<Player> allPlayer = pdao.selectAllPlayer();
         int i = 0;
-        
-        while(i < tableVIP.getRowCount())
-                {
-                tableVIP.setValueAt(0,i,0);
-                tableVIP.setValueAt("DANGUIN",i,1);
-                tableVIP.setValueAt("Jérôme",i,2);
-                tableVIP.setValueAt("30/07/1994",i,3);
-                
-                //if(tableVIP.getSelectedRow() == tableVIP.getRowCount())
-                
-                i++;
-                }
+        for(Player p : allPlayer)
+        {
+            String nomP = p.getName();
+            String prenomP = p.getSurname();
+            String birthdateP = p.getBirthDate();
+            
+            tableVIP.setValueAt(i,i,0);
+            tableVIP.setValueAt(nomP,i,1);
+            tableVIP.setValueAt(prenomP,i,2);
+            tableVIP.setValueAt(birthdateP,i,3);
+            
+            i++;
+        }
+
     }
     
     private void supprimerVIP(JTable tableVIP)
@@ -1825,13 +1796,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     private void ajouterVIP(JTable tableVIP)
-    {
-        DefaultTableModel model = new DefaultTableModel(); 
-        tableVIP = new JTable(model);
+    {   
+        int lastRow = tableVIP.getRowCount() - 1;
+        int row = lastRow++;
         
-        int lastRow = tableVIP.getRowCount();
-        lastRow = lastRow++;
-        model.addRow(new String[]{Integer.toString(lastRow),txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText()}); 
-
+        DefaultTableModel model = (DefaultTableModel) tableVIP.getModel();
+        model.addRow(new Object[]{row,txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText()});
+        
     }
 }

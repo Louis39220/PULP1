@@ -7,12 +7,15 @@ package DAO;
 
 import connexion.ConnexionMysqlFactory;
 import entities.Coach;
+import entities.Referee;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -45,15 +48,19 @@ public class RefereeDaoImpl implements RefereeDao {
     }
 
     @Override
-    public ResultSet selectAllReferee() throws SQLException, IOException {
+    public List<Referee> selectAllReferee() throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         try (Statement st = connexionDB.createStatement()) {
             rs = st.executeQuery("SELECT * FROM referee");
         }
+        List<Referee> lr = new ArrayList<>();
+        while(rs.next()){
+            lr.add(new Referee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)));
+        }
         rs.close();
         connexionDB.close();
-        return rs;
+        return lr;
     }
 
     @Override

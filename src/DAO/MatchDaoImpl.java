@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -31,7 +33,7 @@ public class MatchDaoImpl implements MatchDao {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         Match m;
-        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM match WHERE matchId= ?")) {
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM pulp.match WHERE matchId= ?")) {
             PS.setInt(1, id);
             rs = PS.executeQuery();
             m = rs.getObject(id, Match.class);
@@ -75,22 +77,25 @@ public class MatchDaoImpl implements MatchDao {
     }
     
     @Override
-    public ResultSet selectAllMatch() throws SQLException, IOException {
+    public List<Match> selectAllMatch() throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
-        try (Statement st = connexionDB.createStatement()) {
-            rs = st.executeQuery("SELECT * FROM match");
+        Statement st = connexionDB.createStatement();
+        rs = st.executeQuery("SELECT * FROM match");
+        List<Match> lm = new ArrayList<>();
+        while(rs.next()){
+            lm.add(new Match(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
         }
         rs.close();
         connexionDB.close();
-        return rs;
+        return lm;
     }
 
     @Override
     public ResultSet selectMatchByDate(int date) throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
-        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM match WHERE matchDate= ?")) {
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM pulp.match WHERE matchDate= ?")) {
             PS.setInt(1, date);
             rs = PS.executeQuery();
         }
@@ -103,7 +108,7 @@ public class MatchDaoImpl implements MatchDao {
     public ResultSet selectMatchByDateByHour(int date, int matchTrancheHoraire) throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
-        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM match WHERE matchDate= ? AND matchTrancheHoraire=?")) {
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM pulp.match WHERE matchDate= ? AND matchTrancheHoraire=?")) {
             PS.setInt(1, date);
             PS.setInt(2, matchTrancheHoraire);
             rs = PS.executeQuery();
@@ -118,7 +123,7 @@ public class MatchDaoImpl implements MatchDao {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         Match m;
-        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM match WHERE matchLieu= ? AND matchDate=?")) {
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM pulp.match WHERE matchLieu= ? AND matchDate=?")) {;
             PS.setInt(1, numTerrain);
             PS.setInt(2, date);
             rs = PS.executeQuery();

@@ -45,19 +45,5 @@ public class Match {
         this.idTerrain = terrain;
         this.jour = date;
         this.type = type;
-    }
-
-    public void setIdMatch(int idMatch) { this.idMatch = idMatch; }
-    public void setIdP1(int idP1) { this.idP1 = idP1; }
-    public void setIdP2(int idP2) { this.idP2 = idP2; }
-    public void setIdP3(int idP3) { this.idP3 = idP3; }
-    public void setIdP4(int idP4) { this.idP4 = idP4; }
-    public void setJour(int jour) { this.jour = jour; }
-    public void setHeure(int heure) { this.heure = heure; }
-    public void setIdTerrain(int idTerrain) { this.idTerrain = idTerrain; }
-    public void setIdArbitreChaise(int idArbitreChaise) { this.idArbitreChaise = idArbitreChaise; }
-    public void setIdArbitreFilet(int idArbitreFilet) { this.idArbitreFilet = idArbitreFilet; }
-    public void setIdTeamRamasseur1(int idTeamRamasseur1) { this.idTeamRamasseur1 = idTeamRamasseur1; }
-    public void setIdTeamRamasseur2(int idTeamRamasseur2) { this.idTeamRamasseur2 = idTeamRamasseur2; }
-    public void setType(int type) { this.type = type; }
+    }    
 }

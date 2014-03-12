@@ -23,7 +23,7 @@ public class ConnexionMysqlFactory {
         if (connection == null) {
             try {
                 Properties props = new Properties();
-                FileInputStream fichier = new FileInputStream("C:\\Users\\Louis\\Documents\\NetBeansProjects\\PULP\\src\\connexion\\connexion.properties");
+                FileInputStream fichier = new FileInputStream("src/connexion/connexion.properties");
                 props.load(fichier);
                 MysqlDataSource mds = new MysqlDataSource();
                 mds.setUser(props.getProperty("user"));

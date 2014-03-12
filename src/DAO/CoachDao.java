@@ -9,6 +9,7 @@ import entities.Coach;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -18,7 +19,7 @@ public interface CoachDao {
 
     public Coach selectCoach(int id) throws SQLException, IOException;
 
-    public ResultSet selectAllCoach() throws SQLException, IOException;
+    public List<Coach> selectAllCoach() throws SQLException, IOException ;
 
     public boolean insertCoach(String name, String Surname, String ddn, int pCoached, int reput) throws SQLException, IOException;
 
