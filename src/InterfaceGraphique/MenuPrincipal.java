@@ -1717,8 +1717,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(heureChoice.getSelectedItem());
             MatchDao mdao = DaoFactory.getMatchDao();
-//            remplirPlanningHeures(mdao.selectMatchByDateByHour(jour, 
-//                    Integer.parseInt(heureChoice.getSelectedItem())));
+            remplirPlanningHeures(mdao.selectMatchByDateByHour(jour, 
+                    Integer.parseInt(heureChoice.getSelectedItem())));
         }
         else if (heureChoice.getSelectedItem().equals("Tous")) {
             //Mise à jour des bordures des panels
@@ -1735,8 +1735,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem());
             MatchDao mdao = DaoFactory.getMatchDao();
-//            remplirPlanningCourts(mdao.selectMatchByTerrainByDate(jour, 
-//                    affecteNumCourt(courtChoice.getSelectedItem())));
+            remplirPlanningCourts(mdao.selectMatchByTerrainByDate(jour, 
+                    affecteNumCourt(courtChoice.getSelectedItem())));
         }
         else {
             //Mise à jour des bordures des panels
@@ -1750,8 +1750,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem() + " - " + heureChoice.getSelectedItem());
             MatchDao mdao = DaoFactory.getMatchDao();
-//            remplirPlanningCourtHeure(mdao.selectMatchByDateByHour(jour, 
-//                    Integer.parseInt(heureChoice.getSelectedItem())));
+            remplirPlanningCourtHeure(mdao.selectMatchByDateByHour(jour, 
+                    Integer.parseInt(heureChoice.getSelectedItem())));
         }
     }
     
@@ -1789,8 +1789,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         j4.setText("");
     }
     
-    private void remplirPlanningCourtHeure(Match m) throws SQLException, IOException {
-        if (m != null) remplirPlanning(match6J1, match6J2, match6J3, match6J4, match6vs, m);
+    private void remplirPlanningCourtHeure(List<Match> matchs) throws SQLException, IOException {
+        if (matchs.size() == 1) remplirPlanning(match6J1, match6J2, match6J3, match6J4, match6vs, matchs.get(0));
         else matchVide(match6J1, match6J2, match6J3, match6J4, match6vs);
     }
     
