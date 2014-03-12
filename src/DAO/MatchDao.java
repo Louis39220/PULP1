@@ -10,6 +10,7 @@ import entities.Match;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -23,7 +24,7 @@ public interface MatchDao {
     
     public int selectIdMatchByDateByHour(int date, int trancheHoraire) throws SQLException, IOException;
 
-    public ResultSet selectAllMatch() throws SQLException, IOException;
+    public List<Match> selectAllMatch() throws SQLException, IOException;
 
     public ResultSet selectMatchByDate(int Date) throws SQLException, IOException;
     

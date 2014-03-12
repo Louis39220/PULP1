@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,15 +46,19 @@ public class CoachDaoImpl implements CoachDao{
     }
 
     @Override
-    public ResultSet selectAllCoach() throws SQLException, IOException {
+    public List<Coach> selectAllCoach() throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         try (Statement st = connexionDB.createStatement()) {
             rs = st.executeQuery("SELECT * FROM coach");
         }
+        List<Coach> lc = new ArrayList<>();
+        while(rs.next()){
+            lc.add(new Coach(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4), rs.getInt(5), rs.getInt(6)));
+        }
         rs.close();
         connexionDB.close();
-        return rs;
+        return lc;
     }
 
     @Override
