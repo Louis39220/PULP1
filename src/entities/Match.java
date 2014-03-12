@@ -13,8 +13,6 @@ public class Match {
     private int idMatch;
     private int idP1;
     private int idP2;
-    private int idP3;
-    private int idP4;
     private int jour;
     private int heure;
     private int idTerrain;
@@ -22,6 +20,7 @@ public class Match {
     private int idArbitreFilet;
     private int idTeamRamasseur1;
     private int idTeamRamasseur2;
+    private int tabArbitre[];
     private int type;
 
     public int getIdP1() { return idP1; }
@@ -35,8 +34,6 @@ public class Match {
     public int getIdTeamRamasseur2() { return idTeamRamasseur2; }
     public int isSimple() { return type; }
     public int getIdMatch() { return idMatch; }
-    public int getIdP3() { return idP3; }
-    public int getIdP4() { return idP4; }
     public int getType() { return type; }
 
     public Match(int idMatch, int terrain, int date, int heure, int type) {

@@ -4,8 +4,11 @@ package TestDB;
 import DAO.CoachDao;
 import DAO.DaoFactory;
 import DAO.MatchDao;
+import DAO.Match_playerDaoImpl;
 import DAO.PlayerDao;
 import DAO.PlayerDaoImpl;
+import DAO.RefereeDaoImpl;
+import DAO.match_playerDao;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -24,9 +27,9 @@ public class TestDB {
 
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws SQLException, IOException {
-        CoachDao pdao =  DaoFactory.getCoachDao();
+        RefereeDaoImpl rdao =  DaoFactory.getRefereeDao();
         try {
-            System.out.println(pdao.selectAllCoach().toString());
+            System.out.println(rdao.selectRandom8RefereeLine().toString());
         } catch (IOException | SQLException e) {
             System.err.println("Erreur lors de l'insertion:" + e.getMessage());
         }
