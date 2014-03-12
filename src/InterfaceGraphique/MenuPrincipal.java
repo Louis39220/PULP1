@@ -156,6 +156,51 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuFichierVIP = new javax.swing.JMenu();
         menuQuitterVIP = new javax.swing.JMenuItem();
         fenAddMatch = new javax.swing.JDialog();
+        addFen_PanJoueurs = new javax.swing.JPanel();
+        addFen_btMatchSimple = new javax.swing.JRadioButton();
+        addFen_btMatchDouble = new javax.swing.JRadioButton();
+        addFen_lbTypeMatch = new javax.swing.JLabel();
+        addFen_lbJ1 = new javax.swing.JLabel();
+        addFen_lbJ2 = new javax.swing.JLabel();
+        addFen_lbVs = new javax.swing.JLabel();
+        addFen_lbJ3 = new javax.swing.JLabel();
+        addFen_lbJ4 = new javax.swing.JLabel();
+        addFen_choiceJ1 = new java.awt.Choice();
+        addFen_choiceJ2 = new java.awt.Choice();
+        addFen_choiceJ3 = new java.awt.Choice();
+        addFen_choiceJ4 = new java.awt.Choice();
+        addFen_PanHeure = new javax.swing.JPanel();
+        addFen_lbChoixHeure = new javax.swing.JLabel();
+        addFen_choiceHeure = new java.awt.Choice();
+        addFen_PanCourt = new javax.swing.JPanel();
+        addFen_lbChoixCourt = new javax.swing.JLabel();
+        addFen_choiceCourt = new java.awt.Choice();
+        addFen_PanArbitre = new javax.swing.JPanel();
+        addFen_lbArbitreChaise = new javax.swing.JLabel();
+        addFen_lbArbitreFilet = new javax.swing.JLabel();
+        addFen_lbArbitre1 = new javax.swing.JLabel();
+        addFen_lbArbitre2 = new javax.swing.JLabel();
+        addFen_lbArbitre3 = new javax.swing.JLabel();
+        addFen_lbArbitre4 = new javax.swing.JLabel();
+        addFen_lbArbitre5 = new javax.swing.JLabel();
+        addFen_lbArbitre6 = new javax.swing.JLabel();
+        addFen_lbArbitre7 = new javax.swing.JLabel();
+        addFen_lbArbitre8 = new javax.swing.JLabel();
+        addFen_choiceArbitreChaise = new java.awt.Choice();
+        addFen_choiceArbitreFilet = new java.awt.Choice();
+        addFen_choiceArbitre1 = new java.awt.Choice();
+        addFen_choiceArbitre2 = new java.awt.Choice();
+        addFen_choiceArbitre3 = new java.awt.Choice();
+        addFen_choiceArbitre4 = new java.awt.Choice();
+        addFen_choiceArbitre5 = new java.awt.Choice();
+        addFen_choiceArbitre6 = new java.awt.Choice();
+        addFen_choiceArbitre7 = new java.awt.Choice();
+        addFen_choiceArbitre8 = new java.awt.Choice();
+        addFen_PanRamass = new javax.swing.JPanel();
+        addFen_lbRamass1 = new javax.swing.JLabel();
+        addFen_lbRamass2 = new javax.swing.JLabel();
+        addFen_choiceRamass1 = new java.awt.Choice();
+        addFen_choiceRamass2 = new java.awt.Choice();
         gestionRelationActionVIP = new javax.swing.JDialog();
         panTable = new javax.swing.JPanel();
         scrollTable = new javax.swing.JScrollPane();
@@ -835,7 +880,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(txtFieldPrenom)
                     .addComponent(txtFieldBirthdate)
                     .addComponent(txtFieldNom, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panAjoutVIPLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ajouterVIP)
@@ -927,11 +972,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         addFen_PanJoueurs.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection des joueurs"));
 
-        addFen_btGroupTypeMatch.add(addFen_btMatchSimple);
         addFen_btMatchSimple.setSelected(true);
         addFen_btMatchSimple.setText("Simple");
 
-        addFen_btGroupTypeMatch.add(addFen_btMatchDouble);
         addFen_btMatchDouble.setText("Double");
 
         addFen_lbTypeMatch.setText("Type de match :");
@@ -1241,6 +1284,88 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        panTable.setBorder(javax.swing.BorderFactory.createTitledBorder("Relations & Actions des VIP"));
+
+        tableConsultVIP.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Type", "Descriptif"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        scrollTable.setViewportView(tableConsultVIP);
+
+        btnSupRelationActionVIP.setText("Supprimer");
+
+        javax.swing.GroupLayout panTableLayout = new javax.swing.GroupLayout(panTable);
+        panTable.setLayout(panTableLayout);
+        panTableLayout.setHorizontalGroup(
+            panTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panTableLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSupRelationActionVIP, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        panTableLayout.setVerticalGroup(
+            panTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(btnSupRelationActionVIP)
+                .addContainerGap())
+        );
+
+        panAjoutRelationActionVIP.setBorder(javax.swing.BorderFactory.createTitledBorder("Ajouter une relation ou une action VIP"));
+
+        javax.swing.GroupLayout panAjoutRelationActionVIPLayout = new javax.swing.GroupLayout(panAjoutRelationActionVIP);
+        panAjoutRelationActionVIP.setLayout(panAjoutRelationActionVIPLayout);
+        panAjoutRelationActionVIPLayout.setHorizontalGroup(
+            panAjoutRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panAjoutRelationActionVIPLayout.setVerticalGroup(
+            panAjoutRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 184, Short.MAX_VALUE)
+        );
+
+        fichierVIPconsult.setText("Fichier");
+        barreOutilVIPconsult.add(fichierVIPconsult);
+
+        gestionRelationActionVIP.setJMenuBar(barreOutilVIPconsult);
+
+        javax.swing.GroupLayout gestionRelationActionVIPLayout = new javax.swing.GroupLayout(gestionRelationActionVIP.getContentPane());
+        gestionRelationActionVIP.getContentPane().setLayout(gestionRelationActionVIPLayout);
+        gestionRelationActionVIPLayout.setHorizontalGroup(
+            gestionRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gestionRelationActionVIPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(gestionRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panAjoutRelationActionVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        gestionRelationActionVIPLayout.setVerticalGroup(
+            gestionRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gestionRelationActionVIPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(panAjoutRelationActionVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Gestion du Grand Prix de Tennis de Lyon");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -1423,7 +1548,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel addFen_PanHeure;
     private javax.swing.JPanel addFen_PanJoueurs;
     private javax.swing.JPanel addFen_PanRamass;
-    private javax.swing.ButtonGroup addFen_btGroupTypeMatch;
     private javax.swing.JRadioButton addFen_btMatchDouble;
     private javax.swing.JRadioButton addFen_btMatchSimple;
     private java.awt.Choice addFen_choiceArbitre1;
@@ -1464,6 +1588,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel addFen_lbRamass2;
     private javax.swing.JLabel addFen_lbTypeMatch;
     private javax.swing.JLabel addFen_lbVs;
+    private javax.swing.JButton ajouterVIP;
+    private javax.swing.JMenuBar barreOutilVIPconsult;
     private javax.swing.JMenuBar barreOutilsMatch;
     private javax.swing.JMenuBar barreOutilsPrincipal;
     private javax.swing.JMenuBar barreOutilsVIP;
@@ -1802,6 +1928,5 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         DefaultTableModel model = (DefaultTableModel) tableVIP.getModel();
         model.addRow(new Object[]{row,txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText()});
-        
     }
 }

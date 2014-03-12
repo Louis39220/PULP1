@@ -1087,7 +1087,7 @@
                               <Component id="txtFieldBirthdate" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtFieldNom" alignment="0" pref="100" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="203" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
@@ -1318,7 +1318,7 @@
             <Component class="javax.swing.JRadioButton" name="addFen_btMatchSimple">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="addFen_btGroupTypeMatch"/>
+                  <ComponentRef name="default"/>
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Simple"/>
@@ -1327,7 +1327,7 @@
             <Component class="javax.swing.JRadioButton" name="addFen_btMatchDouble">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="addFen_btGroupTypeMatch"/>
+                  <ComponentRef name="default"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Double"/>
               </Properties>
