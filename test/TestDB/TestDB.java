@@ -1,6 +1,7 @@
 package TestDB;
 
 
+import DAO.CoachDao;
 import DAO.DaoFactory;
 import DAO.MatchDao;
 import DAO.PlayerDao;
@@ -23,9 +24,9 @@ public class TestDB {
 
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws SQLException, IOException {
-        PlayerDao pdao =  DaoFactory.getPlayerDao();
+        CoachDao pdao =  DaoFactory.getCoachDao();
         try {
-            System.out.println(pdao.selectPlayer(1).toString());
+            System.out.println(pdao.selectAllCoach().toString());
         } catch (IOException | SQLException e) {
             System.err.println("Erreur lors de l'insertion:" + e.getMessage());
         }

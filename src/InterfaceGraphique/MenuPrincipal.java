@@ -1793,26 +1793,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         j4.setText("");
     }
     
-    private void remplirPlanningCourtHeure(ResultSet rs) throws SQLException, IOException {
-        List<Match> matchs = new ArrayList<>();
-        
-        while (rs.next()) {
-            Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
-            matchs.add(m);
-        }
-        
-        if (matchs.size() == 1) remplirPlanning(match6J1, match6J2, match6J3, match6J4, match6vs, matchs.get(5));
+    private void remplirPlanningCourtHeure(List<Match> matchs) throws SQLException, IOException {
+        if (matchs.size() == 1) remplirPlanning(match6J1, match6J2, match6J3, match6J4, match6vs, matchs.get(0));
         else matchVide(match6J1, match6J2, match6J3, match6J4, match6vs);
     }
     
-    private void remplirPlanningCourts(ResultSet rs) throws SQLException, IOException {
-        List<Match> matchs = new ArrayList<>();
-        
-        while (rs.next()) {
-            Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
-            matchs.add(m);
-        }
-        
+    private void remplirPlanningCourts(List<Match> matchs) throws SQLException, IOException {
         for (int i = 1 ; i <= 6 ; i++) {
             switch (i) {
                 case 1:
@@ -1855,14 +1841,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private void remplirPlanningHeures(ResultSet rs) throws SQLException, IOException {
-        List<Match> matchs = new ArrayList<>();
-        
-        while (rs.next()) {
-            Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
-            matchs.add(m);
-        }
-        
+    private void remplirPlanningHeures(List<Match> matchs) throws SQLException, IOException {
         for (int i = 1 ; i <= 6 ; i++) {
             switch (i) {
                 case 1:
