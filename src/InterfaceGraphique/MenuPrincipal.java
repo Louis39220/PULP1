@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
+import oracle.net.aso.p;
 
 
 /**
@@ -1502,15 +1503,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void remplirTableVIP(JTable tableVIP) throws IOException, SQLException
     {
         PlayerDao pdao = DaoFactory.getPlayerDao();
-        ResultSet allPlayer = pdao.selectAllPlayer();
+        List<Player> allPlayer = pdao.selectAllPlayer();
         int i = 0;
-        while(allPlayer.next())
+        for(Player p : allPlayer)
         {
-            String nomP = allPlayer.getString("playerName");
-            String prenomP = allPlayer.getString("playerSurname");
-            String birthdateP = allPlayer.getString("playerDateNaissance");
+            String nomP = p.getName();
+            String prenomP = p.getSurname();
+            String birthdateP = p.getBirthDate();
             
-            tableVIP.setValueAt(0,i,0);
+            tableVIP.setValueAt(i,i,0);
             tableVIP.setValueAt(nomP,i,1);
             tableVIP.setValueAt(prenomP,i,2);
             tableVIP.setValueAt(birthdateP,i,3);
