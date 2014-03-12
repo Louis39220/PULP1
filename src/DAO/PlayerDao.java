@@ -9,6 +9,7 @@ import entities.Player;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -18,7 +19,7 @@ public interface PlayerDao {
 
     public Player selectPlayer(int id) throws SQLException, IOException;
 
-    public ResultSet selectAllPlayer() throws SQLException, IOException;
+     public List<Player> selectAllPlayer() throws SQLException, IOException;
 
     public boolean insertPlayer(String name, String Surname, String ddn, int rank) throws SQLException, IOException;
 

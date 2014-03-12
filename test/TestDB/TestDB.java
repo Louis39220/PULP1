@@ -23,9 +23,9 @@ public class TestDB {
 
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws SQLException, IOException {
-        MatchDao pdao =  DaoFactory.getMatchDao();
+        PlayerDao pdao =  DaoFactory.getPlayerDao();
         try {
-            System.out.println(pdao.selectIdMatchByTerrainByDate(3, 26));
+            System.out.println(pdao.selectAllPlayer().toString());
         } catch (IOException | SQLException e) {
             System.err.println("Erreur lors de l'insertion:" + e.getMessage());
         }
