@@ -49,9 +49,9 @@ public class CoachDaoImpl implements CoachDao{
     public List<Coach> selectAllCoach() throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
-        try (Statement st = connexionDB.createStatement()) {
-            rs = st.executeQuery("SELECT * FROM coach");
-        }
+        Statement st = connexionDB.createStatement();
+        rs = st.executeQuery("SELECT * FROM coach");
+
         List<Coach> lc = new ArrayList<>();
         while(rs.next()){
             lc.add(new Coach(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4), rs.getInt(5), rs.getInt(6)));

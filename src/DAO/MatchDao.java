@@ -26,13 +26,15 @@ public interface MatchDao {
 
     public List<Match> selectAllMatch() throws SQLException, IOException;
 
-    public ResultSet selectMatchByDate(int Date) throws SQLException, IOException;
+    public List<Match> selectMatchByDate(int date) throws SQLException, IOException;
     
-    public ResultSet selectMatchByTerrainByDate( int date, int numTerrain) throws SQLException, IOException;
+    public List<Match> selectMatchByTerrainByDate( int date, int numTerrain) throws SQLException, IOException;
     
-    public ResultSet selectMatchByDateByHour(int date, int matchTrancheHoraire) throws SQLException, IOException;
+    public List<Match> selectMatchByTerrainByDateByHour(int date, int numTerrain,int heure) throws SQLException, IOException;
+    
+    public List<Match> selectMatchByDateByHour(int date, int matchTrancheHoraire) throws SQLException, IOException;
 
-    public ResultSet selectMatchByTerrain(int numTerrain) throws SQLException, IOException;
+    public List<Match> selectMatchByTerrain(int numTerrain) throws SQLException, IOException;
 
     public boolean insertMatch(int Date, int heure, int terrain, int type) throws SQLException, IOException;
 
