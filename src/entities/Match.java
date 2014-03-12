@@ -45,5 +45,7 @@ public class Match {
         this.idTerrain = terrain;
         this.jour = date;
         this.type = type;
-    }    
+    }
+   
+    
 }

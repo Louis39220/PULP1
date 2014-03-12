@@ -36,7 +36,7 @@ public class PlayerDaoImpl implements PlayerDao {
         try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM player WHERE playerId= ?")) {
             PS.setInt(1, id);
             rs = PS.executeQuery();
-            p = (Player) rs.getObject(id, Player.class);
+            p = rs.getObject(1, Player.class);
         }
         rs.close();
         connexionDB.close();

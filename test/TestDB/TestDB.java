@@ -25,7 +25,7 @@ public class TestDB {
     public static void main(String[] args) throws SQLException, IOException {
         PlayerDao pdao =  DaoFactory.getPlayerDao();
         try {
-            System.out.println(pdao.selectAllPlayer().toString());
+            System.out.println(pdao.selectPlayer(1).toString());
         } catch (IOException | SQLException e) {
             System.err.println("Erreur lors de l'insertion:" + e.getMessage());
         }
