@@ -60,7 +60,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         heureChoice.select("8h");
 
         
-        gestionVIP.setSize(650, 500);
+        gestionVIP.setSize(650, 660);
         gestionVIP.setLocation((d.width-gestionVIP.getWidth()) / 2, (d.height-gestionVIP.getHeight()) / 2);
         remplirTableVIP(tableVIP);
     }
@@ -1411,26 +1411,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
     {
         PlayerDao pdao = DaoFactory.getPlayerDao();
         ResultSet allPlayer = pdao.selectAllPlayer();
+        int i = 0;
         while(allPlayer.next())
         {
-            String nom = allPlayer.getString("playerName");
-            String prenom = allPlayer.getString("playerSurname");
-            String birthdate = allPlayer.getString("playerDateNaissance");
+            String nomP = allPlayer.getString("playerName");
+            String prenomP = allPlayer.getString("playerSurname");
+            String birthdateP = allPlayer.getString("playerDateNaissance");
+            
+            tableVIP.setValueAt(0,i,0);
+            tableVIP.setValueAt(nomP,i,1);
+            tableVIP.setValueAt(prenomP,i,2);
+            tableVIP.setValueAt(birthdateP,i,3);
+            
+            i++;
         }
-        
-        int i = 0;
-        
-        while(i < tableVIP.getRowCount())
-                {
-                tableVIP.setValueAt(0,i,0);
-                tableVIP.setValueAt("DANGUIN",i,1);
-                tableVIP.setValueAt("Jérôme",i,2);
-                tableVIP.setValueAt("30/07/1994",i,3);
-                
-                //if(tableVIP.getSelectedRow() == tableVIP.getRowCount())
-                
-                i++;
-                }
+
     }
     
     private void supprimerVIP(JTable tableVIP)
