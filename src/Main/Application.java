@@ -5,6 +5,8 @@
 package Main;
 
 import InterfaceGraphique.MenuPrincipal;
+import java.io.IOException;
+import java.sql.SQLException;
 
 
 /**
@@ -12,7 +14,7 @@ import InterfaceGraphique.MenuPrincipal;
  * @author Ludovic
  */
 public class Application {
-    public static void main(String[] args) { 
+    public static void main(String[] args) throws IOException, SQLException { 
         MenuPrincipal menu = new MenuPrincipal();
     }
 }

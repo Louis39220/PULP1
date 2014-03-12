@@ -4,7 +4,6 @@
  */
 package InterfaceGraphique;
 
-import DAO.PlayerDao;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -12,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import DAO.DaoFactory;
 import DAO.MatchDao;
+import DAO.Match_playerDaoImpl;
 import DAO.PlayerDao;
 import entities.Match;
 import entities.Player;
@@ -35,7 +35,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    public MenuPrincipal() throws IOException, SQLException {
         jour = 22;
         initComponents();
         setVisible(true);
@@ -60,7 +60,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         heureChoice.select("8h");
 
         
-        gestionVIP.setSize(650, 500);
+        gestionVIP.setSize(650, 660);
         gestionVIP.setLocation((d.width-gestionVIP.getWidth()) / 2, (d.height-gestionVIP.getHeight()) / 2);
         remplirTableVIP(tableVIP);
     }
@@ -150,7 +150,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         birthdate = new javax.swing.JLabel();
         txtFieldPrenom = new javax.swing.JTextField();
         txtFieldNom = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        ajouterVIP = new javax.swing.JButton();
         barreOutilsVIP = new javax.swing.JMenuBar();
         menuFichierVIP = new javax.swing.JMenu();
         menuQuitterVIP = new javax.swing.JMenuItem();
@@ -735,9 +735,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         tableVIP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -807,10 +804,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ajouter");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ajouterVIP.setText("Ajouter");
+        ajouterVIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ajouterVIPActionPerformed(evt);
             }
         });
 
@@ -832,7 +829,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panAjoutVIPLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(ajouterVIP)
                 .addContainerGap())
         );
         panAjoutVIPLayout.setVerticalGroup(
@@ -851,7 +848,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(birthdate)
                     .addComponent(txtFieldBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(ajouterVIP)
                 .addContainerGap())
         );
 
@@ -1099,11 +1096,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFieldNomActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ajouterVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterVIPActionPerformed
         ajouterVIP(tableVIP);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ajouterVIPActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ajouterVIP;
     private javax.swing.JMenuBar barreOutilsMatch;
     private javax.swing.JMenuBar barreOutilsPrincipal;
     private javax.swing.JMenuBar barreOutilsVIP;
@@ -1123,7 +1121,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JDialog gestionMatchs;
     private javax.swing.JDialog gestionVIP;
     private java.awt.Choice heureChoice;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lbAccueil;
     private javax.swing.JLabel lbNumJour;
     private javax.swing.JLabel lbPlanning;
@@ -1274,7 +1271,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private void remplirPlanning(JLabel j1, JLabel j2, JLabel j3, JLabel j4, JLabel vs, Match m) throws IOException, SQLException {
         PlayerDao pdao = DaoFactory.getPlayerDao();
-        Player p = pdao.selectPlayer(m.getIdP1());
+        Match_playerDaoImpl mdao = DaoFactory.getMatchPlayerDao();
+        Player p = pdao.selectPlayer(mdao.selectIdPlayer(m.getIdMatch()));
+        
         j1.setText(p.getSurname() + " " + p.getName());
         p = pdao.selectPlayer(m.getIdP3());
         j3.setText(p.getSurname() + " " + p.getName());
@@ -1299,10 +1298,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         List<Match> matchs = new ArrayList<>();
         
         while (rs.next()) {
-            Match m = new Match(rs.getInt("ID"), rs.getInt("IDP1"), rs.getInt("IDP2"), rs.getInt("IDP3"), 
-                    rs.getInt("IDP4"), rs.getInt("JOUR"), rs.getInt("HEURE"), rs.getInt("TERRAIN"), 
-                    rs.getInt("IDARBCHAISE"), rs.getInt("IDARBFILET"), rs.getInt("IDRAMASS1"), 
-                    rs.getInt("IDRAMASS2"), rs.getInt("SIMPLE"));
+            Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
             matchs.add(m);
         }
         
@@ -1314,10 +1310,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         List<Match> matchs = new ArrayList<>();
         
         while (rs.next()) {
-            Match m = new Match(rs.getInt("ID"), rs.getInt("IDP1"), rs.getInt("IDP2"), rs.getInt("IDP3"), 
-                    rs.getInt("IDP4"), rs.getInt("JOUR"), rs.getInt("HEURE"), rs.getInt("TERRAIN"), 
-                    rs.getInt("IDARBCHAISE"), rs.getInt("IDARBFILET"), rs.getInt("IDRAMASS1"), 
-                    rs.getInt("IDRAMASS2"), rs.getInt("SIMPLE"));
+            Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
             matchs.add(m);
         }
         
@@ -1367,10 +1360,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         List<Match> matchs = new ArrayList<>();
         
         while (rs.next()) {
-            Match m = new Match(rs.getInt("ID"), rs.getInt("IDP1"), rs.getInt("IDP2"), rs.getInt("IDP3"), 
-                    rs.getInt("IDP4"), rs.getInt("JOUR"), rs.getInt("HEURE"), rs.getInt("TERRAIN"), 
-                    rs.getInt("IDARBCHAISE"), rs.getInt("IDARBFILET"), rs.getInt("IDRAMASS1"), 
-                    rs.getInt("IDRAMASS2"), rs.getInt("SIMPLE"));
+            Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
             matchs.add(m);
         }
         
@@ -1410,21 +1400,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private void remplirTableVIP(JTable tableVIP)
+    private void remplirTableVIP(JTable tableVIP) throws IOException, SQLException
     {
+        PlayerDao pdao = DaoFactory.getPlayerDao();
+        ResultSet allPlayer = pdao.selectAllPlayer();
         int i = 0;
-        
-        while(i < tableVIP.getRowCount())
-                {
-                tableVIP.setValueAt(0,i,0);
-                tableVIP.setValueAt("DANGUIN",i,1);
-                tableVIP.setValueAt("Jérôme",i,2);
-                tableVIP.setValueAt("30/07/1994",i,3);
-                
-                //if(tableVIP.getSelectedRow() == tableVIP.getRowCount())
-                
-                i++;
-                }
+        while(allPlayer.next())
+        {
+            String nomP = allPlayer.getString("playerName");
+            String prenomP = allPlayer.getString("playerSurname");
+            String birthdateP = allPlayer.getString("playerDateNaissance");
+            
+            tableVIP.setValueAt(0,i,0);
+            tableVIP.setValueAt(nomP,i,1);
+            tableVIP.setValueAt(prenomP,i,2);
+            tableVIP.setValueAt(birthdateP,i,3);
+            
+            i++;
+        }
+
     }
     
     private void supprimerVIP(JTable tableVIP)
@@ -1433,13 +1427,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     private void ajouterVIP(JTable tableVIP)
-    {
-        DefaultTableModel model = new DefaultTableModel(); 
-        tableVIP = new JTable(model);
+    {   
+        int lastRow = tableVIP.getRowCount() - 1;
+        int row = lastRow++;
         
-        int lastRow = tableVIP.getRowCount();
-        lastRow = lastRow++;
-        model.addRow(new String[]{Integer.toString(lastRow),txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText()}); 
-
+        DefaultTableModel model = (DefaultTableModel) tableVIP.getModel();
+        model.addRow(new Object[]{row,txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText()});
+        
     }
 }

@@ -41,4 +41,8 @@ public class DaoFactory {
         return new MatchDaoImpl(conn);
     }
     
+    public static Match_playerDaoImpl getMatchPlayerDao() throws IOException, SQLException{
+        conn = ConnexionMysqlFactory.getInstance();
+        return new Match_playerDaoImpl(conn);
+    }
 }
