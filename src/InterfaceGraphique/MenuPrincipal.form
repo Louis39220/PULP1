@@ -1183,20 +1183,548 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="fenAddMatch">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="Ajouter un match"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="addFen_PanRamass" max="32767" attributes="0"/>
+                      <Component id="addFen_PanCourt" alignment="1" max="32767" attributes="0"/>
+                      <Component id="addFen_PanHeure" alignment="1" max="32767" attributes="0"/>
+                      <Component id="addFen_PanJoueurs" alignment="1" max="32767" attributes="0"/>
+                      <Component id="addFen_PanArbitre" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="addFen_PanJoueurs" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="addFen_PanHeure" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="addFen_PanCourt" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="addFen_PanArbitre" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="addFen_PanRamass" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="addFen_PanJoueurs">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="S&#xe9;lection des joueurs"/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="addFen_lbTypeMatch" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="addFen_btMatchSimple" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="addFen_btMatchDouble" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="addFen_lbVs" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="addFen_lbJ1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="addFen_lbJ3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="addFen_choiceJ1" pref="190" max="32767" attributes="0"/>
+                                          <Component id="addFen_choiceJ3" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="addFen_lbJ4" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addFen_choiceJ4" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="addFen_lbJ2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addFen_choiceJ2" min="-2" pref="190" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="addFen_btMatchSimple" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addFen_btMatchDouble" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addFen_lbTypeMatch" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="addFen_lbJ1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addFen_lbJ2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="addFen_choiceJ1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_choiceJ2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Component id="addFen_lbVs" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="addFen_lbJ3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="addFen_lbJ4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="addFen_choiceJ3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_choiceJ4" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JRadioButton" name="addFen_btMatchSimple">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="addFen_btGroupTypeMatch"/>
+                </Property>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Simple"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="addFen_btMatchDouble">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="addFen_btGroupTypeMatch"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Double"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbTypeMatch">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Type de match :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbJ1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Joueur 1 : "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbJ2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Joueur 2 :"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbVs">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="VS"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbJ3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Joueur 3 :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbJ4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Joueur 4 :"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceJ1">
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceJ2">
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceJ3">
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceJ4">
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="addFen_PanHeure">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="S&#xe9;lection de l&apos;heure"/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="addFen_lbChoixHeure" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="addFen_choiceHeure" min="-2" pref="180" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="addFen_choiceHeure" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_lbChoixHeure" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="addFen_lbChoixHeure">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Choisissez une horaire disponible :"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceHeure">
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="addFen_PanCourt">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="S&#xe9;lection du court"/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="addFen_lbChoixCourt" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="addFen_choiceCourt" min="-2" pref="190" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="addFen_choiceCourt" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_lbChoixCourt" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="addFen_lbChoixCourt">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Choisissez un court disponible : "/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceCourt">
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="addFen_PanArbitre">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="S&#xe9;lection des arbitres"/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="addFen_lbArbitre3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="addFen_choiceArbitre3" min="-2" pref="190" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="addFen_lbArbitre1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="addFen_choiceArbitre1" min="-2" pref="190" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="addFen_lbArbitreFilet" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="addFen_choiceArbitreFilet" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="addFen_lbArbitreChaise" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="addFen_choiceArbitreChaise" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="addFen_choiceArbitre2" alignment="1" min="-2" pref="190" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="addFen_lbArbitre2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="addFen_lbArbitre4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="addFen_choiceArbitre4" min="-2" pref="190" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="addFen_lbArbitre8" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addFen_choiceArbitre8" min="-2" pref="190" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="addFen_lbArbitre7" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addFen_choiceArbitre7" min="-2" pref="190" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="addFen_lbArbitre6" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addFen_choiceArbitre6" min="-2" pref="190" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="addFen_lbArbitre5" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addFen_choiceArbitre5" min="-2" pref="190" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="addFen_choiceArbitre4" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_choiceArbitreChaise" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_lbArbitreChaise" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_lbArbitre4" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="addFen_choiceArbitreFilet" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_lbArbitreFilet" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_lbArbitre5" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_choiceArbitre5" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="addFen_lbArbitre1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_choiceArbitre1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_lbArbitre6" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_choiceArbitre6" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="addFen_lbArbitre2" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_choiceArbitre2" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_lbArbitre7" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_choiceArbitre7" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="addFen_lbArbitre3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_choiceArbitre3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_lbArbitre8" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_choiceArbitre8" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="addFen_lbArbitreChaise">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Arbitre de chaise :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbArbitreFilet">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Arbitre de filet : "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbArbitre1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Arbitre de court 1 :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbArbitre2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Arbitre de court 2 :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbArbitre3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Arbitre de court 3 :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbArbitre4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Arbitre de court 4 :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbArbitre5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Arbitre de court 5 :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbArbitre6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Arbitre de court 6 :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbArbitre7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Arbitre de court 7 :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbArbitre8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Arbitre de court 8 :"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceArbitreChaise">
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceArbitreFilet">
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceArbitre1">
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceArbitre2">
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceArbitre3">
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceArbitre4">
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceArbitre5">
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceArbitre6">
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceArbitre7">
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceArbitre8">
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="addFen_PanRamass">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="S&#xe9;lection des ramasseurs de balles"/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="addFen_lbRamass2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="addFen_choiceRamass2" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="addFen_lbRamass1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="addFen_choiceRamass1" min="-2" pref="260" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="addFen_lbRamass1" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_choiceRamass1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="addFen_lbRamass2" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_choiceRamass2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="addFen_lbRamass1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Equipe de ramasseurs de balles 1 :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="addFen_lbRamass2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Equipe de ramasseurs de balles 2 :"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceRamass1">
+            </Component>
+            <Component class="java.awt.Choice" name="addFen_choiceRamass2">
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
     </Container>
+    <Component class="javax.swing.ButtonGroup" name="addFen_btGroupTypeMatch">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="barreOutilsPrincipal">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="menuFichierPrinicpal">

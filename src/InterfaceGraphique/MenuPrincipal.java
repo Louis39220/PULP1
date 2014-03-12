@@ -155,6 +155,52 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuFichierVIP = new javax.swing.JMenu();
         menuQuitterVIP = new javax.swing.JMenuItem();
         fenAddMatch = new javax.swing.JDialog();
+        addFen_PanJoueurs = new javax.swing.JPanel();
+        addFen_btMatchSimple = new javax.swing.JRadioButton();
+        addFen_btMatchDouble = new javax.swing.JRadioButton();
+        addFen_lbTypeMatch = new javax.swing.JLabel();
+        addFen_lbJ1 = new javax.swing.JLabel();
+        addFen_lbJ2 = new javax.swing.JLabel();
+        addFen_lbVs = new javax.swing.JLabel();
+        addFen_lbJ3 = new javax.swing.JLabel();
+        addFen_lbJ4 = new javax.swing.JLabel();
+        addFen_choiceJ1 = new java.awt.Choice();
+        addFen_choiceJ2 = new java.awt.Choice();
+        addFen_choiceJ3 = new java.awt.Choice();
+        addFen_choiceJ4 = new java.awt.Choice();
+        addFen_PanHeure = new javax.swing.JPanel();
+        addFen_lbChoixHeure = new javax.swing.JLabel();
+        addFen_choiceHeure = new java.awt.Choice();
+        addFen_PanCourt = new javax.swing.JPanel();
+        addFen_lbChoixCourt = new javax.swing.JLabel();
+        addFen_choiceCourt = new java.awt.Choice();
+        addFen_PanArbitre = new javax.swing.JPanel();
+        addFen_lbArbitreChaise = new javax.swing.JLabel();
+        addFen_lbArbitreFilet = new javax.swing.JLabel();
+        addFen_lbArbitre1 = new javax.swing.JLabel();
+        addFen_lbArbitre2 = new javax.swing.JLabel();
+        addFen_lbArbitre3 = new javax.swing.JLabel();
+        addFen_lbArbitre4 = new javax.swing.JLabel();
+        addFen_lbArbitre5 = new javax.swing.JLabel();
+        addFen_lbArbitre6 = new javax.swing.JLabel();
+        addFen_lbArbitre7 = new javax.swing.JLabel();
+        addFen_lbArbitre8 = new javax.swing.JLabel();
+        addFen_choiceArbitreChaise = new java.awt.Choice();
+        addFen_choiceArbitreFilet = new java.awt.Choice();
+        addFen_choiceArbitre1 = new java.awt.Choice();
+        addFen_choiceArbitre2 = new java.awt.Choice();
+        addFen_choiceArbitre3 = new java.awt.Choice();
+        addFen_choiceArbitre4 = new java.awt.Choice();
+        addFen_choiceArbitre5 = new java.awt.Choice();
+        addFen_choiceArbitre6 = new java.awt.Choice();
+        addFen_choiceArbitre7 = new java.awt.Choice();
+        addFen_choiceArbitre8 = new java.awt.Choice();
+        addFen_PanRamass = new javax.swing.JPanel();
+        addFen_lbRamass1 = new javax.swing.JLabel();
+        addFen_lbRamass2 = new javax.swing.JLabel();
+        addFen_choiceRamass1 = new java.awt.Choice();
+        addFen_choiceRamass2 = new java.awt.Choice();
+        addFen_btGroupTypeMatch = new javax.swing.ButtonGroup();
         lbAccueil = new javax.swing.JLabel();
         btMatchs = new javax.swing.JButton();
         btVIP = new javax.swing.JButton();
@@ -917,15 +963,322 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        fenAddMatch.setTitle("Ajouter un match");
+
+        addFen_PanJoueurs.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection des joueurs"));
+
+        addFen_btGroupTypeMatch.add(addFen_btMatchSimple);
+        addFen_btMatchSimple.setSelected(true);
+        addFen_btMatchSimple.setText("Simple");
+
+        addFen_btGroupTypeMatch.add(addFen_btMatchDouble);
+        addFen_btMatchDouble.setText("Double");
+
+        addFen_lbTypeMatch.setText("Type de match :");
+
+        addFen_lbJ1.setText("Joueur 1 : ");
+
+        addFen_lbJ2.setText("Joueur 2 :");
+        addFen_lbJ2.setEnabled(false);
+
+        addFen_lbVs.setText("VS");
+
+        addFen_lbJ3.setText("Joueur 3 :");
+
+        addFen_lbJ4.setText("Joueur 4 :");
+        addFen_lbJ4.setEnabled(false);
+
+        javax.swing.GroupLayout addFen_PanJoueursLayout = new javax.swing.GroupLayout(addFen_PanJoueurs);
+        addFen_PanJoueurs.setLayout(addFen_PanJoueursLayout);
+        addFen_PanJoueursLayout.setHorizontalGroup(
+            addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFen_PanJoueursLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addFen_PanJoueursLayout.createSequentialGroup()
+                        .addComponent(addFen_lbTypeMatch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addFen_btMatchSimple)
+                        .addGap(18, 18, 18)
+                        .addComponent(addFen_btMatchDouble))
+                    .addGroup(addFen_PanJoueursLayout.createSequentialGroup()
+                        .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(addFen_lbVs)
+                            .addGroup(addFen_PanJoueursLayout.createSequentialGroup()
+                                .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addFen_lbJ1)
+                                    .addComponent(addFen_lbJ3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(addFen_choiceJ1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                    .addComponent(addFen_choiceJ3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(addFen_PanJoueursLayout.createSequentialGroup()
+                                .addComponent(addFen_lbJ4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addFen_choiceJ4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(addFen_PanJoueursLayout.createSequentialGroup()
+                                .addComponent(addFen_lbJ2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addFen_choiceJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        addFen_PanJoueursLayout.setVerticalGroup(
+            addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFen_PanJoueursLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(addFen_PanJoueursLayout.createSequentialGroup()
+                        .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addFen_btMatchSimple)
+                            .addComponent(addFen_btMatchDouble)
+                            .addComponent(addFen_lbTypeMatch))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addFen_lbJ1)
+                            .addComponent(addFen_lbJ2)))
+                    .addComponent(addFen_choiceJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addFen_choiceJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addComponent(addFen_lbVs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(addFen_lbJ3)
+                        .addComponent(addFen_lbJ4))
+                    .addComponent(addFen_choiceJ3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addFen_choiceJ4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        addFen_PanHeure.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection de l'heure"));
+
+        addFen_lbChoixHeure.setText("Choisissez une horaire disponible :");
+
+        javax.swing.GroupLayout addFen_PanHeureLayout = new javax.swing.GroupLayout(addFen_PanHeure);
+        addFen_PanHeure.setLayout(addFen_PanHeureLayout);
+        addFen_PanHeureLayout.setHorizontalGroup(
+            addFen_PanHeureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFen_PanHeureLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(addFen_lbChoixHeure)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addFen_choiceHeure, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        addFen_PanHeureLayout.setVerticalGroup(
+            addFen_PanHeureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFen_PanHeureLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addFen_PanHeureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addFen_choiceHeure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addFen_lbChoixHeure))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        addFen_PanCourt.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection du court"));
+
+        addFen_lbChoixCourt.setText("Choisissez un court disponible : ");
+        addFen_lbChoixCourt.setToolTipText("");
+
+        javax.swing.GroupLayout addFen_PanCourtLayout = new javax.swing.GroupLayout(addFen_PanCourt);
+        addFen_PanCourt.setLayout(addFen_PanCourtLayout);
+        addFen_PanCourtLayout.setHorizontalGroup(
+            addFen_PanCourtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFen_PanCourtLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(addFen_lbChoixCourt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addFen_choiceCourt, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        addFen_PanCourtLayout.setVerticalGroup(
+            addFen_PanCourtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFen_PanCourtLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addFen_PanCourtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addFen_choiceCourt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addFen_lbChoixCourt))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        addFen_PanArbitre.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection des arbitres"));
+
+        addFen_lbArbitreChaise.setText("Arbitre de chaise :");
+
+        addFen_lbArbitreFilet.setText("Arbitre de filet : ");
+
+        addFen_lbArbitre1.setText("Arbitre de court 1 :");
+
+        addFen_lbArbitre2.setText("Arbitre de court 2 :");
+
+        addFen_lbArbitre3.setText("Arbitre de court 3 :");
+
+        addFen_lbArbitre4.setText("Arbitre de court 4 :");
+
+        addFen_lbArbitre5.setText("Arbitre de court 5 :");
+
+        addFen_lbArbitre6.setText("Arbitre de court 6 :");
+
+        addFen_lbArbitre7.setText("Arbitre de court 7 :");
+
+        addFen_lbArbitre8.setText("Arbitre de court 8 :");
+
+        javax.swing.GroupLayout addFen_PanArbitreLayout = new javax.swing.GroupLayout(addFen_PanArbitre);
+        addFen_PanArbitre.setLayout(addFen_PanArbitreLayout);
+        addFen_PanArbitreLayout.setHorizontalGroup(
+            addFen_PanArbitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFen_PanArbitreLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(addFen_PanArbitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addFen_PanArbitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(addFen_PanArbitreLayout.createSequentialGroup()
+                            .addComponent(addFen_lbArbitre3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addFen_choiceArbitre3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(addFen_PanArbitreLayout.createSequentialGroup()
+                            .addComponent(addFen_lbArbitre1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(addFen_choiceArbitre1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addFen_PanArbitreLayout.createSequentialGroup()
+                            .addComponent(addFen_lbArbitreFilet)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(addFen_choiceArbitreFilet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addFen_PanArbitreLayout.createSequentialGroup()
+                            .addComponent(addFen_lbArbitreChaise)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(addFen_choiceArbitreChaise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(addFen_choiceArbitre2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addFen_lbArbitre2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addFen_PanArbitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addFen_PanArbitreLayout.createSequentialGroup()
+                        .addComponent(addFen_lbArbitre4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addFen_choiceArbitre4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addFen_PanArbitreLayout.createSequentialGroup()
+                        .addGroup(addFen_PanArbitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addFen_PanArbitreLayout.createSequentialGroup()
+                                .addComponent(addFen_lbArbitre8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addFen_choiceArbitre8, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addFen_PanArbitreLayout.createSequentialGroup()
+                                .addComponent(addFen_lbArbitre7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addFen_choiceArbitre7, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addFen_PanArbitreLayout.createSequentialGroup()
+                                .addComponent(addFen_lbArbitre6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addFen_choiceArbitre6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addFen_PanArbitreLayout.createSequentialGroup()
+                                .addComponent(addFen_lbArbitre5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addFen_choiceArbitre5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        addFen_PanArbitreLayout.setVerticalGroup(
+            addFen_PanArbitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFen_PanArbitreLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addFen_PanArbitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addFen_choiceArbitre4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addFen_choiceArbitreChaise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addFen_lbArbitreChaise)
+                    .addComponent(addFen_lbArbitre4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addFen_PanArbitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addFen_choiceArbitreFilet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addFen_lbArbitreFilet, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addFen_lbArbitre5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addFen_choiceArbitre5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addFen_PanArbitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addFen_lbArbitre1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addFen_choiceArbitre1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addFen_lbArbitre6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addFen_choiceArbitre6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addFen_PanArbitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addFen_lbArbitre2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addFen_choiceArbitre2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addFen_lbArbitre7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addFen_choiceArbitre7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addFen_PanArbitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addFen_lbArbitre3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addFen_choiceArbitre3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addFen_lbArbitre8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addFen_choiceArbitre8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        addFen_PanRamass.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection des ramasseurs de balles"));
+
+        addFen_lbRamass1.setText("Equipe de ramasseurs de balles 1 :");
+
+        addFen_lbRamass2.setText("Equipe de ramasseurs de balles 2 :");
+
+        javax.swing.GroupLayout addFen_PanRamassLayout = new javax.swing.GroupLayout(addFen_PanRamass);
+        addFen_PanRamass.setLayout(addFen_PanRamassLayout);
+        addFen_PanRamassLayout.setHorizontalGroup(
+            addFen_PanRamassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFen_PanRamassLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(addFen_PanRamassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(addFen_PanRamassLayout.createSequentialGroup()
+                        .addComponent(addFen_lbRamass2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addFen_choiceRamass2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(addFen_PanRamassLayout.createSequentialGroup()
+                        .addComponent(addFen_lbRamass1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addFen_choiceRamass1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        addFen_PanRamassLayout.setVerticalGroup(
+            addFen_PanRamassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFen_PanRamassLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addFen_PanRamassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addFen_lbRamass1)
+                    .addComponent(addFen_choiceRamass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(addFen_PanRamassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addFen_lbRamass2)
+                    .addComponent(addFen_choiceRamass2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout fenAddMatchLayout = new javax.swing.GroupLayout(fenAddMatch.getContentPane());
         fenAddMatch.getContentPane().setLayout(fenAddMatchLayout);
         fenAddMatchLayout.setHorizontalGroup(
             fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fenAddMatchLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addFen_PanRamass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addFen_PanCourt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addFen_PanHeure, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addFen_PanJoueurs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addFen_PanArbitre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         fenAddMatchLayout.setVerticalGroup(
             fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(fenAddMatchLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addFen_PanJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addFen_PanHeure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addFen_PanCourt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addFen_PanArbitre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addFen_PanRamass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -1104,6 +1457,52 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel addFen_PanArbitre;
+    private javax.swing.JPanel addFen_PanCourt;
+    private javax.swing.JPanel addFen_PanHeure;
+    private javax.swing.JPanel addFen_PanJoueurs;
+    private javax.swing.JPanel addFen_PanRamass;
+    private javax.swing.ButtonGroup addFen_btGroupTypeMatch;
+    private javax.swing.JRadioButton addFen_btMatchDouble;
+    private javax.swing.JRadioButton addFen_btMatchSimple;
+    private java.awt.Choice addFen_choiceArbitre1;
+    private java.awt.Choice addFen_choiceArbitre2;
+    private java.awt.Choice addFen_choiceArbitre3;
+    private java.awt.Choice addFen_choiceArbitre4;
+    private java.awt.Choice addFen_choiceArbitre5;
+    private java.awt.Choice addFen_choiceArbitre6;
+    private java.awt.Choice addFen_choiceArbitre7;
+    private java.awt.Choice addFen_choiceArbitre8;
+    private java.awt.Choice addFen_choiceArbitreChaise;
+    private java.awt.Choice addFen_choiceArbitreFilet;
+    private java.awt.Choice addFen_choiceCourt;
+    private java.awt.Choice addFen_choiceHeure;
+    private java.awt.Choice addFen_choiceJ1;
+    private java.awt.Choice addFen_choiceJ2;
+    private java.awt.Choice addFen_choiceJ3;
+    private java.awt.Choice addFen_choiceJ4;
+    private java.awt.Choice addFen_choiceRamass1;
+    private java.awt.Choice addFen_choiceRamass2;
+    private javax.swing.JLabel addFen_lbArbitre1;
+    private javax.swing.JLabel addFen_lbArbitre2;
+    private javax.swing.JLabel addFen_lbArbitre3;
+    private javax.swing.JLabel addFen_lbArbitre4;
+    private javax.swing.JLabel addFen_lbArbitre5;
+    private javax.swing.JLabel addFen_lbArbitre6;
+    private javax.swing.JLabel addFen_lbArbitre7;
+    private javax.swing.JLabel addFen_lbArbitre8;
+    private javax.swing.JLabel addFen_lbArbitreChaise;
+    private javax.swing.JLabel addFen_lbArbitreFilet;
+    private javax.swing.JLabel addFen_lbChoixCourt;
+    private javax.swing.JLabel addFen_lbChoixHeure;
+    private javax.swing.JLabel addFen_lbJ1;
+    private javax.swing.JLabel addFen_lbJ2;
+    private javax.swing.JLabel addFen_lbJ3;
+    private javax.swing.JLabel addFen_lbJ4;
+    private javax.swing.JLabel addFen_lbRamass1;
+    private javax.swing.JLabel addFen_lbRamass2;
+    private javax.swing.JLabel addFen_lbTypeMatch;
+    private javax.swing.JLabel addFen_lbVs;
     private javax.swing.JMenuBar barreOutilsMatch;
     private javax.swing.JMenuBar barreOutilsPrincipal;
     private javax.swing.JMenuBar barreOutilsVIP;
