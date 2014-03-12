@@ -46,13 +46,6 @@ public class Match {
         this.jour = date;
         this.type = type;
     }
-    
-    public Match(int id, int lieu,int date, int horaire, int type){
-        this.idMatch = id;
-        this.idTerrain=lieu;
-        this.jour=date;
-        this.heure=horaire;
-        this.type=type;
-    }
+   
     
 }

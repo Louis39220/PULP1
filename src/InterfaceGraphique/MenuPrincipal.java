@@ -1402,8 +1402,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private void remplirTableVIP(JTable tableVIP) throws IOException, SQLException
     {
-        PlayerDao pdao = DaoFactory.getPlayerDao();
-        ResultSet allPlayer = pdao.selectAllPlayer();
+       /* PlayerDao pdao = DaoFactory.getPlayerDao();
+        List<Player> allPlayer = pdao.selectAllPlayer();
         int i = 0;
         while(allPlayer.next())
         {
@@ -1418,6 +1418,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             
             i++;
         }
+               */
 
     }
     
