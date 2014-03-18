@@ -1223,6 +1223,9 @@
       <Properties>
         <Property name="title" type="java.lang.String" value="Ajouter un match"/>
       </Properties>
+      <Events>
+        <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="fenAddMatchWindowClosing"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">

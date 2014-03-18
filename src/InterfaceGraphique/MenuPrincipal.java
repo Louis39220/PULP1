@@ -39,13 +39,13 @@ import oracle.net.aso.p;
 public class MenuPrincipal extends javax.swing.JFrame {
     private int jour;
     PlayerDao pdao = DaoFactory.getPlayerDao();
-    List<Player> allPlayer = pdao.selectAllPlayer();
+    private List<Player> allPlayer = pdao.selectAllPlayer();
         
     CoachDao cdao = DaoFactory.getCoachDao();
-    List<Coach> allCoach = cdao.selectAllCoach();
+    private List<Coach> allCoach = cdao.selectAllCoach();
         
     RefereeDao rdao = DaoFactory.getRefereeDao();
-    List<Referee> allReferee = rdao.selectAllReferee();
+    private List<Referee> allReferee = rdao.selectAllReferee();
     /**
      * Creates new form MenuPrincipal
      */
@@ -1003,6 +1003,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         fenAddMatch.setTitle("Ajouter un match");
+        fenAddMatch.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                fenAddMatchWindowClosing(evt);
+            }
+        });
 
         addFen_PanJoueurs.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection des joueurs"));
 
@@ -1322,7 +1327,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(gestionRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panAjoutRelationActionVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panTable, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(panTable, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         gestionRelationActionVIPLayout.setVerticalGroup(
@@ -1573,7 +1578,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtFieldNbMatchArbitre.setText("");
         txtFieldRepCoach.setText("");
     }//GEN-LAST:event_radioBtnInviteSpeActionPerformed
-     private void addFen_choiceJ1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceJ1ItemStateChanged
+     private void addFen_choiceJ1ItemStateChanged(java.awt.event.ItemEvent evt) {                                                 
         majFenAjouterMatch();
     }
 
@@ -1581,11 +1586,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         majFenAjouterMatch();
     }//GEN-LAST:event_addFen_choiceJ2ItemStateChanged
 
-    private void addFen_choiceHeureItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceHeureItemStateChanged
+    private void addFen_choiceHeureItemStateChanged(java.awt.event.ItemEvent evt) {                                                    
         majFenAjouterMatch();
     }
 
-    private void addFen_choiceCourtItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceCourtItemStateChanged
+    private void addFen_choiceCourtItemStateChanged(java.awt.event.ItemEvent evt) {                                                    
         majFenAjouterMatch();
     }
     private void radioBtnJournalisteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnJournalisteActionPerformed
@@ -1643,9 +1648,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         addMatch();
     }//GEN-LAST:event_addFen_btAddActionPerformed
 
+    private void fenAddMatchWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_fenAddMatchWindowClosing
+        fenAddMatch.dispose();
+        gestionMatchs.setVisible(true);
+    }//GEN-LAST:event_fenAddMatchWindowClosing
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BtnGroupJCAIJ;
-    private javax.swing.JPanel addFen_PanArbitre;
     private javax.swing.JPanel addFen_PanCourt;
     private javax.swing.JPanel addFen_PanHeure;
     private javax.swing.JPanel addFen_PanJoueurs;
