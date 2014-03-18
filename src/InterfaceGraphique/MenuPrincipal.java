@@ -1497,7 +1497,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFieldNomActionPerformed
 
     private void ajouterVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterVIPActionPerformed
-        ajouterVIP(tableVIP);
+        try {
+            ajouterVIP(tableVIP);
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         txtFieldRang.setText("");
         txtFieldCategArbitre.setText("");
         txtFieldJoueurCoach.setText("");
@@ -1972,19 +1978,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         else JOptionPane.showMessageDialog(this,"Aucune ligne de sélectionné","Attention",JOptionPane.OK_OPTION);
     }
     
-    private void ajouterVIP(JTable tableVIP)
+    private void ajouterVIP(JTable tableVIP) throws SQLException, IOException
     {
         if(radioBtnJoueur.isSelected() && !txtFieldNom.getText().equals("") && !txtFieldPrenom.getText().equals("") 
                 && !txtFieldBirthdate.getText().equals("") && !txtFieldRang.getText().equals(""))
         {
             ((DefaultTableModel)tableVIP.getModel())
                     .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Joueur"});
+            pdao.insertPlayer(txtFieldNom.getText(), txtFieldPrenom.getText(), txtFieldBirthdate.getText(), Integer.getInteger(txtFieldRang.getText()));
+            
         }
         else if(radioBtnCoach.isSelected() && !txtFieldNom.getText().equals("") && !txtFieldPrenom.getText().equals("") 
                 && !txtFieldBirthdate.getText().equals("") && !txtFieldJoueurCoach.getText().equals("") && !txtFieldRepCoach.getText().equals(""))
         {
             ((DefaultTableModel)tableVIP.getModel())
                     .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Coach"});
+            cdao.insertCoach(txtFieldNom.getText(), txtFieldPrenom.getText(), txtFieldBirthdate.getText(), Integer.getInteger(txtFieldJoueurCoach.getText()), Integer.getInteger(txtFieldRepCoach.getText()));
         }
         else if(radioBtnArbitre.isSelected() && !txtFieldNom.getText().equals("") && !txtFieldPrenom.getText().equals("") 
                 && !txtFieldBirthdate.getText().equals("") && !txtFieldCategArbitre.getText().equals("") && !txtFieldNbMatchArbitre.getText().equals(""))
