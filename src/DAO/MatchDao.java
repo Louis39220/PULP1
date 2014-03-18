@@ -41,5 +41,6 @@ public interface MatchDao {
     public boolean deleteMatch(int id) throws SQLException, IOException;
 
     public boolean updateMatch(int id, int date, int heure, int terrain, int type) throws SQLException, IOException;
-
+    
+    public int selectIdMatchByTerrainByDateByHour(int date, int numTerrain,int heure) throws SQLException, IOException;
 }
