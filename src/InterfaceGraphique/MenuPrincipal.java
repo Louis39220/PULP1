@@ -47,7 +47,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
         setLocation((d.width-this.getWidth()) / 2, (d.height-this.getHeight()) / 2);
-        gestionMatchs.setSize(1035, 720);
+        gestionMatchs.setSize(1040, 550);
         gestionMatchs.setLocation((d.width-gestionMatchs.getWidth()) / 2, (d.height-gestionMatchs.getHeight()) / 2);
         courtChoice.add("Tous");
         courtChoice.add("Court central");
@@ -64,6 +64,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         heureChoice.add("21h");
         heureChoice.select("8h");
 
+        fenAddMatch.setSize(620, 300);
+        fenAddMatch.setLocation((d.width-fenAddMatch.getWidth()) / 2, (d.height-fenAddMatch.getHeight()) / 2);
         
         gestionVIP.setSize(650, 660);
         gestionVIP.setLocation((d.width-gestionVIP.getWidth()) / 2, (d.height-gestionVIP.getHeight()) / 2);
@@ -153,7 +155,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         addFen_lbVs = new javax.swing.JLabel();
         addFen_lbJ2 = new javax.swing.JLabel();
         addFen_choiceJ1 = new java.awt.Choice();
-        addFen_choiceJ3 = new java.awt.Choice();
+        addFen_choiceJ2 = new java.awt.Choice();
         addFen_PanHeure = new javax.swing.JPanel();
         addFen_lbChoixHeure = new javax.swing.JLabel();
         addFen_choiceHeure = new java.awt.Choice();
@@ -490,6 +492,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         btAdd.setText("Ajouter un match");
+        btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddActionPerformed(evt);
+            }
+        });
 
         btModif.setText("Modifier un match");
 
@@ -846,9 +853,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        addFen_choiceJ3.addItemListener(new java.awt.event.ItemListener() {
+        addFen_choiceJ2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                addFen_choiceJ3ItemStateChanged(evt);
+                addFen_choiceJ2ItemStateChanged(evt);
             }
         });
 
@@ -866,7 +873,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addFen_lbJ2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addFen_choiceJ3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addFen_choiceJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addFen_PanJoueursLayout.setVerticalGroup(
@@ -874,7 +881,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(addFen_PanJoueursLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addFen_choiceJ3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addFen_choiceJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addFen_lbJ1)
                     .addComponent(addFen_choiceJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -934,7 +941,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(addFen_lbChoixCourt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addFen_choiceCourt, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addFen_PanCourtLayout.setVerticalGroup(
             addFen_PanCourtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -947,6 +954,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         addFen_btAdd.setText("Ajouter");
+        addFen_btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addFen_btAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout fenAddMatchLayout = new javax.swing.GroupLayout(fenAddMatch.getContentPane());
         fenAddMatch.getContentPane().setLayout(fenAddMatchLayout);
@@ -956,11 +968,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fenAddMatchLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(addFen_PanHeure, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addFen_PanJoueurs, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(addFen_PanCourt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(addFen_PanHeure, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addFen_PanJoueurs, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addFen_PanCourt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(fenAddMatchLayout.createSequentialGroup()
                         .addGap(256, 256, 256)
                         .addComponent(addFen_btAdd)))
@@ -1242,9 +1253,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         majFenAjouterMatch();
     }//GEN-LAST:event_addFen_choiceJ1ItemStateChanged
 
-    private void addFen_choiceJ3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceJ3ItemStateChanged
+    private void addFen_choiceJ2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceJ2ItemStateChanged
         majFenAjouterMatch();
-    }//GEN-LAST:event_addFen_choiceJ3ItemStateChanged
+    }//GEN-LAST:event_addFen_choiceJ2ItemStateChanged
 
     private void addFen_choiceHeureItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceHeureItemStateChanged
         majFenAjouterMatch();
@@ -1254,6 +1265,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         majFenAjouterMatch();
     }//GEN-LAST:event_addFen_choiceCourtItemStateChanged
 
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
+        gestionMatchs.dispose();
+        fenAddMatch.setVisible(true);
+        initFenAddMatch();
+    }//GEN-LAST:event_btAddActionPerformed
+
+    private void addFen_btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFen_btAddActionPerformed
+        addMatch();
+    }//GEN-LAST:event_addFen_btAddActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addFen_PanCourt;
     private javax.swing.JPanel addFen_PanHeure;
@@ -1262,7 +1283,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private java.awt.Choice addFen_choiceCourt;
     private java.awt.Choice addFen_choiceHeure;
     private java.awt.Choice addFen_choiceJ1;
-    private java.awt.Choice addFen_choiceJ3;
+    private java.awt.Choice addFen_choiceJ2;
     private javax.swing.JLabel addFen_lbChoixCourt;
     private javax.swing.JLabel addFen_lbChoixHeure;
     private javax.swing.JLabel addFen_lbJ1;
@@ -1590,10 +1611,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private void addMatch() {
         if (addFen_choiceJ1.getSelectedItem().equals("Aucun joueur sélectionné") || 
-                addFen_choiceJ3.getSelectedItem().equals("Aucun joueur sélectionné") || 
+                addFen_choiceJ2.getSelectedItem().equals("Aucun joueur sélectionné") || 
                 addFen_choiceCourt.getSelectedItem().equals("Aucun court sélectionné") || 
                 addFen_choiceHeure.getSelectedItem().equals("Aucune heure sélectionnée")) {
             //Générer erreur
+            JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs !", 
+                "Erreur", JOptionPane.OK_OPTION);
         }
         else {
             //Création du match
@@ -1602,29 +1625,85 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private void majFenAjouterMatch() {
         String j1Select = addFen_choiceJ1.getSelectedItem();
-        String j2Select = addFen_choiceJ3.getSelectedItem();
+        String j2Select = addFen_choiceJ2.getSelectedItem();
         String courtSelect = addFen_choiceCourt.getSelectedItem();
         String heureSelect = addFen_choiceHeure.getSelectedItem();
         
         addFen_choiceJ1.removeAll();
-        addFen_choiceJ3.removeAll();
+        addFen_choiceJ2.removeAll();
         addFen_choiceCourt.removeAll();
         addFen_choiceHeure.removeAll();
         
         addFen_choiceJ1.addItem("Aucun joueur sélectionné");
-        addFen_choiceJ3.addItem("Aucun joueur sélectionné");
+        addFen_choiceJ2.addItem("Aucun joueur sélectionné");
         addFen_choiceCourt.addItem("Aucun court sélectionné");
         addFen_choiceHeure.addItem("Aucune heure sélectionnée");
         
+        //MAJ J1
+        //ListeComplete = select allPlayer;
+        //listeJoueur = Select * from player where id = ?;
+        //listeHeure = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where heure = ? et jour = ?));
+        //listeCourt = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where court = ? et jour = ? et heure = ?));
         
-        //Requete
-        //IDM = Select IDM from match where heure = h or court = c or joueur1 = j1 or joueur2 = j2;
-        //Select idplayer from player_match where idmatch != IDM;
-        //Select * from player where id = idplayer;
+        //for (Player p : listeJoueur) listeComplete.remove(p);
+        //for (Player p : listeHeure) listeComplete.remove(p);
+        //for (Player p : listeCourt) listeComplete.remove(p);
+        //for (Player p : listeComplete) addFen_choiceJ1.addItem(p.getSurname + " " + p.getName);
+        //addFen_choiceJ1.select(j1Select);
+        
+        
+        //MAJ J2
+        //ListeComplete = select allPlayer;
+        //listeJoueur = Select * from player where id = ?;
+        //listeHeure = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where heure = ? et jour = ?));
+        //listeCourt = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where court = ? et jour = ? et heure = ?));
+        
+        //for (Player p : listeJoueur) listeComplete.remove(p);
+        //for (Player p : listeHeure) listeComplete.remove(p);
+        //for (Player p : listeCourt) listeComplete.remove(p);
+        //for (Player p : listeComplete) addFen_choiceJ2.addItem(p.getSurname + " " + p.getName);
+        //addFen_choiceJ2.select(j2Select);
+        
+        //MAJ COURT
+        //List<String> allCourts= new ArrayList<>();
+        //allCourts.add("Court central");
+        //allCourts.add("Court annexe");
+        //allCourts.add("Court d'entrainement 1");
+        //allCourts.add("Court d'entrainement 2");
+        //allCourts.add("Court d'entrainement 3");
+        //allCourts.add("Court d'entrainement 4");
+        //int[] listeUse = Select court from match where idmatch in (select idmatch from match where jour = ? et heure = ?);
+        //for (int i = listeUse.size() - 1 ; i >= 0 ; i++) allCourts.remove(listeUse[i]);
+        //for (String s : allCourts) addFen_choiceCourt.addItem(s);
+        //addFen_choiceCourt.select(courtSelect);
+        
+        //MAJ HEURE
+        //List<String> allHeures = new ArrayList<>();
+        //allCourts.add("8h");
+        //allCourts.add("11h");
+        //allCourts.add("15h");
+        //allCourts.add("18h");
+        //allCourts.add("21h");
+        //int[] listeUse = Select heure from match where idmatch in (select idmatch from match where jour = ? et court = ?);
+        //for (int i = listeUse.size() - 1 ; i >= 0 ; i++) allHeures.remove(listeUse[i]);
+        //for (String s : allHeures) addFen_choiceHeure.addItem(s);
+        //addFen_heureCourt.select(heureSelect);
         
         addFen_choiceJ1.select(j1Select);
-        addFen_choiceJ3.select(j2Select);
+        addFen_choiceJ2.select(j2Select);
         addFen_choiceCourt.select(courtSelect);
         addFen_choiceHeure.select(heureSelect);
+    }
+    
+    private void initFenAddMatch() {
+        addFen_choiceJ1.addItem("Aucun joueur sélectionné");
+        addFen_choiceJ2.addItem("Aucun joueur sélectionné");
+        addFen_choiceCourt.addItem("Aucun court sélectionné");
+        addFen_choiceHeure.addItem("Aucune heure sélectionnée");
+        
+        addFen_choiceJ1.select("Aucun joueur sélectionné");
+        addFen_choiceJ2.select("Aucun joueur sélectionné");
+        addFen_choiceCourt.select("Aucun court sélectionné");
+        addFen_choiceHeure.select("Aucune heure sélectionnée");
     }
 }

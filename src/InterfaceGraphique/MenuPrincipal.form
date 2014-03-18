@@ -624,6 +624,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajouter un match"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAddActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btModif">
               <Properties>
@@ -1043,12 +1046,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="addFen_PanHeure" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="addFen_PanJoueurs" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="addFen_PanCourt" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="addFen_PanHeure" alignment="0" max="32767" attributes="0"/>
+                              <Component id="addFen_PanJoueurs" alignment="0" max="32767" attributes="0"/>
+                              <Component id="addFen_PanCourt" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -1099,7 +1100,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="addFen_lbJ2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="addFen_choiceJ3" min="-2" pref="190" max="-2" attributes="0"/>
+                      <Component id="addFen_choiceJ2" min="-2" pref="190" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -1109,7 +1110,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="addFen_choiceJ3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addFen_choiceJ2" min="-2" max="-2" attributes="0"/>
                           <Component id="addFen_lbJ1" min="-2" max="-2" attributes="0"/>
                           <Component id="addFen_choiceJ1" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1143,9 +1144,9 @@
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="addFen_choiceJ1ItemStateChanged"/>
               </Events>
             </Component>
-            <Component class="java.awt.Choice" name="addFen_choiceJ3">
+            <Component class="java.awt.Choice" name="addFen_choiceJ2">
               <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="addFen_choiceJ3ItemStateChanged"/>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="addFen_choiceJ2ItemStateChanged"/>
               </Events>
             </Component>
           </SubComponents>
@@ -1214,7 +1215,7 @@
                       <Component id="addFen_lbChoixCourt" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="addFen_choiceCourt" min="-2" pref="190" max="-2" attributes="0"/>
-                      <EmptySpace pref="167" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1249,6 +1250,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajouter"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addFen_btAddActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
