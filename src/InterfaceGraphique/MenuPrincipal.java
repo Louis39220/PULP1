@@ -1562,7 +1562,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtFieldNbMatchArbitre.setText("");
         txtFieldRepCoach.setText("");
     }//GEN-LAST:event_radioBtnInviteSpeActionPerformed
+     private void addFen_choiceJ1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceJ1ItemStateChanged
+        majFenAjouterMatch();
+    }
 
+    private void addFen_choiceJ3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceJ3ItemStateChanged
+        majFenAjouterMatch();
+    }
+
+    private void addFen_choiceHeureItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceHeureItemStateChanged
+        majFenAjouterMatch();
+    }
+
+    private void addFen_choiceCourtItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceCourtItemStateChanged
+        majFenAjouterMatch();
+    }
     private void radioBtnJournalisteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnJournalisteActionPerformed
         txtFieldCategArbitre.setEnabled(false);
         txtFieldJoueurCoach.setEnabled(false);
