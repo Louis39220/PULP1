@@ -161,7 +161,9 @@ public class MatchDaoImpl implements MatchDao {
                 }
             }
                 int id = selectIdMatchByTerrainByDateByHour(m.getJour(),m.getIdTerrain(),m.getHeure());
-                RefereeDao rdao = DaoFactory.getRefereeDao();
+                RefereeDao rdao;
+                DaoFactoryInterface fact = null;
+                rdao = fact.getRefereeDao();
                 List<Referee> lr = new ArrayList<>();
                 lr = rdao.selectRandom8RefereeLine();
         try (PreparedStatement ps1 = connexionDB.prepareStatement("INSERT INTO pulp.attribmatch(matchId,idP1,idP2,idArbitreChaise,idArbitreFilet,idTeamRamasseur1,idTeamRamasseur2,idA1,idA2,idA3,idA4,idA5,idA6,idA7,idA8) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")) {

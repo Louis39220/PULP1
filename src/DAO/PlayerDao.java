@@ -19,7 +19,7 @@ public interface PlayerDao {
 
     public Player selectPlayer(int id) throws SQLException, IOException;
 
-     public List<Player> selectAllPlayer() throws SQLException, IOException;
+    public List<Player> selectAllPlayer() throws SQLException, IOException;
 
     public boolean insertPlayer(String name, String Surname, String ddn, int rank) throws SQLException, IOException;
 
@@ -27,4 +27,7 @@ public interface PlayerDao {
 
     public boolean updatePlayer(int id, String name, String surname, String ddn, int rank) throws SQLException, IOException;
 
+    public List<Player> selectPlayerOfMatchByDayHour(int heure, int day) throws SQLException, IOException;
+
+    public List<Player> selectPlayerofMatchByCourtHour(int court, int heure) throws SQLException, IOException;
 }

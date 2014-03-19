@@ -12,36 +12,36 @@ import java.sql.Connection;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class DaoFactory {
+public class DaoFactory implements DaoFactoryInterface {
     
 
     protected static Connection conn ;
     
     //retourne un objet Player interagissant avec la BDD
-    public static PlayerDaoImpl getPlayerDao() throws IOException, SQLException {
+    public PlayerDaoImpl getPlayerDao() throws IOException, SQLException {
         conn = ConnexionMysqlFactory.getInstance();
         return new PlayerDaoImpl(conn);
     }
     
     //Retourne un objet referee interagissant avec la BDD
-    public static RefereeDaoImpl getRefereeDao() throws IOException, SQLException{
+    public RefereeDaoImpl getRefereeDao() throws IOException, SQLException{
         conn = ConnexionMysqlFactory.getInstance();
         return new RefereeDaoImpl(conn);
     }
     
     //Retourne un objet Coach interagissant avec la BDD
-    public static CoachDaoImpl getCoachDao() throws IOException, SQLException{
+    public CoachDaoImpl getCoachDao() throws IOException, SQLException{
         conn = ConnexionMysqlFactory.getInstance();
         return new CoachDaoImpl(conn);
     }
     
     //retourne un objet Match interagissant avec la BDD
-    public static MatchDaoImpl getMatchDao() throws IOException, SQLException{
+    public MatchDaoImpl getMatchDao() throws IOException, SQLException{
         conn = ConnexionMysqlFactory.getInstance();
         return new MatchDaoImpl(conn);
     }
     
-    public static Match_playerDaoImpl getMatchPlayerDao() throws IOException, SQLException{
+    public Match_playerDaoImpl getMatchPlayerDao() throws IOException, SQLException{
         conn = ConnexionMysqlFactory.getInstance();
         return new Match_playerDaoImpl(conn);
     }
