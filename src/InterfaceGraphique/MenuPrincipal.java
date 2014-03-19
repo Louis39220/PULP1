@@ -1473,7 +1473,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btRetourActionPerformed
 
     private void btnSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprActionPerformed
-        supprimerVIP(tableVIP);
+        try {
+            supprimerVIP(tableVIP);
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSupprActionPerformed
 
     private void btnConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultActionPerformed
@@ -1934,10 +1940,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private void supprimerVIP(JTable tableVIP)
+    private void supprimerVIP(JTable tableVIP) throws SQLException, IOException
     {
         if(tableVIP.getSelectedRow() != -1)
+        {
+            String nomS = (String)tableVIP.getValueAt(tableVIP.getSelectedRow(), 0);
+            String prenomS = (String)tableVIP.getValueAt(tableVIP.getSelectedRow(), 1);
+            String birthdateS = (String)tableVIP.getValueAt(tableVIP.getSelectedRow(), 2);
+            
+            if((String)(tableVIP.getValueAt(tableVIP.getSelectedRow(),3)) == "Joueur")
+            {            
+                pdao.deletePlayerByName(nomS, prenomS, birthdateS);
+            }
+            else if((String)(tableVIP.getValueAt(tableVIP.getSelectedRow(),3)) == "Coach")
+            {
+                cdao.deleteCoachByName(nomS, prenomS, birthdateS);
+            }
+            else rdao.deleteRefereeByName(nomS, prenomS, birthdateS);
             ((DefaultTableModel)tableVIP.getModel()).removeRow(tableVIP.getSelectedRow());
+        }
+        
         else JOptionPane.showMessageDialog(this,"Aucune ligne de sélectionné","Attention",JOptionPane.OK_OPTION);
     }
     

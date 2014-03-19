@@ -99,6 +99,27 @@ public class PlayerDaoImpl implements PlayerDao {
         }
         return res;
     }
+    
+    @Override
+    public boolean deletePlayerByName(String name, String surname, String birthdate) throws SQLException, IOException {
+        boolean res = true;
+        connexionDB = ConnexionMysqlFactory.getInstance();
+        try (PreparedStatement ps = connexionDB.prepareStatement("DELETE FROM pulp.player where PLAYERNAME= ? AND PLAYERSURNAME= ? AND PLAYERDATENAISSANCE= ?")) {
+            ps.setString(1, name);
+            ps.setString(2, surname);
+            ps.setString(3, birthdate);
+            try {
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+                ps.cancel();
+                res = false;
+            }
+            ps.close();
+            connexionDB.close();
+        }
+        return res;
+    }
 
     /**
      *

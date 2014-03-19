@@ -27,6 +27,8 @@ public interface RefereeDao {
     public boolean insertReferee(String name, String Surname, String ddn, int nbMatch, String categorie) throws SQLException, IOException;
 
     public boolean deleteReferee(int id) throws SQLException, IOException;
+    
+    public boolean deleteRefereeByName(String name, String surname, String birthdate) throws SQLException, IOException;
 
     public boolean updateReferee(int id, String name, String surname, String ddn, int nbMatch, String categorie) throws SQLException, IOException;
 
