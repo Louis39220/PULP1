@@ -42,7 +42,22 @@ public class PlayerDaoImpl implements PlayerDao {
         rs.close();
         connexionDB.close();
         return p;
-
+    }
+    
+    public int SelectIdPlayerByName(String name, String surname)throws SQLException, IOException {
+        connexionDB = ConnexionMysqlFactory.getInstance();
+        ResultSet rs;
+        int res;
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT playerId FROM player WHERE playerName= ? AND playerSurname=?")) {
+            PS.setString(1, name);
+            PS.setString(2, surname);
+            rs = PS.executeQuery();
+            rs.next();
+            res = rs.getInt(1);
+        }
+        rs.close();
+        connexionDB.close();
+        return res;
     }
 
     @Override
@@ -172,15 +187,18 @@ public class PlayerDaoImpl implements PlayerDao {
     }
 
     @Override
-    public List<Player> selectPlayerofMatchByCourtHour(int court, int heure) throws SQLException, IOException {
+    public List<Player> selectPlayerofMatchByCourtByDayByHour(int terrain, int day, int heure) throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs = null;
         List<Player> lp = new ArrayList<>();
         Statement st = connexionDB.createStatement();
         try (PreparedStatement ps = connexionDB.prepareStatement("select * from pulp.player where playerId in (select idP1 from pulp.attribmatch where matchId in "
-                + "(select matchId from pulp.match where matchLieu=? and matchDate=?))")) {
-            ps.setInt(1, heure);
-            ps.setInt(2, court);
+                + "(select matchId from pulp.match where matchLieu=? and matchDate=? and matchTrancheHoraire=?))")) {
+            
+            ps.setInt(1, terrain);
+            ps.setInt(2, day);
+            ps.setInt(2, heure);
+            
             try {
                 rs = ps.executeQuery();
                 while (rs.next()) {
@@ -191,9 +209,10 @@ public class PlayerDaoImpl implements PlayerDao {
             }
         }
         try (PreparedStatement ps = connexionDB.prepareStatement("select * from pulp.player where playerId in (select idP2 from pulp.attribmatch where matchId in "
-                + "(select matchId from pulp.match where matchLieu=? and matchDate=?))")) {
-            ps.setInt(1, heure);
-            ps.setInt(2, court);
+                + "(select matchId from pulp.match where matchLieu=? and matchDate=? and matchTrancheHoraire=?))")) {
+            ps.setInt(1, terrain);
+            ps.setInt(2, day);
+            ps.setInt(2, heure);
             try {
                 rs = ps.executeQuery();
                 while (rs.next()) {
@@ -206,5 +225,6 @@ public class PlayerDaoImpl implements PlayerDao {
         connexionDB.close();
         return lp;
     }
+
 
 }

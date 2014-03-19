@@ -20,16 +20,12 @@ import entities.Match;
 import entities.Player;
 import entities.Referee;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
-import oracle.net.aso.p;
 
 
 /**
