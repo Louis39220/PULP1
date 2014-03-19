@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import oracle.net.aso.p;
@@ -38,18 +39,28 @@ import oracle.net.aso.p;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
     private int jour;
-    private static final DaoFactoryInterface fact =  null;
+    private static final DaoFactoryInterface fact = null;
+    PlayerDao pdao = fact.getPlayerDao();
+    private List<Player> allPlayer = pdao.selectAllPlayer();
+        
+    CoachDao cdao = fact.getCoachDao();
+    private List<Coach> allCoach = cdao.selectAllCoach();
+        
+    RefereeDao rdao = fact.getRefereeDao();
+    private List<Referee> allReferee = rdao.selectAllReferee();
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() throws IOException, SQLException {
         jour = 22;
+        //comboBoxProtagoniste1 = new javax.swing.JComboBox(listeProtagonistes.toArray());
+        //comboBoxProtagoniste2 = new javax.swing.JComboBox(listeProtagonistes.toArray());
         initComponents();
         setVisible(true);
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
         setLocation((d.width-this.getWidth()) / 2, (d.height-this.getHeight()) / 2);
-        gestionMatchs.setSize(1035, 720);
+        gestionMatchs.setSize(1040, 550);
         gestionMatchs.setLocation((d.width-gestionMatchs.getWidth()) / 2, (d.height-gestionMatchs.getHeight()) / 2);
         courtChoice.add("Tous");
         courtChoice.add("Court central");
@@ -66,10 +77,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         heureChoice.add("21h");
         heureChoice.select("8h");
 
+        fenAddMatch.setSize(620, 300);
+        fenAddMatch.setLocation((d.width-fenAddMatch.getWidth()) / 2, (d.height-fenAddMatch.getHeight()) / 2);
         
         gestionVIP.setSize(650, 660);
         gestionVIP.setLocation((d.width-gestionVIP.getWidth()) / 2, (d.height-gestionVIP.getHeight()) / 2);
         remplirTableVIP(tableVIP);
+        
+        gestionRelationActionVIP.setSize(535, 540);
+        gestionRelationActionVIP.setLocation((d.width-gestionVIP.getWidth()) / 2, (d.height-gestionVIP.getHeight()) / 2);
+        remplirComboBoxConsulteVIP();
     }
 
     /**
@@ -146,16 +163,32 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtFieldPrenom = new javax.swing.JTextField();
         txtFieldNom = new javax.swing.JTextField();
         ajouterVIP = new javax.swing.JButton();
+        radioBtnJoueur = new javax.swing.JRadioButton();
+        radioBtnCoach = new javax.swing.JRadioButton();
+        radioBtnArbitre = new javax.swing.JRadioButton();
+        radioBtnInviteSpe = new javax.swing.JRadioButton();
+        radioBtnJournaliste = new javax.swing.JRadioButton();
+        lblRange = new javax.swing.JLabel();
+        txtFieldRang = new javax.swing.JTextField();
+        lblJoueurCoach = new javax.swing.JLabel();
+        lblRepCoach = new javax.swing.JLabel();
+        txtFieldJoueurCoach = new javax.swing.JTextField();
+        txtFieldRepCoach = new javax.swing.JTextField();
+        lblNbMatchArbitre = new javax.swing.JLabel();
+        lblCategArbitre = new javax.swing.JLabel();
+        txtFieldNbMatchArbitre = new javax.swing.JTextField();
+        txtFieldCategArbitre = new javax.swing.JTextField();
         barreOutilsVIP = new javax.swing.JMenuBar();
         menuFichierVIP = new javax.swing.JMenu();
         menuQuitterVIP = new javax.swing.JMenuItem();
+        BtnGroupJCAIJ = new javax.swing.ButtonGroup();
         fenAddMatch = new javax.swing.JDialog();
         addFen_PanJoueurs = new javax.swing.JPanel();
         addFen_lbJ1 = new javax.swing.JLabel();
         addFen_lbVs = new javax.swing.JLabel();
         addFen_lbJ2 = new javax.swing.JLabel();
         addFen_choiceJ1 = new java.awt.Choice();
-        addFen_choiceJ3 = new java.awt.Choice();
+        addFen_choiceJ2 = new java.awt.Choice();
         addFen_PanHeure = new javax.swing.JPanel();
         addFen_lbChoixHeure = new javax.swing.JLabel();
         addFen_choiceHeure = new java.awt.Choice();
@@ -169,8 +202,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         tableConsultVIP = new javax.swing.JTable();
         btnSupRelationActionVIP = new javax.swing.JButton();
         panAjoutRelationActionVIP = new javax.swing.JPanel();
+        lblType = new javax.swing.JLabel();
+        radioBtnTypeAction = new javax.swing.JRadioButton();
+        radioBtnTypeRelation = new javax.swing.JRadioButton();
+        lblDescriptif = new javax.swing.JLabel();
+        txtFieldDescriptif = new javax.swing.JTextField();
+        lblProtagoniste1 = new javax.swing.JLabel();
+        comboBoxProtagoniste1 = new javax.swing.JComboBox();
+        btnAjoutConsult = new javax.swing.JButton();
         barreOutilVIPconsult = new javax.swing.JMenuBar();
         fichierVIPconsult = new javax.swing.JMenu();
+        menuItemQuitter = new javax.swing.JMenuItem();
+        btnGroupActionRelation = new javax.swing.ButtonGroup();
         lbAccueil = new javax.swing.JLabel();
         btMatchs = new javax.swing.JButton();
         btVIP = new javax.swing.JButton();
@@ -492,6 +535,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         btAdd.setText("Ajouter un match");
+        btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddActionPerformed(evt);
+            }
+        });
 
         btModif.setText("Modifier un match");
 
@@ -656,11 +704,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOM", "PRENOM", "DATE DE NAISSANCE"
+                "NOM", "PRENOM", "DATE DE NAISSANCE", "Type de VIP"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -688,8 +736,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panListeVIPLayout.setVerticalGroup(
             panListeVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panListeVIPLayout.createSequentialGroup()
-                .addComponent(scrollTableVIP, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scrollTableVIP, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         panGestionVIP.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestion VIP"));
@@ -729,25 +777,122 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        BtnGroupJCAIJ.add(radioBtnJoueur);
+        radioBtnJoueur.setText("Joueur");
+        radioBtnJoueur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioBtnJoueurActionPerformed(evt);
+            }
+        });
+
+        BtnGroupJCAIJ.add(radioBtnCoach);
+        radioBtnCoach.setText("Coach");
+        radioBtnCoach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioBtnCoachActionPerformed(evt);
+            }
+        });
+
+        BtnGroupJCAIJ.add(radioBtnArbitre);
+        radioBtnArbitre.setText("Arbitre");
+        radioBtnArbitre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioBtnArbitreActionPerformed(evt);
+            }
+        });
+
+        BtnGroupJCAIJ.add(radioBtnInviteSpe);
+        radioBtnInviteSpe.setText("Invité spécial");
+        radioBtnInviteSpe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioBtnInviteSpeActionPerformed(evt);
+            }
+        });
+
+        BtnGroupJCAIJ.add(radioBtnJournaliste);
+        radioBtnJournaliste.setText("Journaliste");
+        radioBtnJournaliste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioBtnJournalisteActionPerformed(evt);
+            }
+        });
+
+        lblRange.setText("Rang :");
+
+        txtFieldRang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldRangActionPerformed(evt);
+            }
+        });
+
+        lblJoueurCoach.setText("Joueur Coaché :");
+
+        lblRepCoach.setText("Réputation Coach :");
+
+        lblNbMatchArbitre.setText("Nombre match arbitrés :");
+
+        lblCategArbitre.setText("Catégorie d'arbitre :");
+
         javax.swing.GroupLayout panAjoutVIPLayout = new javax.swing.GroupLayout(panAjoutVIP);
         panAjoutVIP.setLayout(panAjoutVIPLayout);
         panAjoutVIPLayout.setHorizontalGroup(
             panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panAjoutVIPLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
                 .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(birthdate)
-                    .addComponent(prenom)
-                    .addComponent(nom))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtFieldPrenom)
-                    .addComponent(txtFieldBirthdate)
-                    .addComponent(txtFieldNom, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                .addContainerGap(203, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panAjoutVIPLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ajouterVIP)
+                    .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                        .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(birthdate)
+                                    .addComponent(prenom)
+                                    .addComponent(nom))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtFieldPrenom)
+                                    .addComponent(txtFieldBirthdate)
+                                    .addComponent(txtFieldNom, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
+                            .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(radioBtnJoueur)
+                                .addGap(18, 18, 18)
+                                .addComponent(radioBtnCoach)
+                                .addGap(18, 18, 18)
+                                .addComponent(radioBtnArbitre)
+                                .addGap(18, 18, 18)
+                                .addComponent(radioBtnInviteSpe)
+                                .addGap(18, 18, 18)
+                                .addComponent(radioBtnJournaliste)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                                .addComponent(lblRepCoach)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtFieldRepCoach, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panAjoutVIPLayout.createSequentialGroup()
+                                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblJoueurCoach)
+                                    .addComponent(lblRange))
+                                .addGap(18, 18, 18)
+                                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtFieldJoueurCoach)
+                                    .addComponent(txtFieldRang))))
+                        .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ajouterVIP))
+                            .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNbMatchArbitre)
+                                    .addComponent(lblCategArbitre))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtFieldNbMatchArbitre, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                                    .addComponent(txtFieldCategArbitre))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         panAjoutVIPLayout.setVerticalGroup(
@@ -765,9 +910,36 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(birthdate)
                     .addComponent(txtFieldBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ajouterVIP)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioBtnJoueur)
+                    .addComponent(radioBtnCoach)
+                    .addComponent(radioBtnArbitre)
+                    .addComponent(radioBtnInviteSpe)
+                    .addComponent(radioBtnJournaliste))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRange)
+                    .addComponent(txtFieldRang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNbMatchArbitre)
+                    .addComponent(txtFieldNbMatchArbitre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblJoueurCoach)
+                    .addComponent(txtFieldJoueurCoach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCategArbitre)
+                    .addComponent(txtFieldCategArbitre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ajouterVIP)
+                        .addContainerGap())
+                    .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblRepCoach)
+                            .addComponent(txtFieldRepCoach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout panGestionVIPLayout = new javax.swing.GroupLayout(panGestionVIP);
@@ -833,6 +1005,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         fenAddMatch.setTitle("Ajouter un match");
+        fenAddMatch.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                fenAddMatchWindowClosing(evt);
+            }
+        });
 
         addFen_PanJoueurs.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection des joueurs"));
 
@@ -848,9 +1025,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        addFen_choiceJ3.addItemListener(new java.awt.event.ItemListener() {
+        addFen_choiceJ2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                addFen_choiceJ3ItemStateChanged(evt);
+                addFen_choiceJ2ItemStateChanged(evt);
             }
         });
 
@@ -868,7 +1045,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addFen_lbJ2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addFen_choiceJ3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addFen_choiceJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addFen_PanJoueursLayout.setVerticalGroup(
@@ -876,7 +1053,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(addFen_PanJoueursLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addFen_choiceJ3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addFen_choiceJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addFen_lbJ1)
                     .addComponent(addFen_choiceJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(addFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -936,7 +1113,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(addFen_lbChoixCourt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addFen_choiceCourt, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addFen_PanCourtLayout.setVerticalGroup(
             addFen_PanCourtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -949,6 +1126,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         addFen_btAdd.setText("Ajouter");
+        addFen_btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addFen_btAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout fenAddMatchLayout = new javax.swing.GroupLayout(fenAddMatch.getContentPane());
         fenAddMatch.getContentPane().setLayout(fenAddMatchLayout);
@@ -958,11 +1140,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fenAddMatchLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(addFen_PanHeure, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addFen_PanJoueurs, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(addFen_PanCourt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(fenAddMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(addFen_PanHeure, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addFen_PanJoueurs, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addFen_PanCourt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(fenAddMatchLayout.createSequentialGroup()
                         .addGap(256, 256, 256)
                         .addComponent(addFen_btAdd)))
@@ -986,59 +1167,156 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         tableConsultVIP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null}
+
             },
             new String [] {
-                "Type", "Descriptif"
+                "Type", "Descriptif", "Protagoniste(s)"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         scrollTable.setViewportView(tableConsultVIP);
 
         btnSupRelationActionVIP.setText("Supprimer");
+        btnSupRelationActionVIP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupRelationActionVIPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panTableLayout = new javax.swing.GroupLayout(panTable);
         panTable.setLayout(panTableLayout);
         panTableLayout.setHorizontalGroup(
             panTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panTableLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTableLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSupRelationActionVIP, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+                .addGroup(panTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSupRelationActionVIP)
+                    .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
         panTableLayout.setVerticalGroup(
             panTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panTableLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(btnSupRelationActionVIP)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSupRelationActionVIP))
         );
 
         panAjoutRelationActionVIP.setBorder(javax.swing.BorderFactory.createTitledBorder("Ajouter une relation ou une action VIP"));
+
+        lblType.setText("Type :");
+
+        btnGroupActionRelation.add(radioBtnTypeAction);
+        radioBtnTypeAction.setText("Action");
+        radioBtnTypeAction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioBtnTypeActionActionPerformed(evt);
+            }
+        });
+
+        btnGroupActionRelation.add(radioBtnTypeRelation);
+        radioBtnTypeRelation.setText("Relation");
+        radioBtnTypeRelation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioBtnTypeRelationActionPerformed(evt);
+            }
+        });
+
+        lblDescriptif.setText("Descriptif :");
+
+        txtFieldDescriptif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldDescriptifActionPerformed(evt);
+            }
+        });
+
+        lblProtagoniste1.setText("VIP concerné :");
+
+        comboBoxProtagoniste1.setMaximumRowCount(100);
+        comboBoxProtagoniste1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxProtagoniste1ActionPerformed(evt);
+            }
+        });
+
+        btnAjoutConsult.setText("Ajouter");
+        btnAjoutConsult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAjoutConsultActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panAjoutRelationActionVIPLayout = new javax.swing.GroupLayout(panAjoutRelationActionVIP);
         panAjoutRelationActionVIP.setLayout(panAjoutRelationActionVIPLayout);
         panAjoutRelationActionVIPLayout.setHorizontalGroup(
             panAjoutRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panAjoutRelationActionVIPLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panAjoutRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panAjoutRelationActionVIPLayout.createSequentialGroup()
+                        .addGroup(panAjoutRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblType)
+                            .addGroup(panAjoutRelationActionVIPLayout.createSequentialGroup()
+                                .addComponent(radioBtnTypeAction)
+                                .addGap(18, 18, 18)
+                                .addComponent(radioBtnTypeRelation)))
+                        .addGap(35, 35, 35)
+                        .addComponent(lblProtagoniste1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboBoxProtagoniste1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panAjoutRelationActionVIPLayout.createSequentialGroup()
+                        .addComponent(lblDescriptif)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFieldDescriptif, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(149, 149, 149)
+                        .addComponent(btnAjoutConsult)))
+                .addContainerGap())
         );
         panAjoutRelationActionVIPLayout.setVerticalGroup(
             panAjoutRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 184, Short.MAX_VALUE)
+            .addGroup(panAjoutRelationActionVIPLayout.createSequentialGroup()
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(panAjoutRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblType)
+                    .addComponent(lblProtagoniste1)
+                    .addComponent(comboBoxProtagoniste1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(panAjoutRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioBtnTypeAction)
+                    .addComponent(radioBtnTypeRelation))
+                .addGap(26, 26, 26)
+                .addGroup(panAjoutRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDescriptif)
+                    .addComponent(txtFieldDescriptif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAjoutConsult)))
         );
 
         fichierVIPconsult.setText("Fichier");
+
+        menuItemQuitter.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        menuItemQuitter.setText("Quitter");
+        menuItemQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemQuitterActionPerformed(evt);
+            }
+        });
+        fichierVIPconsult.add(menuItemQuitter);
+
         barreOutilVIPconsult.add(fichierVIPconsult);
 
         gestionRelationActionVIP.setJMenuBar(barreOutilVIPconsult);
@@ -1049,10 +1327,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             gestionRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gestionRelationActionVIPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(gestionRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panAjoutRelationActionVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(gestionRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panAjoutRelationActionVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panTable, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         gestionRelationActionVIPLayout.setVerticalGroup(
             gestionRelationActionVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1060,8 +1338,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(panAjoutRelationActionVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panAjoutRelationActionVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -1238,25 +1516,147 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void ajouterVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterVIPActionPerformed
         ajouterVIP(tableVIP);
+        txtFieldRang.setText("");
+        txtFieldCategArbitre.setText("");
+        txtFieldJoueurCoach.setText("");
+        txtFieldNbMatchArbitre.setText("");
+        txtFieldRepCoach.setText("");
+        txtFieldNom.setText("");
+        txtFieldPrenom.setText("");
+        txtFieldBirthdate.setText("");
     }//GEN-LAST:event_ajouterVIPActionPerformed
 
-    private void addFen_choiceJ1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceJ1ItemStateChanged
-        majFenAjouterMatch();
-    }//GEN-LAST:event_addFen_choiceJ1ItemStateChanged
+    private void radioBtnJoueurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnJoueurActionPerformed
+        txtFieldCategArbitre.setEnabled(false);
+        txtFieldJoueurCoach.setEnabled(false);
+        txtFieldNbMatchArbitre.setEnabled(false);
+        txtFieldRang.setEnabled(true);
+        txtFieldRepCoach.setEnabled(false);
+        
+        txtFieldCategArbitre.setText("");
+        txtFieldJoueurCoach.setText("");
+        txtFieldNbMatchArbitre.setText("");
+        txtFieldRepCoach.setText("");
+    }//GEN-LAST:event_radioBtnJoueurActionPerformed
 
-    private void addFen_choiceJ3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceJ3ItemStateChanged
-        majFenAjouterMatch();
-    }//GEN-LAST:event_addFen_choiceJ3ItemStateChanged
+    private void txtFieldRangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldRangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFieldRangActionPerformed
 
-    private void addFen_choiceHeureItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceHeureItemStateChanged
-        majFenAjouterMatch();
-    }//GEN-LAST:event_addFen_choiceHeureItemStateChanged
+    private void radioBtnCoachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnCoachActionPerformed
+        txtFieldCategArbitre.setEnabled(false);
+        txtFieldJoueurCoach.setEnabled(true);
+        txtFieldNbMatchArbitre.setEnabled(false);
+        txtFieldRang.setEnabled(false);
+        txtFieldRepCoach.setEnabled(true);
+        
+        txtFieldRang.setText("");
+        txtFieldCategArbitre.setText("");
+        txtFieldNbMatchArbitre.setText("");
+    }//GEN-LAST:event_radioBtnCoachActionPerformed
 
-    private void addFen_choiceCourtItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceCourtItemStateChanged
+    private void radioBtnArbitreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnArbitreActionPerformed
+        txtFieldCategArbitre.setEnabled(true);
+        txtFieldJoueurCoach.setEnabled(false);
+        txtFieldNbMatchArbitre.setEnabled(true);
+        txtFieldRang.setEnabled(false);
+        txtFieldRepCoach.setEnabled(false);
+        
+        txtFieldRang.setText("");
+        txtFieldJoueurCoach.setText("");
+        txtFieldRepCoach.setText("");
+    }//GEN-LAST:event_radioBtnArbitreActionPerformed
+
+    private void radioBtnInviteSpeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnInviteSpeActionPerformed
+        txtFieldCategArbitre.setEnabled(false);
+        txtFieldJoueurCoach.setEnabled(false);
+        txtFieldNbMatchArbitre.setEnabled(false);
+        txtFieldRang.setEnabled(false);
+        txtFieldRepCoach.setEnabled(false);
+        
+        txtFieldRang.setText("");
+        txtFieldCategArbitre.setText("");
+        txtFieldJoueurCoach.setText("");
+        txtFieldNbMatchArbitre.setText("");
+        txtFieldRepCoach.setText("");
+    }//GEN-LAST:event_radioBtnInviteSpeActionPerformed
+     private void addFen_choiceJ1ItemStateChanged(java.awt.event.ItemEvent evt) {                                                 
         majFenAjouterMatch();
-    }//GEN-LAST:event_addFen_choiceCourtItemStateChanged
+    }
+
+    private void addFen_choiceJ2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceJ2ItemStateChanged
+        majFenAjouterMatch();
+    }//GEN-LAST:event_addFen_choiceJ2ItemStateChanged
+
+    private void addFen_choiceHeureItemStateChanged(java.awt.event.ItemEvent evt) {                                                    
+        majFenAjouterMatch();
+    }
+
+    private void addFen_choiceCourtItemStateChanged(java.awt.event.ItemEvent evt) {                                                    
+        majFenAjouterMatch();
+    }
+    private void radioBtnJournalisteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnJournalisteActionPerformed
+        txtFieldCategArbitre.setEnabled(false);
+        txtFieldJoueurCoach.setEnabled(false);
+        txtFieldNbMatchArbitre.setEnabled(false);
+        txtFieldRang.setEnabled(false);
+        txtFieldRepCoach.setEnabled(false);
+        
+        txtFieldRang.setText("");
+        txtFieldCategArbitre.setText("");
+        txtFieldJoueurCoach.setText("");
+        txtFieldNbMatchArbitre.setText("");
+        txtFieldRepCoach.setText("");
+    }//GEN-LAST:event_radioBtnJournalisteActionPerformed
+
+    private void btnSupRelationActionVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupRelationActionVIPActionPerformed
+        supprimerRelationActionVIP(tableConsultVIP);
+    }//GEN-LAST:event_btnSupRelationActionVIPActionPerformed
+
+    private void txtFieldDescriptifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldDescriptifActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFieldDescriptifActionPerformed
+
+    private void comboBoxProtagoniste1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxProtagoniste1ActionPerformed
+        
+    }//GEN-LAST:event_comboBoxProtagoniste1ActionPerformed
+
+    private void radioBtnTypeActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnTypeActionActionPerformed
+        comboBoxProtagoniste1.setEnabled(true);
+        txtFieldDescriptif.setEnabled(true);
+    }//GEN-LAST:event_radioBtnTypeActionActionPerformed
+
+    private void radioBtnTypeRelationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnTypeRelationActionPerformed
+        comboBoxProtagoniste1.setEnabled(true);
+        txtFieldDescriptif.setEnabled(true);
+    }//GEN-LAST:event_radioBtnTypeRelationActionPerformed
+
+    private void btnAjoutConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjoutConsultActionPerformed
+        ajouterRelationActionVIP(tableConsultVIP);
+    }//GEN-LAST:event_btnAjoutConsultActionPerformed
+
+    private void menuItemQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemQuitterActionPerformed
+        gestionRelationActionVIP.setVisible(false);
+        gestionVIP.setVisible(true);
+    }//GEN-LAST:event_menuItemQuitterActionPerformed
+
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
+        gestionMatchs.dispose();
+        fenAddMatch.setVisible(true);
+        initFenAddMatch();
+    }//GEN-LAST:event_btAddActionPerformed
+
+    private void addFen_btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFen_btAddActionPerformed
+        addMatch();
+    }//GEN-LAST:event_addFen_btAddActionPerformed
+
+    private void fenAddMatchWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_fenAddMatchWindowClosing
+        fenAddMatch.dispose();
+        gestionMatchs.setVisible(true);
+    }//GEN-LAST:event_fenAddMatchWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup BtnGroupJCAIJ;
     private javax.swing.JPanel addFen_PanCourt;
     private javax.swing.JPanel addFen_PanHeure;
     private javax.swing.JPanel addFen_PanJoueurs;
@@ -1264,7 +1664,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private java.awt.Choice addFen_choiceCourt;
     private java.awt.Choice addFen_choiceHeure;
     private java.awt.Choice addFen_choiceJ1;
-    private java.awt.Choice addFen_choiceJ3;
+    private java.awt.Choice addFen_choiceJ2;
     private javax.swing.JLabel addFen_lbChoixCourt;
     private javax.swing.JLabel addFen_lbChoixHeure;
     private javax.swing.JLabel addFen_lbJ1;
@@ -1284,9 +1684,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btSuiv;
     private javax.swing.JButton btSupp;
     private javax.swing.JButton btVIP;
+    private javax.swing.JButton btnAjoutConsult;
     private javax.swing.JButton btnConsult;
+    private javax.swing.ButtonGroup btnGroupActionRelation;
     private javax.swing.JButton btnSupRelationActionVIP;
     private javax.swing.JButton btnSuppr;
+    private javax.swing.JComboBox comboBoxProtagoniste1;
     private java.awt.Choice courtChoice;
     private javax.swing.JDialog fenAddMatch;
     private javax.swing.JMenu fichierVIPconsult;
@@ -1300,6 +1703,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbSelectCourt;
     private javax.swing.JLabel lbSelectHeure;
     private javax.swing.JLabel lbSelected;
+    private javax.swing.JLabel lblCategArbitre;
+    private javax.swing.JLabel lblDescriptif;
+    private javax.swing.JLabel lblJoueurCoach;
+    private javax.swing.JLabel lblNbMatchArbitre;
+    private javax.swing.JLabel lblProtagoniste1;
+    private javax.swing.JLabel lblRange;
+    private javax.swing.JLabel lblRepCoach;
+    private javax.swing.JLabel lblType;
     private javax.swing.JLabel match1J1;
     private javax.swing.JLabel match1J2;
     private javax.swing.JButton match1Plus;
@@ -1327,6 +1738,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menuFichierMatch;
     private javax.swing.JMenu menuFichierPrinicpal;
     private javax.swing.JMenu menuFichierVIP;
+    private javax.swing.JMenuItem menuItemQuitter;
     private javax.swing.JMenuItem menuQuitterMatch;
     private javax.swing.JMenuItem menuQuitterPrincipal;
     private javax.swing.JMenuItem menuQuitterVIP;
@@ -1346,13 +1758,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panSelect;
     private javax.swing.JPanel panTable;
     private javax.swing.JLabel prenom;
+    private javax.swing.JRadioButton radioBtnArbitre;
+    private javax.swing.JRadioButton radioBtnCoach;
+    private javax.swing.JRadioButton radioBtnInviteSpe;
+    private javax.swing.JRadioButton radioBtnJoueur;
+    private javax.swing.JRadioButton radioBtnJournaliste;
+    private javax.swing.JRadioButton radioBtnTypeAction;
+    private javax.swing.JRadioButton radioBtnTypeRelation;
     private javax.swing.JScrollPane scrollTable;
     private javax.swing.JScrollPane scrollTableVIP;
     private javax.swing.JTable tableConsultVIP;
     private javax.swing.JTable tableVIP;
     private javax.swing.JTextField txtFieldBirthdate;
+    private javax.swing.JTextField txtFieldCategArbitre;
+    private javax.swing.JTextField txtFieldDescriptif;
+    private javax.swing.JTextField txtFieldJoueurCoach;
+    private javax.swing.JTextField txtFieldNbMatchArbitre;
     private javax.swing.JTextField txtFieldNom;
     private javax.swing.JTextField txtFieldPrenom;
+    private javax.swing.JTextField txtFieldRang;
+    private javax.swing.JTextField txtFieldRepCoach;
     // End of variables declaration//GEN-END:variables
 
     private void quitter() {
@@ -1538,64 +1963,118 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private void remplirTableVIP(JTable tableVIP) throws IOException, SQLException
     {
-        PlayerDao pdao = fact.getPlayerDao();
-        List<Player> allPlayer = pdao.selectAllPlayer();
-        
-        CoachDao cdao = fact.getCoachDao();
-        List<Coach> allCoach = cdao.selectAllCoach();
-        
-        RefereeDao rdao = fact.getRefereeDao();
-        List<Referee> allReferee = rdao.selectAllReferee();
         
         for(Player p : allPlayer)
         {
             String nomP = p.getName();
             String prenomP = p.getSurname();
             String birthdateP = p.getBirthDate();
-            int idP = p.getId();
             
-            ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{idP,nomP,prenomP,birthdateP});
+            ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{nomP,prenomP,birthdateP,"Joueur"});
         }
         for(Coach c : allCoach)
         {
             String nomC = c.getName();
             String prenomC = c.getSurname();
             String birthdateC = c.getBirthDate();
-            int idC = c.getId();
             
-            ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{idC,nomC,prenomC,birthdateC});
+            ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{nomC,prenomC,birthdateC,"Coach"});
         }
         for(Referee r : allReferee)
         {
             String nomR = r.getName();
             String prenomR = r.getSurname();
             String birthdateR = r.getBirthDate();
-            int idR = r.getId();
             
-            ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{idR,nomR,prenomR,birthdateR});
+            ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{nomR,prenomR,birthdateR,"Arbitre"});
         }
     }
     
     private void supprimerVIP(JTable tableVIP)
     {
-        ((DefaultTableModel)tableVIP.getModel()).removeRow(tableVIP.getSelectedRow());
+        if(tableVIP.getSelectedRow() != -1)
+            ((DefaultTableModel)tableVIP.getModel()).removeRow(tableVIP.getSelectedRow());
+        else JOptionPane.showMessageDialog(this,"Aucune ligne de sélectionné","Attention",JOptionPane.OK_OPTION);
+    }
+    
+    private void supprimerRelationActionVIP(JTable table)
+    {
+        if(tableConsultVIP.getSelectedRow() != -1)
+            ((DefaultTableModel)tableConsultVIP.getModel()).removeRow(tableConsultVIP.getSelectedRow());
+        else JOptionPane.showMessageDialog(this,"Aucune ligne de sélectionné","Attention",JOptionPane.OK_OPTION);
     }
     
     private void ajouterVIP(JTable tableVIP)
-    {   
-        int lastRow = tableVIP.getRowCount() - 1;
-        int row = lastRow++;
-        
-        ((DefaultTableModel)tableVIP.getModel()).addRow(new Object[]{row,txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText()});
-        
+    {
+        if(radioBtnJoueur.isSelected() && !txtFieldNom.getText().equals("") && !txtFieldPrenom.getText().equals("") 
+                && !txtFieldBirthdate.getText().equals("") && !txtFieldRang.getText().equals(""))
+        {
+            ((DefaultTableModel)tableVIP.getModel())
+                    .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Joueur"});
+        }
+        else if(radioBtnCoach.isSelected() && !txtFieldNom.getText().equals("") && !txtFieldPrenom.getText().equals("") 
+                && !txtFieldBirthdate.getText().equals("") && !txtFieldJoueurCoach.getText().equals("") && !txtFieldRepCoach.getText().equals(""))
+        {
+            ((DefaultTableModel)tableVIP.getModel())
+                    .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Coach"});
+        }
+        else if(radioBtnArbitre.isSelected() && !txtFieldNom.getText().equals("") && !txtFieldPrenom.getText().equals("") 
+                && !txtFieldBirthdate.getText().equals("") && !txtFieldCategArbitre.getText().equals("") && !txtFieldNbMatchArbitre.getText().equals(""))
+        {
+            ((DefaultTableModel)tableVIP.getModel())
+                    .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Arbitre"});
+        }
+        else if((radioBtnInviteSpe.isSelected() || radioBtnJournaliste.isSelected()) && !txtFieldNom.getText().equals("") 
+                && !txtFieldPrenom.getText().equals("") && !txtFieldBirthdate.getText().equals(""))
+        {
+            if(radioBtnInviteSpe.isSelected())
+            {
+                ((DefaultTableModel)tableVIP.getModel())
+                        .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Invité Spécial"});
+            }
+            else ((DefaultTableModel)tableVIP.getModel())
+                    .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Journaliste"});
+        }
+        else JOptionPane.showMessageDialog(this,"Certains champs ne sont pas indiqués !","Attention",JOptionPane.OK_OPTION);
+    }
+    
+    private void remplirComboBoxConsulteVIP()
+    {
+        for(Player p : allPlayer)
+        {
+            comboBoxProtagoniste1.addItem(p.getNameSurname());
+        }
+        for(Coach c : allCoach)
+        {
+            comboBoxProtagoniste1.addItem(c.getNameSurname());
+        }
+        for(Referee r : allReferee)
+        {
+            comboBoxProtagoniste1.addItem(r.getNameSurname());
+        }
+    }
+    
+    private void ajouterRelationActionVIP(JTable table) {
+        if(radioBtnTypeRelation.isSelected() && !txtFieldDescriptif.getText().equals(""))
+        {
+            ((DefaultTableModel)tableConsultVIP.getModel()).addRow(new Object[]{"Relation",txtFieldDescriptif.getText(),comboBoxProtagoniste1.getSelectedItem()});
+        }
+        else if(radioBtnTypeAction.isSelected() && !txtFieldDescriptif.getText().equals(""))
+        {
+            ((DefaultTableModel)tableConsultVIP.getModel())
+                        .addRow(new Object[]{"Action",txtFieldDescriptif.getText(),comboBoxProtagoniste1.getSelectedItem()});
+        }
+        else JOptionPane.showMessageDialog(this,"Certains champs ne sont pas indiqués !","Attention",JOptionPane.OK_OPTION);
     }
     
     private void addMatch() {
         if (addFen_choiceJ1.getSelectedItem().equals("Aucun joueur sélectionné") || 
-                addFen_choiceJ3.getSelectedItem().equals("Aucun joueur sélectionné") || 
+                addFen_choiceJ2.getSelectedItem().equals("Aucun joueur sélectionné") || 
                 addFen_choiceCourt.getSelectedItem().equals("Aucun court sélectionné") || 
                 addFen_choiceHeure.getSelectedItem().equals("Aucune heure sélectionnée")) {
             //Générer erreur
+            JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs !", 
+                "Erreur", JOptionPane.OK_OPTION);
         }
         else {
             //Création du match
@@ -1604,29 +2083,85 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private void majFenAjouterMatch() {
         String j1Select = addFen_choiceJ1.getSelectedItem();
-        String j2Select = addFen_choiceJ3.getSelectedItem();
+        String j2Select = addFen_choiceJ2.getSelectedItem();
         String courtSelect = addFen_choiceCourt.getSelectedItem();
         String heureSelect = addFen_choiceHeure.getSelectedItem();
         
         addFen_choiceJ1.removeAll();
-        addFen_choiceJ3.removeAll();
+        addFen_choiceJ2.removeAll();
         addFen_choiceCourt.removeAll();
         addFen_choiceHeure.removeAll();
         
         addFen_choiceJ1.addItem("Aucun joueur sélectionné");
-        addFen_choiceJ3.addItem("Aucun joueur sélectionné");
+        addFen_choiceJ2.addItem("Aucun joueur sélectionné");
         addFen_choiceCourt.addItem("Aucun court sélectionné");
         addFen_choiceHeure.addItem("Aucune heure sélectionnée");
         
+        //MAJ J1
+        //ListeComplete = select allPlayer;
+        //listeJoueur = Select * from player where id = ?;
+        //listeHeure = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where heure = ? et jour = ?));
+        //listeCourt = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where court = ? et jour = ? et heure = ?));
         
-        //Requete
-        //IDM = Select IDM from match where heure = h or court = c or joueur1 = j1 or joueur2 = j2;
-        //Select idplayer from player_match where idmatch != IDM;
-        //Select * from player where id = idplayer;
+        //for (Player p : listeJoueur) listeComplete.remove(p);
+        //for (Player p : listeHeure) listeComplete.remove(p);
+        //for (Player p : listeCourt) listeComplete.remove(p);
+        //for (Player p : listeComplete) addFen_choiceJ1.addItem(p.getSurname + " " + p.getName);
+        //addFen_choiceJ1.select(j1Select);
+        
+        
+        //MAJ J2
+        //ListeComplete = select allPlayer;
+        //listeJoueur = Select * from player where id = ?;
+        //listeHeure = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where heure = ? et jour = ?));
+        //listeCourt = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where court = ? et jour = ? et heure = ?));
+        
+        //for (Player p : listeJoueur) listeComplete.remove(p);
+        //for (Player p : listeHeure) listeComplete.remove(p);
+        //for (Player p : listeCourt) listeComplete.remove(p);
+        //for (Player p : listeComplete) addFen_choiceJ2.addItem(p.getSurname + " " + p.getName);
+        //addFen_choiceJ2.select(j2Select);
+        
+        //MAJ COURT
+        //List<String> allCourts= new ArrayList<>();
+        //allCourts.add("Court central");
+        //allCourts.add("Court annexe");
+        //allCourts.add("Court d'entrainement 1");
+        //allCourts.add("Court d'entrainement 2");
+        //allCourts.add("Court d'entrainement 3");
+        //allCourts.add("Court d'entrainement 4");
+        //int[] listeUse = Select court from match where idmatch in (select idmatch from match where jour = ? et heure = ?);
+        //for (int i = listeUse.size() - 1 ; i >= 0 ; i++) allCourts.remove(listeUse[i]);
+        //for (String s : allCourts) addFen_choiceCourt.addItem(s);
+        //addFen_choiceCourt.select(courtSelect);
+        
+        //MAJ HEURE
+        //List<String> allHeures = new ArrayList<>();
+        //allCourts.add("8h");
+        //allCourts.add("11h");
+        //allCourts.add("15h");
+        //allCourts.add("18h");
+        //allCourts.add("21h");
+        //int[] listeUse = Select heure from match where idmatch in (select idmatch from match where jour = ? et court = ?);
+        //for (int i = listeUse.size() - 1 ; i >= 0 ; i++) allHeures.remove(listeUse[i]);
+        //for (String s : allHeures) addFen_choiceHeure.addItem(s);
+        //addFen_heureCourt.select(heureSelect);
         
         addFen_choiceJ1.select(j1Select);
-        addFen_choiceJ3.select(j2Select);
+        addFen_choiceJ2.select(j2Select);
         addFen_choiceCourt.select(courtSelect);
         addFen_choiceHeure.select(heureSelect);
+    }
+    
+    private void initFenAddMatch() {
+        addFen_choiceJ1.addItem("Aucun joueur sélectionné");
+        addFen_choiceJ2.addItem("Aucun joueur sélectionné");
+        addFen_choiceCourt.addItem("Aucun court sélectionné");
+        addFen_choiceHeure.addItem("Aucune heure sélectionnée");
+        
+        addFen_choiceJ1.select("Aucun joueur sélectionné");
+        addFen_choiceJ2.select("Aucun joueur sélectionné");
+        addFen_choiceCourt.select("Aucun court sélectionné");
+        addFen_choiceHeure.select("Aucune heure sélectionnée");
     }
 }

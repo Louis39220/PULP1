@@ -49,7 +49,10 @@ public abstract class VIP {
     public String getBirthDate() {
         return birthDate;
     }
-
+    
+    public String getNameSurname() {
+        return name + " " + surname;
+    }
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
