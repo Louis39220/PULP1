@@ -42,7 +42,22 @@ public class PlayerDaoImpl implements PlayerDao {
         rs.close();
         connexionDB.close();
         return p;
-
+    }
+    
+    public int SelectIdPlayerByName(String name, String surname)throws SQLException, IOException {
+        connexionDB = ConnexionMysqlFactory.getInstance();
+        ResultSet rs;
+        int res;
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT playerId FROM player WHERE playerName= ? AND playerSurname=?")) {
+            PS.setString(1, name);
+            PS.setString(2, surname);
+            rs = PS.executeQuery();
+            rs.next();
+            res = rs.getInt(1);
+        }
+        rs.close();
+        connexionDB.close();
+        return res;
     }
 
     @Override

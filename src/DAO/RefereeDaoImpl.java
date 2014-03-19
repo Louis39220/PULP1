@@ -6,7 +6,6 @@
 package DAO;
 
 import connexion.ConnexionMysqlFactory;
-import entities.Coach;
 import entities.Referee;
 import java.io.IOException;
 import java.sql.Connection;
