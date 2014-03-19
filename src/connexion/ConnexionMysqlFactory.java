@@ -14,9 +14,6 @@ import java.util.Properties;
 public class ConnexionMysqlFactory {
 
     private static Connection connection;
-    private final static String url = "jdbc:mysql://localhost:3306/pulp?:3306/mysql";
-    private final static String user = "root";
-    private final static String pwd = "";
 
     // Ouvre une connexion s'il n'en existe pas déja une
     public static Connection getInstance() throws IOException, SQLException {

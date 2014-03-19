@@ -7,6 +7,7 @@ package DAO;
 
 import connexion.ConnexionMysqlFactory;
 import entities.Match;
+import entities.Referee;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -143,26 +144,54 @@ public class MatchDaoImpl implements MatchDao {
     }
 
     @Override
-    public boolean insertMatch(int date, int heure, int terrain, int type) throws SQLException, IOException {
+    public boolean insertMatch(Match m) throws SQLException, IOException {
         boolean res = true;
         connexionDB = ConnexionMysqlFactory.getInstance();
-        try (PreparedStatement PS = connexionDB.prepareStatement("INSERT INTO match(matchLieu, matchDate,matchTrancheHoraire, matchType) values(?,?,?,?)")) {
-            PS.setInt(2, terrain);
-            PS.setInt(1, date);
-            PS.setInt(3, heure);
-            PS.setInt(4, type);
-            try {
-                PS.executeUpdate();
-            } catch (SQLException e) {
+            try (PreparedStatement PS = connexionDB.prepareStatement("INSERT INTO pulp.match(matchLieu, matchDate,matchTrancheHoraire, matchType) values(?,?,?,?)")) {
+                    PS.setInt(1, m.getIdTerrain());
+                    PS.setInt(2, m.getJour());
+                    PS.setInt(3, m.getHeure());
+                    PS.setInt(4, m.getType());
+                    try {
+                    PS.executeUpdate();
+                    }catch (SQLException e) {
+                    System.err.println(e.getMessage());
+                    PS.cancel();
+                    res = false;
+                }
+            }
+                int id = selectIdMatchByTerrainByDateByHour(m.getJour(),m.getIdTerrain(),m.getHeure());
+                RefereeDao rdao;
+                rdao = DaoFactory.getRefereeDao();
+                List<Referee> lr = new ArrayList<>();
+                lr = rdao.selectRandom8RefereeLine();
+        try (PreparedStatement ps1 = connexionDB.prepareStatement("INSERT INTO pulp.attribmatch(matchId,idP1,idP2,idArbitreChaise,idArbitreFilet,idTeamRamasseur1,idTeamRamasseur2,idA1,idA2,idA3,idA4,idA5,idA6,idA7,idA8) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")) {
+            ps1.setInt(1, id);
+            ps1.setInt(2, m.getIdP1());
+            ps1.setInt(3, m.getIdP2());
+            ps1.setInt(4, m.getIdArbitreChaise());
+            ps1.setInt(5, m.getIdArbitreFilet());
+            ps1.setInt(6, m.getIdTeamRamasseur1());
+            ps1.setInt(7, m.getIdTeamRamasseur2());
+            ps1.setInt(8, lr.get(0).getId());
+            ps1.setInt(9, lr.get(1).getId());
+            ps1.setInt(10, lr.get(2).getId());
+            ps1.setInt(11, lr.get(3).getId());
+            ps1.setInt(12, lr.get(4).getId());
+            ps1.setInt(13, lr.get(5).getId());
+            ps1.setInt(14, lr.get(6).getId());
+            ps1.setInt(15, lr.get(7).getId());
+          try {
+            ps1.executeUpdate();
+        }catch(SQLException e){
                 System.err.println(e.getMessage());
-                PS.cancel();
+                ps1.cancel();
                 res = false;
             }
-            PS.close();
-            connexionDB.close();
+          connexionDB.close();
         }
+         
         return res;
-
     }
 
     @Override
@@ -227,22 +256,45 @@ public class MatchDaoImpl implements MatchDao {
     
     
     @Override
-    public List<Match> selectMatchByTerrainByDateByHour(int date, int numTerrain,int heure) throws SQLException, IOException {
+    public Match selectMatchByTerrainByDateByHour(int date, int numTerrain,int heure) throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
-        Match m;
-        PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM match WHERE matchLieu= ? AND matchTrancheHoraire=? AND matchDate=?");
+        Match m = null;
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM pulp.match WHERE matchLieu=? AND matchTrancheHoraire=? AND matchDate=?")) {
             PS.setInt(1, numTerrain);
             PS.setInt(2, heure);
             PS.setInt(3, date);
             rs = PS.executeQuery();
-        List<Match> lm = new ArrayList<>();
-        while(rs.next()){
-            lm.add(new Match(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
+            while(rs.next()){
+             m = new Match(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
+            }
+            rs.close();
+            connexionDB.close();
         }
-        rs.close();
-        connexionDB.close();
-        return lm;
+        return m;
+    }
+    
+    @Override
+    public int selectIdMatchByTerrainByDateByHour(int date, int numTerrain,int heure) throws SQLException, IOException {
+        connexionDB = ConnexionMysqlFactory.getInstance();
+        ResultSet rs=null;
+        int res=0;
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT matchId FROM pulp.match WHERE matchLieu=? AND matchTrancheHoraire=? AND matchDate=?")) {
+            PS.setInt(1, numTerrain);
+            PS.setInt(2, heure);
+            PS.setInt(3, date);
+        try {
+            rs = PS.executeQuery();
+            rs.next();
+            res = rs.getInt(1);
+
+        }catch(SQLException e){
+            System.err.println(e.getMessage());
+        }
+            PS.close();
+            rs.close();
+        }
+        return res;
     }
 
 }

@@ -21,6 +21,8 @@ public interface RefereeDao {
     public Coach selectReferee(int id) throws SQLException, IOException;
 
     public List<Referee> selectAllReferee() throws SQLException, IOException;
+    
+    public List<Referee> selectRandom8RefereeLine()throws SQLException, IOException; 
 
     public boolean insertReferee(String name, String Surname, String ddn, int nbMatch, String categorie) throws SQLException, IOException;
 
