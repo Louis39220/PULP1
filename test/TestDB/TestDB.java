@@ -3,7 +3,6 @@ package TestDB;
 
 import DAO.CoachDao;
 import DAO.DaoFactory;
-import DAO.DaoFactoryInterface;
 import DAO.MatchDao;
 import DAO.MatchDaoImpl;
 import DAO.Match_playerDaoImpl;
@@ -30,12 +29,11 @@ import java.util.logging.Logger;
  * @author Louis
  */
 public class TestDB {
-    private static final DaoFactoryInterface fact = null;
 
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws SQLException, IOException {
         PlayerDaoImpl rdao;
-        rdao = fact.getPlayerDao();
+        rdao = DaoFactory.getPlayerDao();
         try {
             List<Player> lp = new ArrayList<>();
             lp = rdao.selectPlayerOfMatchByDayHour(8, 26);
