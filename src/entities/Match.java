@@ -37,6 +37,20 @@ public class Match {
         this.idTeamRamasseur2 = idTeamRamasseur2;
         this.type = type;
     }
+    
+ public Match(int idP1, int idP2, int jour, int heure, int idTerrain, int idArbitreChaise, int idArbitreFilet, int idTeamRamasseur1, int idTeamRamasseur2, int type) {
+    
+        this.idP1 = idP1;
+        this.idP2 = idP2;
+        this.jour = jour;
+        this.heure = heure;
+        this.idTerrain = idTerrain;
+        this.idArbitreChaise = idArbitreChaise;
+        this.idArbitreFilet = idArbitreFilet;
+        this.idTeamRamasseur1 = idTeamRamasseur1;
+        this.idTeamRamasseur2 = idTeamRamasseur2;
+        this.type = type;
+    }
 
     public int getIdP1() { return idP1; }
     public int getIdP2() { return idP2; }
