@@ -32,11 +32,14 @@ public class TestDB {
 
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws SQLException, IOException {
-        PlayerDao rdao;
-        rdao = DaoFactory.getPlayerDao();
+        MatchDao mdao;
+        mdao = DaoFactory.getMatchDao();
+        List<Match> lm = new ArrayList<>();
         try {
-            rdao.insertPlayer("Louis2", "favret ", "04/10/1995", 10);
-          
+            lm = mdao.selectMatchByDateByHour(26, 8);
+            for(Match m : lm){
+                System.out.println(m.toString());
+            }
         } catch (IOException | SQLException e) {
             System.err.println("Erreur lors de l'insertion:" + e.getMessage());
         }

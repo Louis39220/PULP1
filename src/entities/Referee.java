@@ -10,7 +10,7 @@ public class Referee extends VIP
     private int nbMatch;
     private String category;
 
-    public Referee( int refId, String refName, String refSurname, String refBirthDate, int nbMatch, String category) {
+    public Referee(int refId, String refName, String refSurname, String refBirthDate, int nbMatch, String category) {
         super(refId, refName, refSurname, refBirthDate);
         this.nbMatch = nbMatch;
         this.category = category;
