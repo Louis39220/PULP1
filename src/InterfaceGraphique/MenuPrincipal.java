@@ -1858,7 +1858,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     private void remplirPlanning(JLabel j1, JLabel j2, JLabel vs, Match m) throws IOException, SQLException {
-        PlayerDao pdao = DaoFactory.getPlayerDao();
         Match_playerDaoImpl mdao = DaoFactory.getMatchPlayerDao();
         Player p = pdao.selectPlayer(mdao.selectIdPlayer(m.getIdMatch()));
         
@@ -2009,21 +2008,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
         {
             ((DefaultTableModel)tableVIP.getModel())
                     .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Joueur"});
-            boolean insertPlayer = pdao.insertPlayer(txtFieldNom.getText(), txtFieldPrenom.getText(), txtFieldBirthdate.getText(), Integer.getInteger(txtFieldRang.getText()));
-            
+            try {
+            pdao.insertPlayer(txtFieldNom.getText(), txtFieldPrenom.getText(), txtFieldBirthdate.getText(),Integer.parseInt(txtFieldRang.getText()));
+            }catch(SQLException e){
+                System.err.println(e.getMessage());
+            }
         }
         else if(radioBtnCoach.isSelected() && !txtFieldNom.getText().equals("") && !txtFieldPrenom.getText().equals("") 
                 && !txtFieldBirthdate.getText().equals("") && !txtFieldJoueurCoach.getText().equals("") && !txtFieldRepCoach.getText().equals(""))
         {
             ((DefaultTableModel)tableVIP.getModel())
                     .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Coach"});
-            cdao.insertCoach(txtFieldNom.getText(), txtFieldPrenom.getText(), txtFieldBirthdate.getText(), Integer.getInteger(txtFieldJoueurCoach.getText()), Integer.getInteger(txtFieldRepCoach.getText()));
+            cdao.insertCoach(txtFieldNom.getText(), txtFieldPrenom.getText(), txtFieldBirthdate.getText(), Integer.parseInt(txtFieldJoueurCoach.getText()), Integer.parseInt(txtFieldRepCoach.getText()));
         }
         else if(radioBtnArbitre.isSelected() && !txtFieldNom.getText().equals("") && !txtFieldPrenom.getText().equals("") 
                 && !txtFieldBirthdate.getText().equals("") && !txtFieldCategArbitre.getText().equals("") && !txtFieldNbMatchArbitre.getText().equals(""))
         {
             ((DefaultTableModel)tableVIP.getModel())
                     .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Arbitre"});
+            rdao.insertReferee(txtFieldNom.getText(), txtFieldPrenom.getText(), txtFieldBirthdate.getText(), Integer.parseInt(txtFieldNbMatchArbitre.getText()), txtFieldCategArbitre.getText());
         }
         else if((radioBtnInviteSpe.isSelected() || radioBtnJournaliste.isSelected()) && !txtFieldNom.getText().equals("") 
                 && !txtFieldPrenom.getText().equals("") && !txtFieldBirthdate.getText().equals(""))

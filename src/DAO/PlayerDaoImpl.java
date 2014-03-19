@@ -60,7 +60,7 @@ public class PlayerDaoImpl implements PlayerDao {
     }
 
     @Override
-    public boolean insertPlayer(String name, String Surname, String ddn, int rank) throws SQLException, IOException {
+    public boolean insertPlayer(String name, String Surname, String ddn, int rank) throws SQLException, IOException {   
         boolean res = true;
         connexionDB = ConnexionMysqlFactory.getInstance();
         try (PreparedStatement PS = connexionDB.prepareStatement("INSERT INTO player(PLAYERNAME,PLAYERSURNAME,PLAYERDATENAISSANCE,PLAYERRANK) values(?,?,?,?)")) {
