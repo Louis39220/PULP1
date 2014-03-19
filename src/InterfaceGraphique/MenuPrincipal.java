@@ -21,10 +21,12 @@ import entities.Player;
 import entities.Referee;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -73,6 +75,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         fenAddMatch.setSize(620, 300);
         fenAddMatch.setLocation((d.width-fenAddMatch.getWidth()) / 2, (d.height-fenAddMatch.getHeight()) / 2);
+        
+        fenMoreInfo.setSize(425, 270);
+        fenMoreInfo.setLocation((d.width-fenMoreInfo.getWidth()) / 2, (d.height-fenMoreInfo.getHeight()) / 2);
         
         gestionVIP.setSize(650, 660);
         gestionVIP.setLocation((d.width-gestionVIP.getWidth()) / 2, (d.height-gestionVIP.getHeight()) / 2);
@@ -160,8 +165,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         radioBtnJoueur = new javax.swing.JRadioButton();
         radioBtnCoach = new javax.swing.JRadioButton();
         radioBtnArbitre = new javax.swing.JRadioButton();
-        radioBtnInviteSpe = new javax.swing.JRadioButton();
-        radioBtnJournaliste = new javax.swing.JRadioButton();
         lblRange = new javax.swing.JLabel();
         txtFieldRang = new javax.swing.JTextField();
         lblJoueurCoach = new javax.swing.JLabel();
@@ -208,6 +211,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
         fichierVIPconsult = new javax.swing.JMenu();
         menuItemQuitter = new javax.swing.JMenuItem();
         btnGroupActionRelation = new javax.swing.ButtonGroup();
+        fenMoreInfo = new javax.swing.JDialog();
+        moreInfo_lbJoueurs = new javax.swing.JLabel();
+        moreInfo_lbHeureTerrain = new javax.swing.JLabel();
+        moreInfo_lbA1 = new javax.swing.JLabel();
+        moreInfo_lbArb = new javax.swing.JLabel();
+        moreInfo_lbA2 = new javax.swing.JLabel();
+        moreInfo_lbRamass = new javax.swing.JLabel();
+        moreInfo_lbR1 = new javax.swing.JLabel();
+        moreInfo_lbR2 = new javax.swing.JLabel();
+        moreInfo_lbArbFi = new javax.swing.JLabel();
+        fenModifMatch = new javax.swing.JDialog();
+        modifFen_PanJoueurs = new javax.swing.JPanel();
+        modifFen_lbJ1 = new javax.swing.JLabel();
+        modifFen_lbVs = new javax.swing.JLabel();
+        modifFen_lbJ2 = new javax.swing.JLabel();
+        modifFen_choiceJ1 = new java.awt.Choice();
+        modifFen_choiceJ2 = new java.awt.Choice();
+        modifFen_PanHeure = new javax.swing.JPanel();
+        modifFen_lbChoixHeure = new javax.swing.JLabel();
+        modifFen_choiceHeure = new java.awt.Choice();
+        addFen_PanCourt1 = new javax.swing.JPanel();
+        modifFen_lbChoixCourt = new javax.swing.JLabel();
+        modifFen_choiceCourt = new java.awt.Choice();
+        modifFen_btAdd = new javax.swing.JButton();
         lbAccueil = new javax.swing.JLabel();
         btMatchs = new javax.swing.JButton();
         btVIP = new javax.swing.JButton();
@@ -239,6 +266,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         match1J2.setText("Joueur 2");
 
         match1Plus.setText("+");
+        match1Plus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                match1PlusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panMatch1Layout = new javax.swing.GroupLayout(panMatch1);
         panMatch1.setLayout(panMatch1Layout);
@@ -256,7 +288,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addGroup(panMatch1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(match1J2)))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         panMatch1Layout.setVerticalGroup(
             panMatch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,6 +312,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         match2J2.setText("Joueur 2");
 
         match2Pus.setText("+");
+        match2Pus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                match2PusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panMatch2Layout = new javax.swing.GroupLayout(panMatch2);
         panMatch2.setLayout(panMatch2Layout);
@@ -322,6 +359,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         match3J2.setText("Joueur 2");
 
         match3Plus.setText("+");
+        match3Plus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                match3PlusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panMatch3Layout = new javax.swing.GroupLayout(panMatch3);
         panMatch3.setLayout(panMatch3Layout);
@@ -363,6 +405,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         match4J2.setText("Joueur 2");
 
         match4Plus.setText("+");
+        match4Plus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                match4PlusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panMatch4Layout = new javax.swing.GroupLayout(panMatch4);
         panMatch4.setLayout(panMatch4Layout);
@@ -404,6 +451,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         match5J2.setText("Joueur 2");
 
         match5Plus.setText("+");
+        match5Plus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                match5PlusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panMatch5Layout = new javax.swing.GroupLayout(panMatch5);
         panMatch5.setLayout(panMatch5Layout);
@@ -421,7 +473,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addGroup(panMatch5Layout.createSequentialGroup()
                         .addGap(133, 133, 133)
                         .addComponent(match5Plus)))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         panMatch5Layout.setVerticalGroup(
             panMatch5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,6 +497,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         match6J2.setText("Joueur 2");
 
         match6Plus.setText("+");
+        match6Plus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                match6PlusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panMatch6Layout = new javax.swing.GroupLayout(panMatch6);
         panMatch6.setLayout(panMatch6Layout);
@@ -462,7 +519,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addGroup(panMatch6Layout.createSequentialGroup()
                         .addGap(131, 131, 131)
                         .addComponent(match6Plus)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         panMatch6Layout.setVerticalGroup(
             panMatch6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -484,16 +541,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(panPlanningLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panMatch1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panMatch4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panMatch2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panMatch5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(panMatch6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panMatch3, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE))
+                .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panMatch3, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(panMatch6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panPlanningLayout.setVerticalGroup(
@@ -505,10 +562,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addComponent(panMatch1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(panMatch3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panMatch4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panMatch5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panMatch6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(panPlanningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panMatch6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panMatch4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         panGestion.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestion"));
@@ -795,22 +853,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        BtnGroupJCAIJ.add(radioBtnInviteSpe);
-        radioBtnInviteSpe.setText("Invité spécial");
-        radioBtnInviteSpe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioBtnInviteSpeActionPerformed(evt);
-            }
-        });
-
-        BtnGroupJCAIJ.add(radioBtnJournaliste);
-        radioBtnJournaliste.setText("Journaliste");
-        radioBtnJournaliste.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioBtnJournalisteActionPerformed(evt);
-            }
-        });
-
         lblRange.setText("Rang :");
 
         txtFieldRang.addActionListener(new java.awt.event.ActionListener() {
@@ -834,59 +876,55 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(panAjoutVIPLayout.createSequentialGroup()
                 .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panAjoutVIPLayout.createSequentialGroup()
-                        .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panAjoutVIPLayout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(birthdate)
-                                    .addComponent(prenom)
-                                    .addComponent(nom))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtFieldPrenom)
-                                    .addComponent(txtFieldBirthdate)
-                                    .addComponent(txtFieldNom, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
-                            .addGroup(panAjoutVIPLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(radioBtnJoueur)
-                                .addGap(18, 18, 18)
-                                .addComponent(radioBtnCoach)
-                                .addGap(18, 18, 18)
-                                .addComponent(radioBtnArbitre)
-                                .addGap(18, 18, 18)
-                                .addComponent(radioBtnInviteSpe)
-                                .addGap(18, 18, 18)
-                                .addComponent(radioBtnJournaliste)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panAjoutVIPLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(panAjoutVIPLayout.createSequentialGroup()
-                                .addComponent(lblRepCoach)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtFieldRepCoach, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblRepCoach, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panAjoutVIPLayout.createSequentialGroup()
                                 .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblJoueurCoach)
                                     .addComponent(lblRange))
-                                .addGap(18, 18, 18)
                                 .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFieldJoueurCoach)
-                                    .addComponent(txtFieldRang))))
+                                    .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(radioBtnJoueur))
+                                    .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                                        .addGap(37, 37, 37)
+                                        .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtFieldRang, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtFieldJoueurCoach, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtFieldRepCoach, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panAjoutVIPLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ajouterVIP))
                             .addGroup(panAjoutVIPLayout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNbMatchArbitre)
-                                    .addComponent(lblCategArbitre))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtFieldNbMatchArbitre, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                                    .addComponent(txtFieldCategArbitre))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                                        .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblCategArbitre)
+                                            .addComponent(lblNbMatchArbitre))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtFieldCategArbitre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtFieldNbMatchArbitre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                                        .addComponent(radioBtnCoach)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(radioBtnArbitre)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(panAjoutVIPLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(birthdate)
+                            .addComponent(prenom)
+                            .addComponent(nom))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtFieldPrenom)
+                            .addComponent(txtFieldBirthdate)
+                            .addComponent(txtFieldNom, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panAjoutVIPLayout.setVerticalGroup(
@@ -908,9 +946,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radioBtnJoueur)
                     .addComponent(radioBtnCoach)
-                    .addComponent(radioBtnArbitre)
-                    .addComponent(radioBtnInviteSpe)
-                    .addComponent(radioBtnJournaliste))
+                    .addComponent(radioBtnArbitre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panAjoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRange)
@@ -1336,6 +1372,237 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        fenMoreInfo.setAlwaysOnTop(true);
+        fenMoreInfo.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                fenMoreInfoWindowClosing(evt);
+            }
+        });
+
+        moreInfo_lbJoueurs.setText("j1 VS j2");
+
+        moreInfo_lbHeureTerrain.setText("Heure - Terrain");
+
+        moreInfo_lbA1.setText("a1");
+
+        moreInfo_lbArb.setText("Arbitre de chaise :");
+
+        moreInfo_lbA2.setText("a2");
+
+        moreInfo_lbRamass.setText("Ramasseurs de balles :");
+
+        moreInfo_lbR1.setText("r1");
+
+        moreInfo_lbR2.setText("r2");
+
+        moreInfo_lbArbFi.setText("Arbitre de filet :");
+
+        javax.swing.GroupLayout fenMoreInfoLayout = new javax.swing.GroupLayout(fenMoreInfo.getContentPane());
+        fenMoreInfo.getContentPane().setLayout(fenMoreInfoLayout);
+        fenMoreInfoLayout.setHorizontalGroup(
+            fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fenMoreInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(moreInfo_lbJoueurs)
+                    .addComponent(moreInfo_lbHeureTerrain)
+                    .addComponent(moreInfo_lbRamass)
+                    .addGroup(fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fenMoreInfoLayout.createSequentialGroup()
+                            .addComponent(moreInfo_lbArbFi)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(moreInfo_lbA2))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fenMoreInfoLayout.createSequentialGroup()
+                            .addComponent(moreInfo_lbArb)
+                            .addGap(18, 18, 18)
+                            .addComponent(moreInfo_lbA1)))
+                    .addComponent(moreInfo_lbR1)
+                    .addComponent(moreInfo_lbR2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        fenMoreInfoLayout.setVerticalGroup(
+            fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fenMoreInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(moreInfo_lbJoueurs)
+                .addGap(18, 18, 18)
+                .addComponent(moreInfo_lbHeureTerrain)
+                .addGap(18, 18, 18)
+                .addGroup(fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(moreInfo_lbArb)
+                    .addComponent(moreInfo_lbA1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(moreInfo_lbArbFi)
+                    .addComponent(moreInfo_lbA2))
+                .addGap(18, 18, 18)
+                .addComponent(moreInfo_lbRamass)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(moreInfo_lbR1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(moreInfo_lbR2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        fenModifMatch.setTitle("Ajouter un match");
+        fenModifMatch.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                fenModifMatchWindowClosing(evt);
+            }
+        });
+
+        modifFen_PanJoueurs.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection des joueurs"));
+
+        modifFen_lbJ1.setText("Joueur 1 : ");
+
+        modifFen_lbVs.setText("VS");
+
+        modifFen_lbJ2.setText("Joueur 2 :");
+
+        modifFen_choiceJ1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                modifFen_choiceJ1ItemStateChanged(evt);
+            }
+        });
+
+        modifFen_choiceJ2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                modifFen_choiceJ2ItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout modifFen_PanJoueursLayout = new javax.swing.GroupLayout(modifFen_PanJoueurs);
+        modifFen_PanJoueurs.setLayout(modifFen_PanJoueursLayout);
+        modifFen_PanJoueursLayout.setHorizontalGroup(
+            modifFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modifFen_PanJoueursLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(modifFen_lbJ1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(modifFen_choiceJ1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(modifFen_lbVs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(modifFen_lbJ2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(modifFen_choiceJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        modifFen_PanJoueursLayout.setVerticalGroup(
+            modifFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modifFen_PanJoueursLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(modifFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(modifFen_choiceJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modifFen_lbJ1)
+                    .addComponent(modifFen_choiceJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(modifFen_PanJoueursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(modifFen_lbVs)
+                        .addComponent(modifFen_lbJ2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        modifFen_PanHeure.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection de l'heure"));
+
+        modifFen_lbChoixHeure.setText("Choisissez une horaire disponible :");
+
+        modifFen_choiceHeure.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                modifFen_choiceHeureItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout modifFen_PanHeureLayout = new javax.swing.GroupLayout(modifFen_PanHeure);
+        modifFen_PanHeure.setLayout(modifFen_PanHeureLayout);
+        modifFen_PanHeureLayout.setHorizontalGroup(
+            modifFen_PanHeureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modifFen_PanHeureLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(modifFen_lbChoixHeure)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(modifFen_choiceHeure, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        modifFen_PanHeureLayout.setVerticalGroup(
+            modifFen_PanHeureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modifFen_PanHeureLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(modifFen_PanHeureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(modifFen_choiceHeure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modifFen_lbChoixHeure))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        addFen_PanCourt1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection du court"));
+
+        modifFen_lbChoixCourt.setText("Choisissez un court disponible : ");
+        modifFen_lbChoixCourt.setToolTipText("");
+
+        modifFen_choiceCourt.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                modifFen_choiceCourtItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout addFen_PanCourt1Layout = new javax.swing.GroupLayout(addFen_PanCourt1);
+        addFen_PanCourt1.setLayout(addFen_PanCourt1Layout);
+        addFen_PanCourt1Layout.setHorizontalGroup(
+            addFen_PanCourt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFen_PanCourt1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(modifFen_lbChoixCourt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(modifFen_choiceCourt, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        addFen_PanCourt1Layout.setVerticalGroup(
+            addFen_PanCourt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFen_PanCourt1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addFen_PanCourt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(modifFen_choiceCourt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modifFen_lbChoixCourt))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        modifFen_btAdd.setText("Ajouter");
+        modifFen_btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifFen_btAddActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout fenModifMatchLayout = new javax.swing.GroupLayout(fenModifMatch.getContentPane());
+        fenModifMatch.getContentPane().setLayout(fenModifMatchLayout);
+        fenModifMatchLayout.setHorizontalGroup(
+            fenModifMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fenModifMatchLayout.createSequentialGroup()
+                .addGroup(fenModifMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fenModifMatchLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(fenModifMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(modifFen_PanHeure, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(modifFen_PanJoueurs, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addFen_PanCourt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(fenModifMatchLayout.createSequentialGroup()
+                        .addGap(256, 256, 256)
+                        .addComponent(modifFen_btAdd)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        fenModifMatchLayout.setVerticalGroup(
+            fenModifMatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fenModifMatchLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(modifFen_PanJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(modifFen_PanHeure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addFen_PanCourt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(modifFen_btAdd)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Gestion du Grand Prix de Tennis de Lyon");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -1496,7 +1763,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btRetourActionPerformed
 
     private void btnSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprActionPerformed
-        supprimerVIP(tableVIP);
+        try {
+            supprimerVIP(tableVIP);
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSupprActionPerformed
 
     private void btnConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultActionPerformed
@@ -1509,7 +1782,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFieldNomActionPerformed
 
     private void ajouterVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterVIPActionPerformed
-        ajouterVIP(tableVIP);
+        try {
+            ajouterVIP(tableVIP);
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         txtFieldRang.setText("");
         txtFieldCategArbitre.setText("");
         txtFieldJoueurCoach.setText("");
@@ -1560,49 +1837,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtFieldJoueurCoach.setText("");
         txtFieldRepCoach.setText("");
     }//GEN-LAST:event_radioBtnArbitreActionPerformed
-
-    private void radioBtnInviteSpeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnInviteSpeActionPerformed
-        txtFieldCategArbitre.setEnabled(false);
-        txtFieldJoueurCoach.setEnabled(false);
-        txtFieldNbMatchArbitre.setEnabled(false);
-        txtFieldRang.setEnabled(false);
-        txtFieldRepCoach.setEnabled(false);
-        
-        txtFieldRang.setText("");
-        txtFieldCategArbitre.setText("");
-        txtFieldJoueurCoach.setText("");
-        txtFieldNbMatchArbitre.setText("");
-        txtFieldRepCoach.setText("");
-    }//GEN-LAST:event_radioBtnInviteSpeActionPerformed
      private void addFen_choiceJ1ItemStateChanged(java.awt.event.ItemEvent evt) {                                                 
-        majFenAjouterMatch();
+        try {
+            majFenAjouterMatch();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void addFen_choiceJ2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceJ2ItemStateChanged
-        majFenAjouterMatch();
+        try {
+            majFenAjouterMatch();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_addFen_choiceJ2ItemStateChanged
 
     private void addFen_choiceHeureItemStateChanged(java.awt.event.ItemEvent evt) {                                                    
-        majFenAjouterMatch();
+        try {
+            majFenAjouterMatch();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void addFen_choiceCourtItemStateChanged(java.awt.event.ItemEvent evt) {                                                    
-        majFenAjouterMatch();
+        try {
+            majFenAjouterMatch();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    private void radioBtnJournalisteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnJournalisteActionPerformed
-        txtFieldCategArbitre.setEnabled(false);
-        txtFieldJoueurCoach.setEnabled(false);
-        txtFieldNbMatchArbitre.setEnabled(false);
-        txtFieldRang.setEnabled(false);
-        txtFieldRepCoach.setEnabled(false);
-        
-        txtFieldRang.setText("");
-        txtFieldCategArbitre.setText("");
-        txtFieldJoueurCoach.setText("");
-        txtFieldNbMatchArbitre.setText("");
-        txtFieldRepCoach.setText("");
-    }//GEN-LAST:event_radioBtnJournalisteActionPerformed
-
     private void btnSupRelationActionVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupRelationActionVIPActionPerformed
         supprimerRelationActionVIP(tableConsultVIP);
     }//GEN-LAST:event_btnSupRelationActionVIPActionPerformed
@@ -1649,9 +1914,205 @@ public class MenuPrincipal extends javax.swing.JFrame {
         gestionMatchs.setVisible(true);
     }//GEN-LAST:event_fenAddMatchWindowClosing
 
+    private void match1PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match1PlusActionPerformed
+        if (!heureChoice.getSelectedItem().equals("Tous") && !courtChoice.getSelectedItem().equals("Tous")) {
+            try {
+                int terrain = courtChoice.getSelectedIndex();
+                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                        courtChoice.getSelectedItem().indexOf("h")));
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if (heureChoice.getSelectedItem().equals("Tous")) {
+            try {
+                int terrain = courtChoice.getSelectedIndex();
+                int heure = 8;
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            try {
+                int terrain = 1;
+                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                        courtChoice.getSelectedItem().indexOf("h")));
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_match1PlusActionPerformed
+
+    private void match4PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match4PlusActionPerformed
+        if (heureChoice.getSelectedItem().equals("Tous")) {
+            try {
+                int terrain = courtChoice.getSelectedIndex();
+                int heure = 18;
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            try {
+                int terrain = 4;
+                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                        courtChoice.getSelectedItem().indexOf("h")));
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_match4PlusActionPerformed
+
+    private void match2PusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match2PusActionPerformed
+        if (heureChoice.getSelectedItem().equals("Tous")) {
+            try {
+                int terrain = courtChoice.getSelectedIndex();
+                int heure = 11;
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            try {
+                int terrain = 2;
+                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                        courtChoice.getSelectedItem().indexOf("h")));
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_match2PusActionPerformed
+
+    private void match5PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match5PlusActionPerformed
+        if (heureChoice.getSelectedItem().equals("Tous")) {
+            try {
+                int terrain = courtChoice.getSelectedIndex();
+                int heure = 21;
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            try {
+                int terrain = 5;
+                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                        courtChoice.getSelectedItem().indexOf("h")));
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_match5PlusActionPerformed
+
+    private void match3PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match3PlusActionPerformed
+        if (heureChoice.getSelectedItem().equals("Tous")) {
+            try {
+                int terrain = courtChoice.getSelectedIndex();
+                int heure = 15;
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            try {
+                int terrain = 3;
+                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                        courtChoice.getSelectedItem().indexOf("h")));
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_match3PlusActionPerformed
+
+    private void match6PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match6PlusActionPerformed
+        try {
+            int terrain = 6;
+            int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                    courtChoice.getSelectedItem().indexOf("h")));
+            MatchDao mdao = DaoFactory.getMatchDao();
+            Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+            fenMoreInfo.setVisible(true);
+            afficherFenMoreInfo(m);
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_match6PlusActionPerformed
+
+    private void fenMoreInfoWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_fenMoreInfoWindowClosing
+        fenMoreInfo.dispose();
+    }//GEN-LAST:event_fenMoreInfoWindowClosing
+
+    private void modifFen_choiceJ1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_modifFen_choiceJ1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifFen_choiceJ1ItemStateChanged
+
+    private void modifFen_choiceJ2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_modifFen_choiceJ2ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifFen_choiceJ2ItemStateChanged
+
+    private void modifFen_choiceHeureItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_modifFen_choiceHeureItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifFen_choiceHeureItemStateChanged
+
+    private void modifFen_choiceCourtItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_modifFen_choiceCourtItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifFen_choiceCourtItemStateChanged
+
+    private void modifFen_btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifFen_btAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifFen_btAddActionPerformed
+
+    private void fenModifMatchWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_fenModifMatchWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fenModifMatchWindowClosing
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BtnGroupJCAIJ;
     private javax.swing.JPanel addFen_PanCourt;
+    private javax.swing.JPanel addFen_PanCourt1;
     private javax.swing.JPanel addFen_PanHeure;
     private javax.swing.JPanel addFen_PanJoueurs;
     private javax.swing.JButton addFen_btAdd;
@@ -1686,6 +2147,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox comboBoxProtagoniste1;
     private java.awt.Choice courtChoice;
     private javax.swing.JDialog fenAddMatch;
+    private javax.swing.JDialog fenModifMatch;
+    private javax.swing.JDialog fenMoreInfo;
     private javax.swing.JMenu fichierVIPconsult;
     private javax.swing.JDialog gestionMatchs;
     private javax.swing.JDialog gestionRelationActionVIP;
@@ -1736,6 +2199,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuQuitterMatch;
     private javax.swing.JMenuItem menuQuitterPrincipal;
     private javax.swing.JMenuItem menuQuitterVIP;
+    private javax.swing.JPanel modifFen_PanHeure;
+    private javax.swing.JPanel modifFen_PanJoueurs;
+    private javax.swing.JButton modifFen_btAdd;
+    private java.awt.Choice modifFen_choiceCourt;
+    private java.awt.Choice modifFen_choiceHeure;
+    private java.awt.Choice modifFen_choiceJ1;
+    private java.awt.Choice modifFen_choiceJ2;
+    private javax.swing.JLabel modifFen_lbChoixCourt;
+    private javax.swing.JLabel modifFen_lbChoixHeure;
+    private javax.swing.JLabel modifFen_lbJ1;
+    private javax.swing.JLabel modifFen_lbJ2;
+    private javax.swing.JLabel modifFen_lbVs;
+    private javax.swing.JLabel moreInfo_lbA1;
+    private javax.swing.JLabel moreInfo_lbA2;
+    private javax.swing.JLabel moreInfo_lbArb;
+    private javax.swing.JLabel moreInfo_lbArbFi;
+    private javax.swing.JLabel moreInfo_lbHeureTerrain;
+    private javax.swing.JLabel moreInfo_lbJoueurs;
+    private javax.swing.JLabel moreInfo_lbR1;
+    private javax.swing.JLabel moreInfo_lbR2;
+    private javax.swing.JLabel moreInfo_lbRamass;
     private javax.swing.JLabel nom;
     private javax.swing.JPanel panAjoutRelationActionVIP;
     private javax.swing.JPanel panAjoutVIP;
@@ -1754,9 +2238,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel prenom;
     private javax.swing.JRadioButton radioBtnArbitre;
     private javax.swing.JRadioButton radioBtnCoach;
-    private javax.swing.JRadioButton radioBtnInviteSpe;
     private javax.swing.JRadioButton radioBtnJoueur;
-    private javax.swing.JRadioButton radioBtnJournaliste;
     private javax.swing.JRadioButton radioBtnTypeAction;
     private javax.swing.JRadioButton radioBtnTypeRelation;
     private javax.swing.JScrollPane scrollTable;
@@ -1804,10 +2286,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             panMatch4.setBorder(new TitledBorder("Court d'entrainement 2"));
             panMatch5.setBorder(new TitledBorder("Court d'entrainement 3"));
             //Mise à jour du label indiquant la sélection
-            lbSelected.setText(heureChoice.getSelectedItem());
             MatchDao mdao = DaoFactory.getMatchDao();
-            remplirPlanningHeures(mdao.selectMatchByDateByHour(jour, 
-                    Integer.parseInt(heureChoice.getSelectedItem().substring(0, heureChoice.getSelectedItem().indexOf("h")))));
+            remplirPlanningHeure(mdao.selectMatchByDateByHour(jour, 
+                    Integer.valueOf(heureChoice.getSelectedItem().substring(0, heureChoice.getSelectedItem().indexOf("h")))));
         }
         else if (heureChoice.getSelectedItem().equals("Tous")) {
             //Mise à jour des bordures des panels
@@ -1824,6 +2305,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem());
             MatchDao mdao = DaoFactory.getMatchDao();
+            System.out.println(heureChoice.getSelectedItem().indexOf("h"));
             remplirPlanningCourts(mdao.selectMatchByTerrainByDate(jour, 
                     affecteNumCourt(courtChoice.getSelectedItem())));
         }
@@ -1839,8 +2321,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem() + " - " + heureChoice.getSelectedItem());
             MatchDao mdao = DaoFactory.getMatchDao();
+            System.out.println(heureChoice.getSelectedItem().indexOf("h"));
             remplirPlanningCourtHeure(mdao.selectMatchByDateByHour(jour, 
-                    Integer.parseInt(heureChoice.getSelectedItem().substring(0, heureChoice.getSelectedItem().indexOf("h")))));
+                    Integer.valueOf(heureChoice.getSelectedItem().substring(0, heureChoice.getSelectedItem().indexOf("h")))));
         }
     }
     
@@ -1855,12 +2338,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private void remplirPlanning(JLabel j1, JLabel j2, JLabel vs, Match m) throws IOException, SQLException {
         PlayerDao pdao = DaoFactory.getPlayerDao();
-        Match_playerDaoImpl mdao = DaoFactory.getMatchPlayerDao();
-        Player p = pdao.selectPlayer(mdao.selectIdPlayer(m.getIdMatch()));
+        Player p1 = pdao.selectPlayer(m.getIdP1());
+        Player p2 = pdao.selectPlayer(m.getIdP2());
         
-        j1.setText(p.getSurname() + " " + p.getName());
-        p = pdao.selectPlayer(m.getIdP2());
-        j2.setText(p.getSurname() + " " + p.getName());
+        j1.setText(p1.getNameSurname());
+        j2.setText(p2.getNameSurname());
         vs.setText("VS");
     }
     
@@ -1876,6 +2358,48 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     private void remplirPlanningCourts(List<Match> matchs) throws SQLException, IOException {
+        for (int i = 1 ; i <= 5 ; i++) {
+            switch (i) {
+                case 1:
+                    for (Match m : matchs) {
+                        if (m.getHeure() == 8) remplirPlanning(match1J1, match1J2, match1vs, m);
+                        else matchVide(match1J1, match1J2, match1vs);
+                    }
+                    if (matchs.isEmpty()) matchVide(match1J1, match1J2, match1vs);
+                    break;
+                case 2:
+                    for (Match m : matchs) {
+                        if (m.getHeure() == 11) remplirPlanning(match2J1, match2J2, match2vs, m);
+                        else matchVide(match2J1, match2J2, match2vs);
+                    }
+                    if (matchs.isEmpty()) matchVide(match2J1, match2J2, match2vs);
+                    break;
+                case 3:
+                    for (Match m : matchs) {
+                        if (m.getHeure() == 15) remplirPlanning(match3J1, match3J2, match3vs, m);
+                        else matchVide(match3J1, match3J2, match3vs);
+                    }
+                    if (matchs.isEmpty()) matchVide(match3J1, match3J2, match3vs);
+                    break;
+                case 4:
+                    for (Match m : matchs) {
+                        if (m.getHeure() == 18) remplirPlanning(match4J1, match4J2, match4vs, m);
+                        else matchVide(match4J1, match4J2, match4vs);
+                    }
+                    if (matchs.isEmpty()) matchVide(match4J1, match4J2, match4vs);
+                    break;
+                case 5:
+                    for (Match m : matchs) {
+                        if (m.getHeure() == 21) remplirPlanning(match5J1, match5J2, match5vs, m);
+                        else matchVide(match5J1, match5J2, match5vs);
+                    }
+                    if (matchs.isEmpty()) matchVide(match5J1, match5J2, match5vs);
+                    break;
+            }
+        }
+    }
+    
+    private void remplirPlanningHeure(List<Match> matchs) throws SQLException, IOException {
         for (int i = 1 ; i <= 6 ; i++) {
             switch (i) {
                 case 1:
@@ -1883,73 +2407,42 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         if (m.getIdTerrain() == 1) remplirPlanning(match1J1, match1J2, match1vs, m);
                         else matchVide(match1J1, match1J2, match1vs);
                     }
+                    if (matchs.isEmpty()) matchVide(match1J1, match1J2, match1vs);
                     break;
                 case 2:
                     for (Match m : matchs) {
                         if (m.getIdTerrain() == 2) remplirPlanning(match2J1, match2J2, match2vs, m);
                         else matchVide(match2J1, match2J2, match2vs);
                     }
+                    if (matchs.isEmpty()) matchVide(match2J1, match2J2, match2vs);
                     break;
                 case 3:
                     for (Match m : matchs) {
                         if (m.getIdTerrain() == 3) remplirPlanning(match3J1, match3J2, match3vs, m);
                         else matchVide(match3J1, match3J2, match3vs);
                     }
+                    if (matchs.isEmpty()) matchVide(match3J1, match3J2, match3vs);
                     break;
                 case 4:
                     for (Match m : matchs) {
                         if (m.getIdTerrain() == 4) remplirPlanning(match4J1, match4J2, match4vs, m);
                         else matchVide(match4J1, match4J2, match4vs);
                     }
+                    if (matchs.isEmpty()) matchVide(match4J1, match4J2, match4vs);
                     break;
                 case 5:
                     for (Match m : matchs) {
                         if (m.getIdTerrain() == 5) remplirPlanning(match5J1, match5J2, match5vs, m);
                         else matchVide(match5J1, match5J2, match5vs);
                     }
+                    if (matchs.isEmpty()) matchVide(match5J1, match5J2, match5vs);
                     break;
                 case 6:
                     for (Match m : matchs) {
                         if (m.getIdTerrain() == 6) remplirPlanning(match6J1, match6J2, match6vs, m);
                         else matchVide(match6J1, match6J2, match6vs);
                     }
-                    break;
-            }
-        }
-    }
-    
-    private void remplirPlanningHeures(List<Match> matchs) throws SQLException, IOException {
-        for (int i = 1 ; i <= 6 ; i++) {
-            switch (i) {
-                case 1:
-                    for (Match m : matchs) {
-                        if (m.getHeure() == 8) remplirPlanning(match1J1, match1J2, match1vs, m);
-                        else matchVide(match1J1, match1J2, match1vs);
-                    }
-                    break;
-                case 2:
-                    for (Match m : matchs) {
-                        if (m.getHeure() == 11) remplirPlanning(match2J1, match2J2, match2vs, m);
-                        else matchVide(match2J1, match2J2, match2vs);
-                    }
-                    break;
-                case 3:
-                    for (Match m : matchs) {
-                        if (m.getHeure() == 15) remplirPlanning(match3J1, match3J2, match3vs, m);
-                        else matchVide(match3J1, match3J2, match3vs);
-                    }
-                    break;
-                case 4:
-                    for (Match m : matchs) {
-                        if (m.getHeure() == 18) remplirPlanning(match4J1, match4J2, match4vs, m);
-                        else matchVide(match4J1, match4J2, match4vs);
-                    }
-                    break;
-                case 5:
-                    for (Match m : matchs) {
-                        if (m.getHeure() == 21) remplirPlanning(match5J1, match5J2, match5vs, m);
-                        else matchVide(match5J1, match5J2, match5vs);
-                    }
+                    if (matchs.isEmpty()) matchVide(match6J1, match6J2, match6vs);
                     break;
             }
         }
@@ -1984,10 +2477,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private void supprimerVIP(JTable tableVIP)
+    private void supprimerVIP(JTable tableVIP) throws SQLException, IOException
     {
         if(tableVIP.getSelectedRow() != -1)
+        {
+            String nomS = (String)tableVIP.getValueAt(tableVIP.getSelectedRow(), 0);
+            String prenomS = (String)tableVIP.getValueAt(tableVIP.getSelectedRow(), 1);
+            String birthdateS = (String)tableVIP.getValueAt(tableVIP.getSelectedRow(), 2);
+            
+            if((String)(tableVIP.getValueAt(tableVIP.getSelectedRow(),3)) == "Joueur")
+            {            
+                pdao.deletePlayerByName(nomS, prenomS, birthdateS);
+            }
+            else if((String)(tableVIP.getValueAt(tableVIP.getSelectedRow(),3)) == "Coach")
+            {
+                cdao.deleteCoachByName(nomS, prenomS, birthdateS);
+            }
+            else rdao.deleteRefereeByName(nomS, prenomS, birthdateS);
             ((DefaultTableModel)tableVIP.getModel()).removeRow(tableVIP.getSelectedRow());
+        }
+        
         else JOptionPane.showMessageDialog(this,"Aucune ligne de sélectionné","Attention",JOptionPane.OK_OPTION);
     }
     
@@ -1998,36 +2507,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
         else JOptionPane.showMessageDialog(this,"Aucune ligne de sélectionné","Attention",JOptionPane.OK_OPTION);
     }
     
-    private void ajouterVIP(JTable tableVIP)
+    private void ajouterVIP(JTable tableVIP) throws SQLException, IOException
     {
         if(radioBtnJoueur.isSelected() && !txtFieldNom.getText().equals("") && !txtFieldPrenom.getText().equals("") 
                 && !txtFieldBirthdate.getText().equals("") && !txtFieldRang.getText().equals(""))
         {
             ((DefaultTableModel)tableVIP.getModel())
                     .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Joueur"});
+            pdao.insertPlayer(txtFieldNom.getText(), txtFieldPrenom.getText(), txtFieldBirthdate.getText(),Integer.parseInt(txtFieldRang.getText()));
         }
         else if(radioBtnCoach.isSelected() && !txtFieldNom.getText().equals("") && !txtFieldPrenom.getText().equals("") 
                 && !txtFieldBirthdate.getText().equals("") && !txtFieldJoueurCoach.getText().equals("") && !txtFieldRepCoach.getText().equals(""))
         {
             ((DefaultTableModel)tableVIP.getModel())
                     .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Coach"});
+            cdao.insertCoach(txtFieldNom.getText(), txtFieldPrenom.getText(), txtFieldBirthdate.getText(), Integer.parseInt(txtFieldJoueurCoach.getText()), Integer.parseInt(txtFieldRepCoach.getText()));
         }
         else if(radioBtnArbitre.isSelected() && !txtFieldNom.getText().equals("") && !txtFieldPrenom.getText().equals("") 
                 && !txtFieldBirthdate.getText().equals("") && !txtFieldCategArbitre.getText().equals("") && !txtFieldNbMatchArbitre.getText().equals(""))
         {
             ((DefaultTableModel)tableVIP.getModel())
                     .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Arbitre"});
-        }
-        else if((radioBtnInviteSpe.isSelected() || radioBtnJournaliste.isSelected()) && !txtFieldNom.getText().equals("") 
-                && !txtFieldPrenom.getText().equals("") && !txtFieldBirthdate.getText().equals(""))
-        {
-            if(radioBtnInviteSpe.isSelected())
-            {
-                ((DefaultTableModel)tableVIP.getModel())
-                        .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Invité Spécial"});
-            }
-            else ((DefaultTableModel)tableVIP.getModel())
-                    .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Journaliste"});
+            rdao.insertReferee(txtFieldNom.getText(), txtFieldPrenom.getText(), txtFieldBirthdate.getText(), Integer.parseInt(txtFieldNbMatchArbitre.getText()), txtFieldCategArbitre.getText());
         }
         else JOptionPane.showMessageDialog(this,"Certains champs ne sont pas indiqués !","Attention",JOptionPane.OK_OPTION);
     }
@@ -2075,11 +2576,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private void majFenAjouterMatch() {
+    private void majFenAjouterMatch() throws IOException, SQLException {
         String j1Select = addFen_choiceJ1.getSelectedItem();
         String j2Select = addFen_choiceJ2.getSelectedItem();
         String courtSelect = addFen_choiceCourt.getSelectedItem();
         String heureSelect = addFen_choiceHeure.getSelectedItem();
+        
+        int idj1 = 0;
+        int idj2 = 0;
+        int heure = 0;
+        if (!heureSelect.equals("Aucune heure sélectionnée")) 
+            heure = Integer.valueOf(heureSelect.substring(0, heureSelect.indexOf("h")));
+        int court = 0;
+        if (!courtSelect.equals("Aucun court sélectionné")) {
+            if (courtSelect.equals("Court central")) court = 1;
+            if (courtSelect.equals("Court annexe")) court = 2;
+            if (courtSelect.equals("Court d'entrainement 1")) court = 3;
+            if (courtSelect.equals("Court d'entrainement 2")) court = 4;
+            if (courtSelect.equals("Court d'entrainement 3")) court = 5;
+            if (courtSelect.equals("Court d'entrainement 4")) court = 6;
+        }
         
         addFen_choiceJ1.removeAll();
         addFen_choiceJ2.removeAll();
@@ -2092,54 +2608,71 @@ public class MenuPrincipal extends javax.swing.JFrame {
         addFen_choiceHeure.addItem("Aucune heure sélectionnée");
         
         //MAJ J1
-        //ListeComplete = select allPlayer;
-        //listeJoueur = Select * from player where id = ?;
-        //listeHeure = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where heure = ? et jour = ?));
-        //listeCourt = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where court = ? et jour = ? et heure = ?));
-        
-        //for (Player p : listeJoueur) listeComplete.remove(p);
-        //for (Player p : listeHeure) listeComplete.remove(p);
-        //for (Player p : listeCourt) listeComplete.remove(p);
-        //for (Player p : listeComplete) addFen_choiceJ1.addItem(p.getSurname + " " + p.getName);
-        //addFen_choiceJ1.select(j1Select);
+        PlayerDao pdao = DaoFactory.getPlayerDao();
+        List<Player> lComp = pdao.selectAllPlayer();
+        if (!j2Select.equals("Aucun joueur sélectionné")) {
+            Player lj2 = pdao.selectPlayer(idj2);
+            lComp.remove(lj2);
+        }
+        if (!heureSelect.equals("Aucune heure sélectionnée")) {
+            List<Player> lHeure = pdao.selectPlayerOfMatchByDayHour(jour, heure);
+            for (Player p : lHeure) lComp.remove(p);
+        }
+        if (!courtSelect.equals("Aucun court sélectionné") && !heureSelect.equals("Aucune heure sélectionnée")) {
+            List<Player> lCourt = pdao.selectPlayerofMatchByCourtByDayByHour(court, jour, heure);
+            for (Player p : lCourt) lComp.remove(p);
+        }
+        for (Player p : lComp) addFen_choiceJ1.addItem(p.getNameSurname());
+        addFen_choiceJ1.select(j1Select);
         
         
         //MAJ J2
-        //ListeComplete = select allPlayer;
-        //listeJoueur = Select * from player where id = ?;
-        //listeHeure = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where heure = ? et jour = ?));
-        //listeCourt = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where court = ? et jour = ? et heure = ?));
-        
-        //for (Player p : listeJoueur) listeComplete.remove(p);
-        //for (Player p : listeHeure) listeComplete.remove(p);
-        //for (Player p : listeCourt) listeComplete.remove(p);
-        //for (Player p : listeComplete) addFen_choiceJ2.addItem(p.getSurname + " " + p.getName);
-        //addFen_choiceJ2.select(j2Select);
+        List<Player> lComp2 = pdao.selectAllPlayer();
+        if (!j1Select.equals("Aucun joueur sélectionné")) {
+            Player lj1 = pdao.selectPlayer(idj1);
+            lComp2.remove(lj1);
+        }
+        if (!heureSelect.equals("Aucune heure sélectionnée")) {
+            List<Player> lHeure = pdao.selectPlayerOfMatchByDayHour(jour, heure);
+            for (Player p : lHeure) lComp2.remove(p);
+        }
+        if (!courtSelect.equals("Aucun court sélectionné") && !heureSelect.equals("Aucune heure sélectionnée")) {
+            List<Player> lCourt = pdao.selectPlayerofMatchByCourtByDayByHour(court, jour, heure);
+            for (Player p : lCourt) lComp.remove(p);
+        }
+        for (Player p : lComp2) addFen_choiceJ2.addItem(p.getNameSurname());
+        addFen_choiceJ2.select(j2Select);
         
         //MAJ COURT
-        //List<String> allCourts= new ArrayList<>();
-        //allCourts.add("Court central");
-        //allCourts.add("Court annexe");
-        //allCourts.add("Court d'entrainement 1");
-        //allCourts.add("Court d'entrainement 2");
-        //allCourts.add("Court d'entrainement 3");
-        //allCourts.add("Court d'entrainement 4");
-        //int[] listeUse = Select court from match where idmatch in (select idmatch from match where jour = ? et heure = ?);
-        //for (int i = listeUse.size() - 1 ; i >= 0 ; i++) allCourts.remove(listeUse[i]);
-        //for (String s : allCourts) addFen_choiceCourt.addItem(s);
-        //addFen_choiceCourt.select(courtSelect);
+        List<String> allCourts= new ArrayList<>();
+        allCourts.add("Court central");
+        allCourts.add("Court annexe");
+        allCourts.add("Court d'entrainement 1");
+        allCourts.add("Court d'entrainement 2");
+        allCourts.add("Court d'entrainement 3");
+        allCourts.add("Court d'entrainement 4");
+        if (!heureSelect.equals("Aucune heure sélectionnée")) {
+            MatchDao mdao = DaoFactory.getMatchDao();
+            int[] listeUse = mdao.selectCourtByDayByHour(jour, heure);
+            for (int i = listeUse.length - 1 ; i >= 0 ; i--) allCourts.remove(listeUse[i]);
+        }
+        for (String s : allCourts) addFen_choiceCourt.addItem(s);
+        addFen_choiceCourt.select(courtSelect);
         
         //MAJ HEURE
-        //List<String> allHeures = new ArrayList<>();
-        //allCourts.add("8h");
-        //allCourts.add("11h");
-        //allCourts.add("15h");
-        //allCourts.add("18h");
-        //allCourts.add("21h");
-        //int[] listeUse = Select heure from match where idmatch in (select idmatch from match where jour = ? et court = ?);
-        //for (int i = listeUse.size() - 1 ; i >= 0 ; i++) allHeures.remove(listeUse[i]);
-        //for (String s : allHeures) addFen_choiceHeure.addItem(s);
-        //addFen_heureCourt.select(heureSelect);
+        List<String> allHeures = new ArrayList<>();
+        allHeures.add("8h");
+        allHeures.add("11h");
+        allHeures.add("15h");
+        allHeures.add("18h");
+        allHeures.add("21h");
+        if (!courtSelect.equals("Aucun court sélectionné")) {
+            MatchDao mdao = DaoFactory.getMatchDao();
+            int[] listeUse = mdao.selectHeureByLieuByDate(jour, court);
+            for (int i = listeUse.length - 1 ; i >= 0 ; i--) allCourts.remove(listeUse[i]);
+        }
+        for (String s : allHeures) addFen_choiceHeure.addItem(s);
+        addFen_choiceCourt.select(heureSelect);
         
         addFen_choiceJ1.select(j1Select);
         addFen_choiceJ2.select(j2Select);
@@ -2148,6 +2681,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     private void initFenAddMatch() {
+        addFen_choiceJ1.removeAll();
+        addFen_choiceJ2.removeAll();
+        addFen_choiceCourt.removeAll();
+        addFen_choiceHeure.removeAll();
+        
         addFen_choiceJ1.addItem("Aucun joueur sélectionné");
         addFen_choiceJ2.addItem("Aucun joueur sélectionné");
         addFen_choiceCourt.addItem("Aucun court sélectionné");
@@ -2157,5 +2695,39 @@ public class MenuPrincipal extends javax.swing.JFrame {
         addFen_choiceJ2.select("Aucun joueur sélectionné");
         addFen_choiceCourt.select("Aucun court sélectionné");
         addFen_choiceHeure.select("Aucune heure sélectionnée");
+        try {
+            majFenAjouterMatch();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void afficherFenMoreInfo(Match m) throws IOException, SQLException {
+        //Affichage joueurs
+        PlayerDao pdao = DaoFactory.getPlayerDao();
+        Player p1 = pdao.selectPlayer(m.getIdP1());
+        Player p2 = pdao.selectPlayer(m.getIdP2());
+        moreInfo_lbJoueurs.setText(p1.getNameSurname() + " VS " + p2.getNameSurname());
+        
+        //Affichage heure et terrain
+        String court = null;
+        switch (m.getIdTerrain()) {
+            case 1: court = "Court central"; break;
+            case 2: court = "Court annexe"; break;
+            case 3: court = "Court d'entrainement 1"; break; 
+            case 4: court = "Court d'entrainement 2"; break;
+            case 5: court = "Court d'entrainement 3"; break; 
+            case 6: court = "Court d'entrainement 4"; break; 
+        }
+        moreInfo_lbHeureTerrain.setText(m.getHeure() + "h - " + court);
+        
+        //Affichage arbitre
+        RefereeDao rdao = DaoFactory.getRefereeDao();
+        Referee r1 = rdao.selectReferee(m.getIdArbitreChaise());
+        Referee r2 = rdao.selectReferee(m.getIdArbitreFilet());
+        moreInfo_lbA1.setText(r1.getNameSurname());
+        moreInfo_lbA2.setText(r2.getNameSurname());
+        
+        //Affichage ramasseurs
     }
 }

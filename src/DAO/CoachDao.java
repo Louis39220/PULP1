@@ -24,6 +24,8 @@ public interface CoachDao {
     public boolean insertCoach(String name, String Surname, String ddn, int pCoached, int reput) throws SQLException, IOException;
 
     public boolean deleteCoach(int id) throws SQLException, IOException;
+    
+    public boolean deleteCoachByName(String name, String surname, String birthdate) throws SQLException, IOException;
 
     public boolean updateCoach(int id, String name, String surname, String ddn, int pCoached, int reput) throws SQLException, IOException;
 

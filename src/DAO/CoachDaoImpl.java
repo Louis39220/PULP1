@@ -102,6 +102,27 @@ public class CoachDaoImpl implements CoachDao{
         }
         return res;
     }
+    
+    @Override
+    public boolean deleteCoachByName(String name, String surname, String birthdate) throws SQLException, IOException {
+        boolean res = true;
+        connexionDB = ConnexionMysqlFactory.getInstance();
+        try (PreparedStatement ps = connexionDB.prepareStatement("DELETE FROM pulp.coach where COACHNAME= ? AND COACHSURNAME= ? AND COACHDATENAISSANCE= ?")) {
+            ps.setString(1, name);
+            ps.setString(2, surname);
+            ps.setString(3, birthdate);
+            try {
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+                ps.cancel();
+                res = false;
+            }
+            ps.close();
+            connexionDB.close();
+        }
+        return res;
+    }
 
     /**
      *
