@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -62,6 +63,30 @@ public class RefereeDaoImpl implements RefereeDao {
         connexionDB.close();
         return lr;
     }
+    
+    @Override
+     public List<Referee> selectRandom8RefereeLine()throws SQLException, IOException {
+        connexionDB = ConnexionMysqlFactory.getInstance();
+        ResultSet rs;
+        Statement st = connexionDB.createStatement();
+        rs = st.executeQuery("SELECT * FROM referee WHERE refereeCategorie='ligne'");
+        Random rand = new Random(); 
+        List<Referee> lr = new ArrayList<>();
+        while(rs.next()){
+            lr.add(new Referee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)));
+        }
+        int alea;
+        List<Referee> lr8 = new ArrayList<>();
+        for(int i=0;i<8;i++){
+            alea = rand.nextInt(lr.size());
+            lr8.add(lr.get(alea));
+            lr.remove(alea);
+        }
+        
+        rs.close();
+        connexionDB.close();
+        return lr8;
+     }
 
     @Override
     public boolean insertReferee(String name, String Surname, String ddn, int nbMatch, String categorie) throws SQLException, IOException {

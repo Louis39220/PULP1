@@ -27,7 +27,7 @@ public class PlayerDaoImpl implements PlayerDao {
     public PlayerDaoImpl(Connection connexionDB) {
         this.connexionDB = connexionDB;
     }
-    
+
     @Override
     public Player selectPlayer(int id) throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
@@ -43,7 +43,6 @@ public class PlayerDaoImpl implements PlayerDao {
         return p;
 
     }
-    
 
     @Override
     public List<Player> selectAllPlayer() throws SQLException, IOException {
@@ -51,9 +50,9 @@ public class PlayerDaoImpl implements PlayerDao {
         ResultSet rs;
         Statement st = connexionDB.createStatement();
         rs = st.executeQuery("SELECT * FROM player");
-        List<Player> lp =new ArrayList<>();
-        while(rs.next()){
-            lp.add(new Player(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4),rs.getInt(5)));
+        List<Player> lp = new ArrayList<>();
+        while (rs.next()) {
+            lp.add(new Player(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
         }
         rs.close();
         connexionDB.close();
@@ -132,6 +131,79 @@ public class PlayerDaoImpl implements PlayerDao {
             connexionDB.close();
         }
         return res;
+    }
+
+    @Override
+    public List<Player> selectPlayerOfMatchByDayHour(int heure, int day) throws SQLException, IOException {
+        connexionDB = ConnexionMysqlFactory.getInstance();
+        ResultSet rs = null;
+        List<Player> lp = new ArrayList<>();
+        Statement st = connexionDB.createStatement();
+        try (PreparedStatement ps = connexionDB.prepareStatement("select * from pulp.player where playerId in (select idP1 from pulp.attribmatch where matchId in "
+                + "(select matchId from pulp.match where matchtrancheHoraire=? and matchDate=?))")) {
+            ps.setInt(1, heure);
+            ps.setInt(2, day);
+            try {
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    lp.add(new Player(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
+                }
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        try (PreparedStatement ps = connexionDB.prepareStatement("select * from pulp.player where playerId in (select idP2 from pulp.attribmatch where matchId in "
+                + "(select matchId from pulp.match where matchTrancheHoraire=? and matchDate=?))")) {
+            ps.setInt(1, heure);
+            ps.setInt(2, day);
+            try {
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    lp.add(new Player(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
+                }
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+
+        connexionDB.close();
+        return lp;
+    }
+
+    @Override
+    public List<Player> selectPlayerofMatchByCourtHour(int court, int heure) throws SQLException, IOException {
+        connexionDB = ConnexionMysqlFactory.getInstance();
+        ResultSet rs = null;
+        List<Player> lp = new ArrayList<>();
+        Statement st = connexionDB.createStatement();
+        try (PreparedStatement ps = connexionDB.prepareStatement("select * from pulp.player where playerId in (select idP1 from pulp.attribmatch where matchId in "
+                + "(select matchId from pulp.match where matchLieu=? and matchDate=?))")) {
+            ps.setInt(1, heure);
+            ps.setInt(2, court);
+            try {
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    lp.add(new Player(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
+                }
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        try (PreparedStatement ps = connexionDB.prepareStatement("select * from pulp.player where playerId in (select idP2 from pulp.attribmatch where matchId in "
+                + "(select matchId from pulp.match where matchLieu=? and matchDate=?))")) {
+            ps.setInt(1, heure);
+            ps.setInt(2, court);
+            try {
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    lp.add(new Player(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
+                }
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        connexionDB.close();
+        return lp;
     }
 
 }

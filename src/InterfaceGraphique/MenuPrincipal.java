@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import DAO.DaoFactory;
+import DAO.DaoFactoryInterface;
 import DAO.MatchDao;
 import DAO.Match_playerDaoImpl;
 import DAO.PlayerDao;
@@ -38,13 +39,14 @@ import oracle.net.aso.p;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
     private int jour;
-    PlayerDao pdao = DaoFactory.getPlayerDao();
+    private static final DaoFactoryInterface fact = null;
+    PlayerDao pdao = fact.getPlayerDao();
     private List<Player> allPlayer = pdao.selectAllPlayer();
         
-    CoachDao cdao = DaoFactory.getCoachDao();
+    CoachDao cdao = fact.getCoachDao();
     private List<Coach> allCoach = cdao.selectAllCoach();
         
-    RefereeDao rdao = DaoFactory.getRefereeDao();
+    RefereeDao rdao = fact.getRefereeDao();
     private List<Referee> allReferee = rdao.selectAllReferee();
     /**
      * Creates new form MenuPrincipal
@@ -1964,7 +1966,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             panMatch5.setBorder(new TitledBorder("Court d'entrainement 3"));
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(heureChoice.getSelectedItem());
-            MatchDao mdao = DaoFactory.getMatchDao();
+            MatchDao mdao = fact.getMatchDao();
             remplirPlanningHeures(mdao.selectMatchByDateByHour(jour, 
                     Integer.parseInt(heureChoice.getSelectedItem().substring(0, heureChoice.getSelectedItem().indexOf("h")))));
         }
@@ -1982,7 +1984,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             panMatch5.setBorder(new TitledBorder("21h"));
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem());
-            MatchDao mdao = DaoFactory.getMatchDao();
+            MatchDao mdao = fact.getMatchDao();
             remplirPlanningCourts(mdao.selectMatchByTerrainByDate(jour, 
                     affecteNumCourt(courtChoice.getSelectedItem())));
         }
@@ -1997,7 +1999,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     heureChoice.getSelectedItem()));
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem() + " - " + heureChoice.getSelectedItem());
-            MatchDao mdao = DaoFactory.getMatchDao();
+            MatchDao mdao = fact.getMatchDao();
             remplirPlanningCourtHeure(mdao.selectMatchByDateByHour(jour, 
                     Integer.parseInt(heureChoice.getSelectedItem().substring(0, heureChoice.getSelectedItem().indexOf("h")))));
         }
@@ -2013,8 +2015,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     private void remplirPlanning(JLabel j1, JLabel j2, JLabel vs, Match m) throws IOException, SQLException {
-        PlayerDao pdao = DaoFactory.getPlayerDao();
-        Match_playerDaoImpl mdao = DaoFactory.getMatchPlayerDao();
+        PlayerDao pdao = fact.getPlayerDao();
+        Match_playerDaoImpl mdao = fact.getMatchPlayerDao();
         Player p = pdao.selectPlayer(mdao.selectIdPlayer(m.getIdMatch()));
         
         j1.setText(p.getSurname() + " " + p.getName());
