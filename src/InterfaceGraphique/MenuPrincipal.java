@@ -1819,33 +1819,173 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void fenMoreInfoWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_fenMoreInfoWindowClosing
         fenMoreInfo.dispose();
-        gestionMatchs.setVisible(true);
     }//GEN-LAST:event_fenMoreInfoWindowClosing
 
     private void match1PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match1PlusActionPerformed
-        if (heureChoice.getSelectedItem().equals("")) {
-            ;
+        if (!heureChoice.getSelectedItem().equals("Tous") && !courtChoice.getSelectedItem().equals("Tous")) {
+            try {
+                int terrain = courtChoice.getSelectedIndex();
+                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                        courtChoice.getSelectedItem().indexOf("h")));
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if (heureChoice.getSelectedItem().equals("Tous")) {
+            try {
+                int terrain = courtChoice.getSelectedIndex();
+                int heure = 8;
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            try {
+                int terrain = 1;
+                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                        courtChoice.getSelectedItem().indexOf("h")));
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_match1PlusActionPerformed
 
     private void match4PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match4PlusActionPerformed
-        // TODO add your handling code here:
+        if (heureChoice.getSelectedItem().equals("Tous")) {
+            try {
+                int terrain = courtChoice.getSelectedIndex();
+                int heure = 18;
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            try {
+                int terrain = 4;
+                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                        courtChoice.getSelectedItem().indexOf("h")));
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_match4PlusActionPerformed
 
     private void match2PusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match2PusActionPerformed
-        // TODO add your handling code here:
+        if (heureChoice.getSelectedItem().equals("Tous")) {
+            try {
+                int terrain = courtChoice.getSelectedIndex();
+                int heure = 11;
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            try {
+                int terrain = 2;
+                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                        courtChoice.getSelectedItem().indexOf("h")));
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_match2PusActionPerformed
 
     private void match5PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match5PlusActionPerformed
-        // TODO add your handling code here:
+        if (heureChoice.getSelectedItem().equals("Tous")) {
+            try {
+                int terrain = courtChoice.getSelectedIndex();
+                int heure = 21;
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            try {
+                int terrain = 5;
+                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                        courtChoice.getSelectedItem().indexOf("h")));
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_match5PlusActionPerformed
 
     private void match3PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match3PlusActionPerformed
-        // TODO add your handling code here:
+        if (heureChoice.getSelectedItem().equals("Tous")) {
+            try {
+                int terrain = courtChoice.getSelectedIndex();
+                int heure = 15;
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            try {
+                int terrain = 3;
+                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                        courtChoice.getSelectedItem().indexOf("h")));
+                MatchDao mdao = DaoFactory.getMatchDao();
+                Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+                fenMoreInfo.setVisible(true);
+                afficherFenMoreInfo(m);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_match3PlusActionPerformed
 
     private void match6PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match6PlusActionPerformed
-        // TODO add your handling code here:
+        try {
+            int terrain = 6;
+            int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
+                    courtChoice.getSelectedItem().indexOf("h")));
+            MatchDao mdao = DaoFactory.getMatchDao();
+            Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
+            fenMoreInfo.setVisible(true);
+            afficherFenMoreInfo(m);
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_match6PlusActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2070,13 +2210,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     private void remplirPlanning(JLabel j1, JLabel j2, JLabel vs, Match m) throws IOException, SQLException {
-        PlayerDao pdao = DaoFactory.getPlayerDao();
-        Match_playerDaoImpl mdao = DaoFactory.getMatchPlayerDao();
-        Player p = pdao.selectPlayer(mdao.selectIdPlayer(m.getIdMatch()));
         
-        j1.setText(p.getSurname() + " " + p.getName());
-        p = pdao.selectPlayer(m.getIdP2());
-        j2.setText(p.getSurname() + " " + p.getName());
+        PlayerDao pdao = DaoFactory.getPlayerDao();
+        Player p1 = pdao.selectPlayer(m.getIdP1());
+        Player p2 = pdao.selectPlayer(m.getIdP2());
+        
+        j1.setText(p1.getNameSurname());
+        j2.setText(p2.getNameSurname());
         vs.setText("VS");
     }
     
@@ -2375,7 +2515,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
         addFen_choiceHeure.select("Aucune heure sélectionnée");
     }
     
-    private void afficherFenMoreInfo() {
-        ;
+    private void afficherFenMoreInfo(Match m) throws IOException, SQLException {
+        PlayerDao pdao = DaoFactory.getPlayerDao();
+        Player p1 = pdao.selectPlayer(m.getIdP1());
+        Player p2 = pdao.selectPlayer(m.getIdP2());
+        moreInfo_lbJoueurs.setText(p1.getNameSurname() + " VS " + p2.getNameSurname());
+        
+        String court = null;
+        switch (m.getIdTerrain()) {
+            case 1: court = "Court central"; break;
+            case 2: court = "Court annexe"; break;
+            case 3: court = "Court d'entrainement 1"; break; 
+            case 4: court = "Court d'entrainement 2"; break;
+            case 5: court = "Court d'entrainement 3"; break; 
+            case 6: court = "Court d'entrainement 4"; break; 
+        }
+        moreInfo_lbHeureTerrain.setText(m.getHeure() + "h - " + court);
+        
+        //Affichage arbitre et ramasseurs
     }
 }
