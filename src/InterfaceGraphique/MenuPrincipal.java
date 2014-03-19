@@ -2617,6 +2617,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         String courtSelect = addFen_choiceCourt.getSelectedItem();
         String heureSelect = addFen_choiceHeure.getSelectedItem();
         
+        PlayerDao pdao = DaoFactory.getPlayerDao();
         int idj1 = 0;
         int idj2 = 0;
         int heure = 0;
@@ -2643,7 +2644,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         addFen_choiceHeure.addItem("Aucune heure sélectionnée");
         
         //MAJ J1
-        PlayerDao pdao = DaoFactory.getPlayerDao();
         List<Player> lComp = pdao.selectAllPlayer();
         if (!j2Select.equals("Aucun joueur sélectionné")) {
             Player lj2 = pdao.selectPlayer(idj2);
