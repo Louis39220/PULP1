@@ -35,7 +35,7 @@ public class TestDB {
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws SQLException, IOException {
         PlayerDaoImpl rdao;
-        rdao = fact.getPlayerDao();
+        rdao = DaoFactory.getPlayerDao();
         try {
             List<Player> lp = new ArrayList<>();
             lp = rdao.selectPlayerOfMatchByDayHour(8, 26);
