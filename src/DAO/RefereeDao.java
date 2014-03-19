@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface RefereeDao {
 
-    public Coach selectReferee(int id) throws SQLException, IOException;
+    public Referee selectReferee(int id) throws SQLException, IOException;
 
     public List<Referee> selectAllReferee() throws SQLException, IOException;
     

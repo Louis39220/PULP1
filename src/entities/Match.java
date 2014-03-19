@@ -10,6 +10,8 @@ package entities;
  */
 
 public class Match {
+
+    
     private int idMatch;
     private int idP1;
     private int idP2;
@@ -20,10 +22,23 @@ public class Match {
     private int idArbitreFilet;
     private int idTeamRamasseur1;
     private int idTeamRamasseur2;
-    private int tabArbitre[];
     private int type;
 
-    public Match(int idP1, int idP2, int jour, int heure, int idTerrain, int idArbitreChaise, int idArbitreFilet, int idTeamRamasseur1, int idTeamRamasseur2, int type) {
+    public Match(int idMatch, int idP1, int idP2, int jour, int heure, int idTerrain, int idArbitreChaise, int idArbitreFilet, int idTeamRamasseur1, int idTeamRamasseur2, int type) {
+        this.idMatch=idMatch;
+        this.idP1 = idP1;
+        this.idP2 = idP2;
+        this.jour = jour;
+        this.heure = heure;
+        this.idTerrain = idTerrain;
+        this.idArbitreChaise = idArbitreChaise;
+        this.idArbitreFilet = idArbitreFilet;
+        this.idTeamRamasseur1 = idTeamRamasseur1;
+        this.idTeamRamasseur2 = idTeamRamasseur2;
+        this.type = type;
+    }
+    
+ public Match(int idP1, int idP2, int jour, int heure, int idTerrain, int idArbitreChaise, int idArbitreFilet, int idTeamRamasseur1, int idTeamRamasseur2, int type) {
         this.idP1 = idP1;
         this.idP2 = idP2;
         this.jour = jour;
@@ -55,6 +70,18 @@ public class Match {
         this.idTerrain = terrain;
         this.jour = date;
         this.type = type;
+    }
+    
+   public Match(int terrain, int date, int heure, int type) {
+        this.heure = heure;
+        this.idTerrain = terrain;
+        this.jour = date;
+        this.type = type;
+    }
+    
+    @Override
+    public String toString() {
+        return "Match{" + "idMatch=" + idMatch + ", idP1=" + idP1 + ", idP2=" + idP2 + ", jour=" + jour + ", heure=" + heure + ", idTerrain=" + idTerrain + ", idArbitreChaise=" + idArbitreChaise + ", idArbitreFilet=" + idArbitreFilet + ", idTeamRamasseur1=" + idTeamRamasseur1 + ", idTeamRamasseur2=" + idTeamRamasseur2 + '}';
     }
    
     
