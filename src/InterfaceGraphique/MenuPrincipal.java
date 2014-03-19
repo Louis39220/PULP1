@@ -78,6 +78,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         fenAddMatch.setSize(620, 300);
         fenAddMatch.setLocation((d.width-fenAddMatch.getWidth()) / 2, (d.height-fenAddMatch.getHeight()) / 2);
         
+        fenMoreInfo.setSize(425, 270);
+        fenMoreInfo.setLocation((d.width-fenMoreInfo.getWidth()) / 2, (d.height-fenMoreInfo.getHeight()) / 2);
+        
         gestionVIP.setSize(650, 660);
         gestionVIP.setLocation((d.width-gestionVIP.getWidth()) / 2, (d.height-gestionVIP.getHeight()) / 2);
         remplirTableVIP(tableVIP);
@@ -212,6 +215,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
         fichierVIPconsult = new javax.swing.JMenu();
         menuItemQuitter = new javax.swing.JMenuItem();
         btnGroupActionRelation = new javax.swing.ButtonGroup();
+        fenMoreInfo = new javax.swing.JDialog();
+        moreInfo_lbJoueurs = new javax.swing.JLabel();
+        moreInfo_lbHeureTerrain = new javax.swing.JLabel();
+        moreInfo_lbA1 = new javax.swing.JLabel();
+        moreInfo_lbArb = new javax.swing.JLabel();
+        moreInfo_lbA2 = new javax.swing.JLabel();
+        moreInfo_lbA3 = new javax.swing.JLabel();
+        moreInfo_lbA4 = new javax.swing.JLabel();
+        moreInfo_lbA5 = new javax.swing.JLabel();
+        moreInfo_lbA6 = new javax.swing.JLabel();
+        moreInfo_lbA7 = new javax.swing.JLabel();
+        moreInfo_lbA8 = new javax.swing.JLabel();
+        moreInfo_lbA9 = new javax.swing.JLabel();
+        moreInfo_lbA10 = new javax.swing.JLabel();
+        moreInfo_lbRamass = new javax.swing.JLabel();
+        moreInfo_lbR1 = new javax.swing.JLabel();
+        moreInfo_lbR2 = new javax.swing.JLabel();
         lbAccueil = new javax.swing.JLabel();
         btMatchs = new javax.swing.JButton();
         btVIP = new javax.swing.JButton();
@@ -1340,6 +1360,119 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        fenMoreInfo.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                fenMoreInfoWindowClosing(evt);
+            }
+        });
+
+        moreInfo_lbJoueurs.setText("j1 VS j2");
+
+        moreInfo_lbHeureTerrain.setText("Heure - Terrain");
+
+        moreInfo_lbA1.setText("a1");
+
+        moreInfo_lbArb.setText("Arbitres :");
+
+        moreInfo_lbA2.setText("a2");
+
+        moreInfo_lbA3.setText("a3");
+
+        moreInfo_lbA4.setText("a4");
+
+        moreInfo_lbA5.setText("a5");
+
+        moreInfo_lbA6.setText("a6");
+
+        moreInfo_lbA7.setText("a7");
+
+        moreInfo_lbA8.setText("a8");
+
+        moreInfo_lbA9.setText("a9");
+
+        moreInfo_lbA10.setText("a10");
+
+        moreInfo_lbRamass.setText("Ramasseurs de balles :");
+
+        moreInfo_lbR1.setText("r1");
+
+        moreInfo_lbR2.setText("r2");
+
+        javax.swing.GroupLayout fenMoreInfoLayout = new javax.swing.GroupLayout(fenMoreInfo.getContentPane());
+        fenMoreInfo.getContentPane().setLayout(fenMoreInfoLayout);
+        fenMoreInfoLayout.setHorizontalGroup(
+            fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fenMoreInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(moreInfo_lbJoueurs)
+                    .addComponent(moreInfo_lbHeureTerrain)
+                    .addGroup(fenMoreInfoLayout.createSequentialGroup()
+                        .addComponent(moreInfo_lbA1)
+                        .addGap(18, 18, 18)
+                        .addComponent(moreInfo_lbA6))
+                    .addComponent(moreInfo_lbArb)
+                    .addGroup(fenMoreInfoLayout.createSequentialGroup()
+                        .addComponent(moreInfo_lbA2)
+                        .addGap(18, 18, 18)
+                        .addComponent(moreInfo_lbA7))
+                    .addGroup(fenMoreInfoLayout.createSequentialGroup()
+                        .addComponent(moreInfo_lbA3)
+                        .addGap(18, 18, 18)
+                        .addComponent(moreInfo_lbA8))
+                    .addGroup(fenMoreInfoLayout.createSequentialGroup()
+                        .addComponent(moreInfo_lbA4)
+                        .addGap(18, 18, 18)
+                        .addComponent(moreInfo_lbA9))
+                    .addGroup(fenMoreInfoLayout.createSequentialGroup()
+                        .addComponent(moreInfo_lbA5)
+                        .addGap(18, 18, 18)
+                        .addComponent(moreInfo_lbA10))
+                    .addComponent(moreInfo_lbRamass)
+                    .addGroup(fenMoreInfoLayout.createSequentialGroup()
+                        .addComponent(moreInfo_lbR1)
+                        .addGap(18, 18, 18)
+                        .addComponent(moreInfo_lbR2)))
+                .addContainerGap(280, Short.MAX_VALUE))
+        );
+        fenMoreInfoLayout.setVerticalGroup(
+            fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fenMoreInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(moreInfo_lbJoueurs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(moreInfo_lbHeureTerrain)
+                .addGap(18, 18, 18)
+                .addComponent(moreInfo_lbArb)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(moreInfo_lbA1)
+                    .addComponent(moreInfo_lbA6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(moreInfo_lbA2)
+                    .addComponent(moreInfo_lbA7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(moreInfo_lbA3)
+                    .addComponent(moreInfo_lbA8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(moreInfo_lbA4)
+                    .addComponent(moreInfo_lbA9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(moreInfo_lbA5)
+                    .addComponent(moreInfo_lbA10))
+                .addGap(18, 18, 18)
+                .addComponent(moreInfo_lbRamass)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fenMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(moreInfo_lbR1)
+                    .addComponent(moreInfo_lbR2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Gestion du Grand Prix de Tennis de Lyon");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -1653,6 +1786,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         gestionMatchs.setVisible(true);
     }//GEN-LAST:event_fenAddMatchWindowClosing
 
+    private void fenMoreInfoWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_fenMoreInfoWindowClosing
+        fenMoreInfo.dispose();
+        gestionMatchs.setVisible(true);
+    }//GEN-LAST:event_fenMoreInfoWindowClosing
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BtnGroupJCAIJ;
     private javax.swing.JPanel addFen_PanCourt;
@@ -1690,6 +1828,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox comboBoxProtagoniste1;
     private java.awt.Choice courtChoice;
     private javax.swing.JDialog fenAddMatch;
+    private javax.swing.JDialog fenMoreInfo;
     private javax.swing.JMenu fichierVIPconsult;
     private javax.swing.JDialog gestionMatchs;
     private javax.swing.JDialog gestionRelationActionVIP;
@@ -1740,6 +1879,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuQuitterMatch;
     private javax.swing.JMenuItem menuQuitterPrincipal;
     private javax.swing.JMenuItem menuQuitterVIP;
+    private javax.swing.JLabel moreInfo_lbA1;
+    private javax.swing.JLabel moreInfo_lbA10;
+    private javax.swing.JLabel moreInfo_lbA2;
+    private javax.swing.JLabel moreInfo_lbA3;
+    private javax.swing.JLabel moreInfo_lbA4;
+    private javax.swing.JLabel moreInfo_lbA5;
+    private javax.swing.JLabel moreInfo_lbA6;
+    private javax.swing.JLabel moreInfo_lbA7;
+    private javax.swing.JLabel moreInfo_lbA8;
+    private javax.swing.JLabel moreInfo_lbA9;
+    private javax.swing.JLabel moreInfo_lbArb;
+    private javax.swing.JLabel moreInfo_lbHeureTerrain;
+    private javax.swing.JLabel moreInfo_lbJoueurs;
+    private javax.swing.JLabel moreInfo_lbR1;
+    private javax.swing.JLabel moreInfo_lbR2;
+    private javax.swing.JLabel moreInfo_lbRamass;
     private javax.swing.JLabel nom;
     private javax.swing.JPanel panAjoutRelationActionVIP;
     private javax.swing.JPanel panAjoutVIP;
@@ -2161,5 +2316,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         addFen_choiceJ2.select("Aucun joueur sélectionné");
         addFen_choiceCourt.select("Aucun court sélectionné");
         addFen_choiceHeure.select("Aucune heure sélectionnée");
+    }
+    
+    private void afficherFenMoreInfo() {
+        ;
     }
 }

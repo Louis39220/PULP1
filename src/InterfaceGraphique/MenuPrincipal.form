@@ -1713,6 +1713,185 @@
     </Container>
     <Component class="javax.swing.ButtonGroup" name="btnGroupActionRelation">
     </Component>
+    <Container class="javax.swing.JDialog" name="fenMoreInfo">
+      <Events>
+        <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="fenMoreInfoWindowClosing"/>
+      </Events>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="moreInfo_lbJoueurs" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="moreInfo_lbHeureTerrain" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="moreInfo_lbA1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="moreInfo_lbA6" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="moreInfo_lbArb" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="moreInfo_lbA2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="moreInfo_lbA7" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="moreInfo_lbA3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="moreInfo_lbA8" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="moreInfo_lbA4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="moreInfo_lbA9" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="moreInfo_lbA5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="moreInfo_lbA10" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="moreInfo_lbRamass" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="moreInfo_lbR1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="moreInfo_lbR2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="280" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="moreInfo_lbJoueurs" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="moreInfo_lbHeureTerrain" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="moreInfo_lbArb" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="moreInfo_lbA1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="moreInfo_lbA6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="moreInfo_lbA2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="moreInfo_lbA7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="moreInfo_lbA3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="moreInfo_lbA8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="moreInfo_lbA4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="moreInfo_lbA9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="moreInfo_lbA5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="moreInfo_lbA10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="moreInfo_lbRamass" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="moreInfo_lbR1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="moreInfo_lbR2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbJoueurs">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="j1 VS j2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbHeureTerrain">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Heure - Terrain"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbA1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="a1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbArb">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Arbitres :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbA2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="a2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbA3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="a3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbA4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="a4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbA5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="a5"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbA6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="a6"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbA7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="a7"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbA8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="a8"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbA9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="a9"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbA10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="a10"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbRamass">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ramasseurs de balles :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbR1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="r1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="moreInfo_lbR2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="r2"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
     <Menu class="javax.swing.JMenuBar" name="barreOutilsPrincipal">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="menuFichierPrinicpal">
