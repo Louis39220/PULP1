@@ -44,6 +44,7 @@ public class PlayerDaoImpl implements PlayerDao {
         return p;
     }
     
+    @Override
     public int SelectIdPlayerByName(String name, String surname)throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
