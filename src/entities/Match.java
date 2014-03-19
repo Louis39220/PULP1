@@ -39,7 +39,6 @@ public class Match {
     }
     
  public Match(int idP1, int idP2, int jour, int heure, int idTerrain, int idArbitreChaise, int idArbitreFilet, int idTeamRamasseur1, int idTeamRamasseur2, int type) {
-    
         this.idP1 = idP1;
         this.idP2 = idP2;
         this.jour = jour;
@@ -67,6 +66,13 @@ public class Match {
 
     public Match(int idMatch, int terrain, int date, int heure, int type) {
         this.idMatch = idMatch;
+        this.heure = heure;
+        this.idTerrain = terrain;
+        this.jour = date;
+        this.type = type;
+    }
+    
+   public Match(int terrain, int date, int heure, int type) {
         this.heure = heure;
         this.idTerrain = terrain;
         this.jour = date;

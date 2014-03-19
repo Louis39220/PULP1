@@ -146,7 +146,6 @@ public class MatchDaoImpl implements MatchDao {
             lm.add(new Match(rs.getInt(1),rs1.getInt(2), rs1.getInt(3), rs.getInt(3), rs.getInt(4), rs.getInt(2), rs1.getInt(4), rs1.getInt(5), rs1.getInt(6), rs1.getInt(7), rs.getInt(5)));
         }
         rs.close();
-        rs1.close();
         connexionDB.close();
         return lm;
     }
