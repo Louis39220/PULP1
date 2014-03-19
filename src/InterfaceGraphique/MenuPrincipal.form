@@ -198,6 +198,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="+"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="match1PlusActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -268,6 +271,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="+"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="match2PusActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -341,6 +347,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="+"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="match3PlusActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -411,6 +420,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="+"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="match4PlusActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -481,6 +493,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="+"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="match5PlusActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -551,6 +566,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="+"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="match6PlusActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1714,6 +1732,9 @@
     <Component class="javax.swing.ButtonGroup" name="btnGroupActionRelation">
     </Component>
     <Container class="javax.swing.JDialog" name="fenMoreInfo">
+      <Properties>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
+      </Properties>
       <Events>
         <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="fenMoreInfoWindowClosing"/>
       </Events>

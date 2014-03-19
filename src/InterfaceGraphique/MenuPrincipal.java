@@ -265,6 +265,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         match1J2.setText("Joueur 2");
 
         match1Plus.setText("+");
+        match1Plus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                match1PlusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panMatch1Layout = new javax.swing.GroupLayout(panMatch1);
         panMatch1.setLayout(panMatch1Layout);
@@ -306,6 +311,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         match2J2.setText("Joueur 2");
 
         match2Pus.setText("+");
+        match2Pus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                match2PusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panMatch2Layout = new javax.swing.GroupLayout(panMatch2);
         panMatch2.setLayout(panMatch2Layout);
@@ -348,6 +358,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         match3J2.setText("Joueur 2");
 
         match3Plus.setText("+");
+        match3Plus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                match3PlusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panMatch3Layout = new javax.swing.GroupLayout(panMatch3);
         panMatch3.setLayout(panMatch3Layout);
@@ -389,6 +404,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         match4J2.setText("Joueur 2");
 
         match4Plus.setText("+");
+        match4Plus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                match4PlusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panMatch4Layout = new javax.swing.GroupLayout(panMatch4);
         panMatch4.setLayout(panMatch4Layout);
@@ -430,6 +450,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         match5J2.setText("Joueur 2");
 
         match5Plus.setText("+");
+        match5Plus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                match5PlusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panMatch5Layout = new javax.swing.GroupLayout(panMatch5);
         panMatch5.setLayout(panMatch5Layout);
@@ -471,6 +496,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         match6J2.setText("Joueur 2");
 
         match6Plus.setText("+");
+        match6Plus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                match6PlusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panMatch6Layout = new javax.swing.GroupLayout(panMatch6);
         panMatch6.setLayout(panMatch6Layout);
@@ -1362,6 +1392,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        fenMoreInfo.setAlwaysOnTop(true);
         fenMoreInfo.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 fenMoreInfoWindowClosing(evt);
@@ -1792,6 +1823,32 @@ public class MenuPrincipal extends javax.swing.JFrame {
         fenMoreInfo.dispose();
         gestionMatchs.setVisible(true);
     }//GEN-LAST:event_fenMoreInfoWindowClosing
+
+    private void match1PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match1PlusActionPerformed
+        if (heureChoice.getSelectedItem().equals("")) {
+            ;
+        }
+    }//GEN-LAST:event_match1PlusActionPerformed
+
+    private void match4PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match4PlusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_match4PlusActionPerformed
+
+    private void match2PusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match2PusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_match2PusActionPerformed
+
+    private void match5PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match5PlusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_match5PlusActionPerformed
+
+    private void match3PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match3PlusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_match3PlusActionPerformed
+
+    private void match6PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match6PlusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_match6PlusActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BtnGroupJCAIJ;

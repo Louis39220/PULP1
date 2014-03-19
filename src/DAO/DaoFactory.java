@@ -18,29 +18,34 @@ public class DaoFactory implements DaoFactoryInterface {
     protected static Connection conn ;
     
     //retourne un objet Player interagissant avec la BDD
+    @Override
     public PlayerDaoImpl getPlayerDao() throws IOException, SQLException {
         conn = ConnexionMysqlFactory.getInstance();
         return new PlayerDaoImpl(conn);
     }
     
     //Retourne un objet referee interagissant avec la BDD
+    @Override
     public RefereeDaoImpl getRefereeDao() throws IOException, SQLException{
         conn = ConnexionMysqlFactory.getInstance();
         return new RefereeDaoImpl(conn);
     }
     
     //Retourne un objet Coach interagissant avec la BDD
+    @Override
     public CoachDaoImpl getCoachDao() throws IOException, SQLException{
         conn = ConnexionMysqlFactory.getInstance();
         return new CoachDaoImpl(conn);
     }
     
     //retourne un objet Match interagissant avec la BDD
+    @Override
     public MatchDaoImpl getMatchDao() throws IOException, SQLException{
         conn = ConnexionMysqlFactory.getInstance();
         return new MatchDaoImpl(conn);
     }
     
+    @Override
     public Match_playerDaoImpl getMatchPlayerDao() throws IOException, SQLException{
         conn = ConnexionMysqlFactory.getInstance();
         return new Match_playerDaoImpl(conn);
