@@ -44,5 +44,7 @@ public interface MatchDao {
     
     public int selectIdMatchByTerrainByDateByHour(int date, int numTerrain,int heure) throws SQLException, IOException;
     
-    public int[] selectIdTerrainByDayByHour(int jour, int heure) throws SQLException, IOException;
+    public int[] selectCourtByDayByHour(int jour, int heure) throws SQLException, IOException;
+    
+    public int[] selectHeureByLieuByDate(int jour, int lieu) throws SQLException, IOException;
 }
