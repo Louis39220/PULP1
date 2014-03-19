@@ -20,16 +20,12 @@ import entities.Match;
 import entities.Player;
 import entities.Referee;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
-import oracle.net.aso.p;
 
 
 /**
@@ -1499,9 +1495,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void ajouterVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterVIPActionPerformed
         try {
             ajouterVIP(tableVIP);
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (SQLException | IOException ex) {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         txtFieldRang.setText("");
@@ -1568,19 +1562,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtFieldNbMatchArbitre.setText("");
         txtFieldRepCoach.setText("");
     }//GEN-LAST:event_radioBtnInviteSpeActionPerformed
-     private void addFen_choiceJ1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceJ1ItemStateChanged
+     private void addFen_choiceJ1ItemStateChanged(java.awt.event.ItemEvent evt) {                                                 
         majFenAjouterMatch();
     }
 
-    private void addFen_choiceJ3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceJ3ItemStateChanged
+    private void addFen_choiceJ3ItemStateChanged(java.awt.event.ItemEvent evt) {                                                 
         majFenAjouterMatch();
     }
 
-    private void addFen_choiceHeureItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceHeureItemStateChanged
+    private void addFen_choiceHeureItemStateChanged(java.awt.event.ItemEvent evt) {                                                    
         majFenAjouterMatch();
     }
 
-    private void addFen_choiceCourtItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceCourtItemStateChanged
+    private void addFen_choiceCourtItemStateChanged(java.awt.event.ItemEvent evt) {                                                    
         majFenAjouterMatch();
     }
     private void radioBtnJournalisteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnJournalisteActionPerformed
@@ -1985,7 +1979,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         {
             ((DefaultTableModel)tableVIP.getModel())
                     .addRow(new Object[]{txtFieldNom.getText(),txtFieldPrenom.getText(),txtFieldBirthdate.getText(),"Joueur"});
-            pdao.insertPlayer(txtFieldNom.getText(), txtFieldPrenom.getText(), txtFieldBirthdate.getText(), Integer.getInteger(txtFieldRang.getText()));
+            boolean insertPlayer = pdao.insertPlayer(txtFieldNom.getText(), txtFieldPrenom.getText(), txtFieldBirthdate.getText(), Integer.getInteger(txtFieldRang.getText()));
             
         }
         else if(radioBtnCoach.isSelected() && !txtFieldNom.getText().equals("") && !txtFieldPrenom.getText().equals("") 
