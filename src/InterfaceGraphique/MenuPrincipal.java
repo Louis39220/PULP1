@@ -2716,6 +2716,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     private void initFenAddMatch() {
+        addFen_choiceJ1.removeAll();
+        addFen_choiceJ2.removeAll();
+        addFen_choiceCourt.removeAll();
+        addFen_choiceHeure.removeAll();
+        
         addFen_choiceJ1.addItem("Aucun joueur sélectionné");
         addFen_choiceJ2.addItem("Aucun joueur sélectionné");
         addFen_choiceCourt.addItem("Aucun court sélectionné");
@@ -2725,6 +2730,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         addFen_choiceJ2.select("Aucun joueur sélectionné");
         addFen_choiceCourt.select("Aucun court sélectionné");
         addFen_choiceHeure.select("Aucune heure sélectionnée");
+        try {
+            majFenAjouterMatch();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private void afficherFenMoreInfo(Match m) throws IOException, SQLException {
