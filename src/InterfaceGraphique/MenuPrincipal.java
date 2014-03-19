@@ -1868,19 +1868,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtFieldRepCoach.setText("");
     }//GEN-LAST:event_radioBtnInviteSpeActionPerformed
      private void addFen_choiceJ1ItemStateChanged(java.awt.event.ItemEvent evt) {                                                 
-        majFenAjouterMatch();
+        try {
+            majFenAjouterMatch();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void addFen_choiceJ2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addFen_choiceJ2ItemStateChanged
-        majFenAjouterMatch();
+        try {
+            majFenAjouterMatch();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_addFen_choiceJ2ItemStateChanged
 
     private void addFen_choiceHeureItemStateChanged(java.awt.event.ItemEvent evt) {                                                    
-        majFenAjouterMatch();
+        try {
+            majFenAjouterMatch();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void addFen_choiceCourtItemStateChanged(java.awt.event.ItemEvent evt) {                                                    
-        majFenAjouterMatch();
+        try {
+            majFenAjouterMatch();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     private void radioBtnJournalisteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnJournalisteActionPerformed
         txtFieldCategArbitre.setEnabled(false);
@@ -2596,11 +2612,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private void majFenAjouterMatch() {
+    private void majFenAjouterMatch() throws IOException, SQLException {
         String j1Select = addFen_choiceJ1.getSelectedItem();
         String j2Select = addFen_choiceJ2.getSelectedItem();
         String courtSelect = addFen_choiceCourt.getSelectedItem();
         String heureSelect = addFen_choiceHeure.getSelectedItem();
+        
+        int idj1 = 0;
+        int idj2 = 0;
+        int heure = 0;
+        if (!heureSelect.equals("Aucune heure sélectionnée")) 
+            heure = Integer.valueOf(heureSelect.substring(0, heureSelect.indexOf("h")));
+        int court = 0;
+        if (!courtSelect.equals("Aucun court sélectionné")) {
+            if (courtSelect.equals("Court central")) court = 1;
+            if (courtSelect.equals("Court annexe")) court = 2;
+            if (courtSelect.equals("Court d'entrainement 1")) court = 3;
+            if (courtSelect.equals("Court d'entrainement 2")) court = 4;
+            if (courtSelect.equals("Court d'entrainement 3")) court = 5;
+            if (courtSelect.equals("Court d'entrainement 4")) court = 6;
+        }
         
         addFen_choiceJ1.removeAll();
         addFen_choiceJ2.removeAll();
@@ -2613,29 +2644,42 @@ public class MenuPrincipal extends javax.swing.JFrame {
         addFen_choiceHeure.addItem("Aucune heure sélectionnée");
         
         //MAJ J1
-        //ListeComplete = select allPlayer;
-        //listeJoueur = Select * from player where id = ?;
-        //listeHeure = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where heure = ? et jour = ?));
-        //listeCourt = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where court = ? et jour = ? et heure = ?));
-        
-        //for (Player p : listeJoueur) listeComplete.remove(p);
-        //for (Player p : listeHeure) listeComplete.remove(p);
-        //for (Player p : listeCourt) listeComplete.remove(p);
-        //for (Player p : listeComplete) addFen_choiceJ1.addItem(p.getSurname + " " + p.getName);
-        //addFen_choiceJ1.select(j1Select);
+        PlayerDao pdao = DaoFactory.getPlayerDao();
+        List<Player> lComp = pdao.selectAllPlayer();
+        if (!j2Select.equals("Aucun joueur sélectionné")) {
+            Player lj2 = pdao.selectPlayer(idj2);
+            lComp.remove(lj2);
+        }
+        if (!heureSelect.equals("Aucune heure sélectionnée")) {
+            List<Player> lHeure = pdao.selectPlayerOfMatchByDayHour(jour, heure);
+            for (Player p : lHeure) lComp.remove(p);
+        }
+        if (!courtSelect.equals("Aucun court sélectionné") && !heureSelect.equals("Aucune heure sélectionnée")) {
+            //listeCourt = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where court = ? et jour = ? et heure = ?));
+            //List<Player> lCourt = pdao.selectPlayerofMatchByCourtHour(court, heure);
+            //for (Player p : lCourt) lComp.remove(p);
+        }
+        for (Player p : lComp) addFen_choiceJ1.addItem(p.getNameSurname());
+        addFen_choiceJ1.select(j1Select);
         
         
         //MAJ J2
-        //ListeComplete = select allPlayer;
-        //listeJoueur = Select * from player where id = ?;
-        //listeHeure = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where heure = ? et jour = ?));
-        //listeCourt = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where court = ? et jour = ? et heure = ?));
-        
-        //for (Player p : listeJoueur) listeComplete.remove(p);
-        //for (Player p : listeHeure) listeComplete.remove(p);
-        //for (Player p : listeCourt) listeComplete.remove(p);
-        //for (Player p : listeComplete) addFen_choiceJ2.addItem(p.getSurname + " " + p.getName);
-        //addFen_choiceJ2.select(j2Select);
+        List<Player> lComp2 = pdao.selectAllPlayer();
+        if (!j1Select.equals("Aucun joueur sélectionné")) {
+            Player lj1 = pdao.selectPlayer(idj1);
+            lComp2.remove(lj1);
+        }
+        if (!heureSelect.equals("Aucune heure sélectionnée")) {
+            List<Player> lHeure = pdao.selectPlayerOfMatchByDayHour(jour, heure);
+            for (Player p : lHeure) lComp2.remove(p);
+        }
+        if (!courtSelect.equals("Aucun court sélectionné") && !heureSelect.equals("Aucune heure sélectionnée")) {
+            //listeCourt = Select * from player where id in (select id from player_match where matchid in (select idmatch from match where court = ? et jour = ? et heure = ?));
+            //List<Player> lCourt = pdao.selectPlayerofMatchByCourtHour(court, heure);
+            //for (Player p : lCourt) lComp2.remove(p);
+        }
+        for (Player p : lComp2) addFen_choiceJ2.addItem(p.getNameSurname());
+        addFen_choiceJ2.select(j2Select);
         
         //MAJ COURT
         List<String> allCourts= new ArrayList<>();
@@ -2645,8 +2689,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         allCourts.add("Court d'entrainement 2");
         allCourts.add("Court d'entrainement 3");
         allCourts.add("Court d'entrainement 4");
-        //int[] listeUse = Select court from match where idmatch in (select idmatch from match where jour = ? et heure = ?);
-        //for (int i = listeUse.size() - 1 ; i >= 0 ; i++) allCourts.remove(listeUse[i]);
+        if (!heureSelect.equals("Aucune heure sélectionnée")) {
+            MatchDao mdao = DaoFactory.getMatchDao();
+            int[] listeUse = mdao.selectCourtByDayByHour(jour, heure);
+            for (int i = listeUse.length - 1 ; i >= 0 ; i--) allCourts.remove(listeUse[i]);
+        }
         for (String s : allCourts) addFen_choiceCourt.addItem(s);
         addFen_choiceCourt.select(courtSelect);
         
@@ -2657,8 +2704,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         allHeures.add("15h");
         allHeures.add("18h");
         allHeures.add("21h");
-        //int[] listeUse = Select heure from match where idmatch in (select idmatch from match where jour = ? et court = ?);
-        //for (int i = listeUse.size() - 1 ; i >= 0 ; i++) allHeures.remove(listeUse[i]);
+        if (!courtSelect.equals("Aucun court sélectionné")) {
+            MatchDao mdao = DaoFactory.getMatchDao();
+            int[] listeUse = mdao.selectHeureByLieuByDate(jour, court);
+            for (int i = listeUse.length - 1 ; i >= 0 ; i--) allCourts.remove(listeUse[i]);
+        }
         for (String s : allHeures) addFen_choiceHeure.addItem(s);
         addFen_choiceCourt.select(heureSelect);
         
@@ -2701,10 +2751,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         //Affichage arbitre
         RefereeDao rdao = DaoFactory.getRefereeDao();
-        //Referee r1 = rdao.selectReferee(m.getIdArbitreChaise());
-        //Referee r2 = rdao.selectReferee(m.getIdArbitreFilet());
-        //moreInfo_lbA1.setText(r1.getNameSurname());
-        //moreInfo_lbA2.setText(r2.getNameSurname());
+        Referee r1 = rdao.selectReferee(m.getIdArbitreChaise());
+        Referee r2 = rdao.selectReferee(m.getIdArbitreFilet());
+        moreInfo_lbA1.setText(r1.getNameSurname());
+        moreInfo_lbA2.setText(r2.getNameSurname());
         
         //Affichage ramasseurs
     }
