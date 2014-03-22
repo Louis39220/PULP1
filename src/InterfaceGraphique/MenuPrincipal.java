@@ -2632,7 +2632,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             lComp.remove(lj2);
         }
         if (!heureSelect.equals("Aucune heure sélectionnée")) {
-            List<Player> lHeure = pdao.selectPlayerOfMatchByDayHour(jour, heure);
+            List<Player> lHeure = pdao.selectPlayerOfMatchByDayHour(heure, jour);
             for (Player p : lHeure) lComp.remove(p);
         }
         if (!courtSelect.equals("Aucun court sélectionné") && !heureSelect.equals("Aucune heure sélectionnée")) {
@@ -2650,8 +2650,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             lComp2.remove(lj1);
         }
         if (!heureSelect.equals("Aucune heure sélectionnée")) {
-            List<Player> lHeure = pdao.selectPlayerOfMatchByDayHour(jour, heure);
-            for (Player p : lHeure) lComp2.remove(p);
+            List<Player> lHeure = pdao.selectPlayerOfMatchByDayHour(heure, jour);
+            for (Player p : lHeure) {
+                lComp2.remove(p);
+            }
         }
         if (!courtSelect.equals("Aucun court sélectionné") && !heureSelect.equals("Aucune heure sélectionnée")) {
             List<Player> lCourt = pdao.selectPlayerofMatchByCourtByDayByHour(court, jour, heure);
@@ -2671,7 +2673,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (!heureSelect.equals("Aucune heure sélectionnée")) {
             MatchDao mdao = DaoFactory.getMatchDao();
             int[] listeUse = mdao.selectCourtByDayByHour(jour, heure);
-            for (int i = listeUse.length - 1 ; i >= 0 ; i--) allCourts.remove(listeUse[i]);
+            if (listeUse.length > 0) {
+                for (int i = listeUse.length - 1 ; i >= 0 ; i--) allCourts.remove(listeUse[i]-1);
+            }
         }
         for (String s : allCourts) addFen_choiceCourt.addItem(s);
         addFen_choiceCourt.select(courtSelect);
@@ -2686,7 +2690,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (!courtSelect.equals("Aucun court sélectionné")) {
             MatchDao mdao = DaoFactory.getMatchDao();
             int[] listeUse = mdao.selectHeureByLieuByDate(jour, court);
-            for (int i = listeUse.length - 1 ; i >= 0 ; i--) allCourts.remove(listeUse[i]);
+            if (listeUse.length > 0) {
+                for (int i = listeUse.length - 1 ; i >= 0 ; i--) allCourts.remove(listeUse[i]+"h");
+            }
         }
         for (String s : allHeures) addFen_choiceHeure.addItem(s);
         addFen_choiceCourt.select(heureSelect);

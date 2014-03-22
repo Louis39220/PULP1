@@ -345,18 +345,18 @@ public class MatchDaoImpl implements MatchDao {
         ResultSet rs = null;
         int tab[] = null;
         int i = 0;
-        Statement st = connexionDB.createStatement();
-        try (PreparedStatement ps = connexionDB.prepareStatement("select matchLieu from pulp.match where matchId in(select matchId from pulp.match where matchDate=? AND matchTrancheHoraire=?)")) {
+        try (PreparedStatement ps = connexionDB.prepareStatement("select matchLieu from pulp.match where matchDate=? AND matchTrancheHoraire=?")) {
             ps.setInt(1, jour);
             ps.setInt(2, heure);
             try {
                 rs = ps.executeQuery();
+                tab = new int [rs.getFetchSize()+1];
+                while (rs.next()) {
+                    tab[i] = rs.getInt(1);
+                    i++;
+                }
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
-            }
-            while (rs.next()) {
-                tab[i] = rs.getInt(1);
-                i++;
             }
         }
         return tab;
@@ -368,18 +368,18 @@ public class MatchDaoImpl implements MatchDao {
         ResultSet rs = null;
         int tab[] = null;
         int i = 0;
-        Statement st = connexionDB.createStatement();
-        try (PreparedStatement ps = connexionDB.prepareStatement("select matchTrancheHoraire from pulp.match where matchId in(select matchId from pulp.match where matchDate=? AND matchLieu=?)")) {
+        try (PreparedStatement ps = connexionDB.prepareStatement("select matchTrancheHoraire from pulp.match where where matchDate=? AND matchLieu=?")) {
             ps.setInt(1, jour);
             ps.setInt(2, lieu);
             try {
                 rs = ps.executeQuery();
+                tab = new int [rs.getFetchSize()+1];
+                while (rs.next()) {
+                    tab[i] = rs.getInt(1);
+                    i++;
+                }
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
-            }
-            while (rs.next()) {
-                tab[i] = rs.getInt(1);
-                i++;
             }
         }
         return tab;
