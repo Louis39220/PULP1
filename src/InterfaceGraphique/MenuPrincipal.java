@@ -1677,8 +1677,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btMatchsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMatchsActionPerformed
-        dispose();
-        gestionMatchs.setVisible(true);
+        try {
+            dispose();
+            gestionMatchs.setVisible(true);
+            afficherMatchs();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btMatchsActionPerformed
 
     private void btVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVIPActionPerformed
@@ -2582,20 +2587,32 @@ public class MenuPrincipal extends javax.swing.JFrame {
         String courtSelect = addFen_choiceCourt.getSelectedItem();
         String heureSelect = addFen_choiceHeure.getSelectedItem();
         
+        String j1name = "";
+        String j1surname = "";
+        if (!j1Select.equals("Aucun joueur sélectionné")) {
+            j1name = j1Select.substring(0, j1Select.indexOf(" "));
+            j1surname = j1Select.substring(j1Select.indexOf(" ") + 1);
+        }
+        String j2name = "";
+        String j2surname = "";
+        if (!j2Select.equals("Aucun joueur sélectionné")) {
+            j2name = j2Select.substring(0, j2Select.indexOf(" "));
+            j2surname = j2Select.substring(j2Select.indexOf(" ") + 1);
+        }
+        
         PlayerDao pdao = DaoFactory.getPlayerDao();
         int idj1 = 0;
+        if (!j1Select.equals("Aucun joueur sélectionné"))
+            idj1 = pdao.SelectIdPlayerByName(j1name, j1surname);
         int idj2 = 0;
+        if (!j2Select.equals("Aucun joueur sélectionné")) 
+            idj2 = pdao.SelectIdPlayerByName(j2name, j2surname);
         int heure = 0;
         if (!heureSelect.equals("Aucune heure sélectionnée")) 
             heure = Integer.valueOf(heureSelect.substring(0, heureSelect.indexOf("h")));
         int court = 0;
         if (!courtSelect.equals("Aucun court sélectionné")) {
-            if (courtSelect.equals("Court central")) court = 1;
-            if (courtSelect.equals("Court annexe")) court = 2;
-            if (courtSelect.equals("Court d'entrainement 1")) court = 3;
-            if (courtSelect.equals("Court d'entrainement 2")) court = 4;
-            if (courtSelect.equals("Court d'entrainement 3")) court = 5;
-            if (courtSelect.equals("Court d'entrainement 4")) court = 6;
+            court = affecteNumCourt(courtSelect);
         }
         
         addFen_choiceJ1.removeAll();

@@ -144,6 +144,7 @@ public class MatchDaoImpl implements MatchDao {
             rs1 = ps1.executeQuery();
             rs1.next();
             lm.add(new Match(rs.getInt(1),rs1.getInt(2), rs1.getInt(3), rs.getInt(3), rs.getInt(4), rs.getInt(2), rs1.getInt(4), rs1.getInt(5), rs1.getInt(6), rs1.getInt(7), rs.getInt(5)));
+            rs1.close();
         }
         rs.close();
         connexionDB.close();
@@ -154,7 +155,7 @@ public class MatchDaoImpl implements MatchDao {
     public List<Match> selectMatchByTerrainByDate(int date, int numTerrain) throws SQLException, IOException {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
-        Match m;
+        ResultSet rs1 = null;
         PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM pulp.match WHERE matchLieu= ? AND matchDate=?");
         PS.setInt(1, numTerrain);
         PS.setInt(2, date);
@@ -162,7 +163,12 @@ public class MatchDaoImpl implements MatchDao {
 
         List<Match> lm = new ArrayList<>();
         while (rs.next()) {
-            lm.add(new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
+            PreparedStatement ps1 = connexionDB.prepareStatement("Select * from pulp.attribmatch where matchId =?");
+            ps1.setInt(1, rs.getInt(1));
+            rs1 = ps1.executeQuery();
+            rs1.next();
+            lm.add(new Match(rs.getInt(1),rs1.getInt(2), rs1.getInt(3), rs.getInt(3), rs.getInt(4), rs.getInt(2), rs1.getInt(4), rs1.getInt(5), rs1.getInt(6), rs1.getInt(7), rs.getInt(5)));
+            rs1.close();
         }
         rs.close();
         connexionDB.close();

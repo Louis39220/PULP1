@@ -49,7 +49,7 @@ public class PlayerDaoImpl implements PlayerDao {
         connexionDB = ConnexionMysqlFactory.getInstance();
         ResultSet rs;
         int res;
-        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT playerId FROM player WHERE playerName= ? AND playerSurname=?")) {
+        try (PreparedStatement PS = connexionDB.prepareStatement("SELECT playerId FROM pulp.player WHERE playerName= ? AND playerSurname=?")) {
             PS.setString(1, name);
             PS.setString(2, surname);
             rs = PS.executeQuery();
