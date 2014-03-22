@@ -39,6 +39,7 @@ public class RefereeDaoImpl implements RefereeDao {
         try (PreparedStatement PS = connexionDB.prepareStatement("SELECT * FROM referee WHERE refereeId= ?")) {
             PS.setInt(1, id);
             rs = PS.executeQuery();
+            rs.next();
             r = new Referee(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6));
         }
         rs.close();

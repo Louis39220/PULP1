@@ -1918,8 +1918,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (!heureChoice.getSelectedItem().equals("Tous") && !courtChoice.getSelectedItem().equals("Tous")) {
             try {
                 int terrain = courtChoice.getSelectedIndex();
-                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
-                        courtChoice.getSelectedItem().indexOf("h")));
+                int heure = Integer.valueOf(heureChoice.getSelectedItem().substring(0, 
+                        heureChoice.getSelectedItem().indexOf("h")));
                 MatchDao mdao = DaoFactory.getMatchDao();
                 Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
                 fenMoreInfo.setVisible(true);
@@ -1943,8 +1943,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         else {
             try {
                 int terrain = 1;
-                int heure = Integer.valueOf(courtChoice.getSelectedItem().substring(0, 
-                        courtChoice.getSelectedItem().indexOf("h")));
+                int heure = Integer.valueOf(heureChoice.getSelectedItem().substring(0, 
+                        heureChoice.getSelectedItem().indexOf("h")));
                 MatchDao mdao = DaoFactory.getMatchDao();
                 Match m = mdao.selectMatchByTerrainByDateByHour(jour, terrain, heure);
                 fenMoreInfo.setVisible(true);
