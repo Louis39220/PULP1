@@ -20,6 +20,8 @@ public interface PlayerDao {
     public Player selectPlayer(int id) throws SQLException, IOException;
 
     public List<Player> selectAllPlayer() throws SQLException, IOException;
+    
+    public int SelectIdPlayerByName(String name, String surname)throws SQLException, IOException;
 
     public boolean insertPlayer(String name, String Surname, String ddn, int rank) throws SQLException, IOException;
 

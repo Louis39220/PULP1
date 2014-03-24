@@ -62,6 +62,27 @@ public abstract class VIP {
         return "\n id=" + id + "\n name=" + name + "\n surname=" + surname + "\n birthDate=" + birthDate ;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final VIP other = (VIP) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
    
     
     
