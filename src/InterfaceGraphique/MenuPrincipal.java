@@ -15,9 +15,11 @@ import DAO.MatchDao;
 import DAO.Match_playerDaoImpl;
 import DAO.PlayerDao;
 import DAO.RefereeDao;
+import DAO.RamasseurDao;
 import entities.Coach;
 import entities.Match;
 import entities.Player;
+import entities.Ramasseur;
 import entities.Referee;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -1911,12 +1913,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btAddActionPerformed
 
     private void addFen_btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFen_btAddActionPerformed
-        addMatch();
+        try {
+            addMatch();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_addFen_btAddActionPerformed
 
     private void fenAddMatchWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_fenAddMatchWindowClosing
-        fenAddMatch.dispose();
-        gestionMatchs.setVisible(true);
+        try {
+            fenAddMatch.dispose();
+            gestionMatchs.setVisible(true);
+            afficherMatchs();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_fenAddMatchWindowClosing
 
     private void match1PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match1PlusActionPerformed
@@ -2291,6 +2302,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             panMatch4.setBorder(new TitledBorder("Court d'entrainement 2"));
             panMatch5.setBorder(new TitledBorder("Court d'entrainement 3"));
             //Mise à jour du label indiquant la sélection
+            lbSelected.setText(heureChoice.getSelectedItem());
             MatchDao mdao = DaoFactory.getMatchDao();
             remplirPlanningHeure(mdao.selectMatchByDateByHour(jour, 
                     Integer.valueOf(heureChoice.getSelectedItem().substring(0, heureChoice.getSelectedItem().indexOf("h")))));
@@ -2310,7 +2322,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem());
             MatchDao mdao = DaoFactory.getMatchDao();
-            System.out.println(heureChoice.getSelectedItem().indexOf("h"));
             remplirPlanningCourts(mdao.selectMatchByTerrainByDate(jour, 
                     affecteNumCourt(courtChoice.getSelectedItem())));
         }
@@ -2326,7 +2337,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             //Mise à jour du label indiquant la sélection
             lbSelected.setText(courtChoice.getSelectedItem() + " - " + heureChoice.getSelectedItem());
             MatchDao mdao = DaoFactory.getMatchDao();
-            System.out.println(heureChoice.getSelectedItem().indexOf("h"));
             remplirPlanningCourtHeure(mdao.selectMatchByDateByHour(jour, 
                     Integer.valueOf(heureChoice.getSelectedItem().substring(0, heureChoice.getSelectedItem().indexOf("h")))));
         }
@@ -2567,7 +2577,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         else JOptionPane.showMessageDialog(this,"Certains champs ne sont pas indiqués !","Attention",JOptionPane.OK_OPTION);
     }
     
-    private void addMatch() {
+    private void addMatch() throws IOException, SQLException {
         if (addFen_choiceJ1.getSelectedItem().equals("Aucun joueur sélectionné") || 
                 addFen_choiceJ2.getSelectedItem().equals("Aucun joueur sélectionné") || 
                 addFen_choiceCourt.getSelectedItem().equals("Aucun court sélectionné") || 
@@ -2578,6 +2588,52 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         else {
             //Création du match
+            String j1Select = addFen_choiceJ1.getSelectedItem();
+            String j2Select = addFen_choiceJ2.getSelectedItem();
+            String courtSelect = addFen_choiceCourt.getSelectedItem();
+            String heureSelect = addFen_choiceHeure.getSelectedItem();
+            
+            String j1name = "";
+            String j1surname = "";
+            if (!j1Select.equals("Aucun joueur sélectionné")) {
+                j1name = j1Select.substring(0, j1Select.indexOf(" "));
+                j1surname = j1Select.substring(j1Select.indexOf(" ") + 1);
+            }
+            String j2name = "";
+            String j2surname = "";
+            if (!j2Select.equals("Aucun joueur sélectionné")) {
+                j2name = j2Select.substring(0, j2Select.indexOf(" "));
+                j2surname = j2Select.substring(j2Select.indexOf(" ") + 1);
+            }
+            
+            PlayerDao pdao = DaoFactory.getPlayerDao();
+            int idj1 = 0;
+            if (!j1Select.equals("Aucun joueur sélectionné"))
+                idj1 = pdao.SelectIdPlayerByName(j1name, j1surname);
+            int idj2 = 0;
+            if (!j2Select.equals("Aucun joueur sélectionné")) 
+                idj2 = pdao.SelectIdPlayerByName(j2name, j2surname);
+            
+            Player p1 = pdao.selectPlayer(idj1);
+            Player p2 = pdao.selectPlayer(idj2);
+            
+            int heure = Integer.valueOf(heureSelect.substring(0, heureSelect.indexOf("h")));
+            int court = affecteNumCourt(courtSelect);
+            
+            RefereeDao rdao = DaoFactory.getRefereeDao();
+            Referee rchaise = rdao.selectRefereeRandomRefereeChaise();
+            Referee rfilet = rdao.selectRefereeRandomRefereeFilet();
+            
+            RamasseurDao radao = DaoFactory.getRamasseurDao();
+            Ramasseur r1 = radao.selectIdRamasseur();
+            Ramasseur r2 = radao.selectIdRamasseur();
+            
+            Match m = new Match(idj1, idj2, jour, heure, court, rchaise.getId(), rfilet.getId(), r1.getId(), r2.getId(), 1);
+            
+            MatchDao mdao = DaoFactory.getMatchDao();
+            mdao.insertMatch(m);
+            
+            initFenAddMatch();
         }
     }
     
@@ -2673,7 +2729,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (!heureSelect.equals("Aucune heure sélectionnée")) {
             MatchDao mdao = DaoFactory.getMatchDao();
             int[] listeUse = mdao.selectCourtByDayByHour(jour, heure);
-            if (listeUse.length > 0) {
+            if (listeUse.length > 1) {
                 for (int i = listeUse.length - 1 ; i >= 0 ; i--) allCourts.remove(listeUse[i]-1);
             }
         }
@@ -2690,7 +2746,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (!courtSelect.equals("Aucun court sélectionné")) {
             MatchDao mdao = DaoFactory.getMatchDao();
             int[] listeUse = mdao.selectHeureByLieuByDate(jour, court);
-            if (listeUse.length > 0) {
+            if (listeUse.length > 1) {
                 for (int i = listeUse.length - 1 ; i >= 0 ; i--) allCourts.remove(listeUse[i]+"h");
             }
         }
@@ -2727,30 +2783,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private void afficherFenMoreInfo(Match m) throws IOException, SQLException {
         //Affichage joueurs
-        PlayerDao pdao = DaoFactory.getPlayerDao();
-        Player p1 = pdao.selectPlayer(m.getIdP1());
-        Player p2 = pdao.selectPlayer(m.getIdP2());
-        moreInfo_lbJoueurs.setText(p1.getNameSurname() + " VS " + p2.getNameSurname());
-        
-        //Affichage heure et terrain
-        String court = null;
-        switch (m.getIdTerrain()) {
-            case 1: court = "Court central"; break;
-            case 2: court = "Court annexe"; break;
-            case 3: court = "Court d'entrainement 1"; break; 
-            case 4: court = "Court d'entrainement 2"; break;
-            case 5: court = "Court d'entrainement 3"; break; 
-            case 6: court = "Court d'entrainement 4"; break; 
+        if (m != null) {
+            PlayerDao pdao = DaoFactory.getPlayerDao();
+            Player p1 = pdao.selectPlayer(m.getIdP1());
+            Player p2 = pdao.selectPlayer(m.getIdP2());
+            moreInfo_lbJoueurs.setText(p1.getNameSurname() + " VS " + p2.getNameSurname());
+
+            //Affichage heure et terrain
+            String court = null;
+            switch (m.getIdTerrain()) {
+                case 1: court = "Court central"; break;
+                case 2: court = "Court annexe"; break;
+                case 3: court = "Court d'entrainement 1"; break; 
+                case 4: court = "Court d'entrainement 2"; break;
+                case 5: court = "Court d'entrainement 3"; break; 
+                case 6: court = "Court d'entrainement 4"; break; 
+            }
+            moreInfo_lbHeureTerrain.setText(m.getHeure() + "h - " + court);
+
+            //Affichage arbitre
+            RefereeDao rdao = DaoFactory.getRefereeDao();
+            Referee r1 = rdao.selectReferee(m.getIdArbitreChaise());
+            Referee r2 = rdao.selectReferee(m.getIdArbitreFilet());
+            moreInfo_lbA1.setText(r1.getNameSurname());
+            moreInfo_lbA2.setText(r2.getNameSurname());
+
+            //Affichage ramasseurs
+            RamasseurDao radao = DaoFactory.getRamasseurDao();
+            Ramasseur ram1 = radao.selectRamasseur(m.getIdTeamRamasseur1());
+            Ramasseur ram2 = radao.selectRamasseur(m.getIdTeamRamasseur2());
+            moreInfo_lbR1.setText(ram1.getNom());
+            moreInfo_lbR2.setText(ram2.getNom());
         }
-        moreInfo_lbHeureTerrain.setText(m.getHeure() + "h - " + court);
-        
-        //Affichage arbitre
-        RefereeDao rdao = DaoFactory.getRefereeDao();
-        Referee r1 = rdao.selectReferee(m.getIdArbitreChaise());
-        Referee r2 = rdao.selectReferee(m.getIdArbitreFilet());
-        moreInfo_lbA1.setText(r1.getNameSurname());
-        moreInfo_lbA2.setText(r2.getNameSurname());
-        
-        //Affichage ramasseurs
     }
 }

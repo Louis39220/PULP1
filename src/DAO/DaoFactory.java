@@ -50,4 +50,9 @@ public class DaoFactory{
         conn = ConnexionMysqlFactory.getInstance();
         return new Match_playerDaoImpl(conn);
     }
+    
+    public static RamasseurDaoImpl getRamasseurDao() throws IOException, SQLException{
+        conn = ConnexionMysqlFactory.getInstance();
+        return new RamasseurDaoImpl(conn);
+    }
 }

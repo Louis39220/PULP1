@@ -368,7 +368,7 @@ public class MatchDaoImpl implements MatchDao {
         ResultSet rs = null;
         int tab[] = null;
         int i = 0;
-        try (PreparedStatement ps = connexionDB.prepareStatement("select matchTrancheHoraire from pulp.match where where matchDate=? AND matchLieu=?")) {
+        try (PreparedStatement ps = connexionDB.prepareStatement("select matchTrancheHoraire from pulp.match where matchDate=? AND matchLieu=?")) {
             ps.setInt(1, jour);
             ps.setInt(2, lieu);
             try {

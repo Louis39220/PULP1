@@ -185,4 +185,69 @@ public class RefereeDaoImpl implements RefereeDao {
         return res;
     }
 
+    @Override
+    public int selectNbMatch(int id) throws SQLException, IOException {
+        connexionDB = ConnexionMysqlFactory.getInstance();
+        ResultSet rs;
+        Statement st = connexionDB.createStatement();
+        int res = -1;
+        try (PreparedStatement PS = connexionDB.prepareStatement("INSERT refereeNbMatch FROM pulp.referee WHERE refereeId = ?")) {
+            PS.setInt(1, id);
+            try {
+                rs = PS.executeQuery();
+                rs.next();
+                res = rs.getInt(1);
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+                PS.cancel();
+            }
+            PS.close();
+            connexionDB.close();
+        }
+        return res;
+    }
+    
+    @Override
+     public Referee selectRefereeRandomRefereeChaise()throws SQLException, IOException {
+        connexionDB = ConnexionMysqlFactory.getInstance();
+        ResultSet rs;
+        Statement st = connexionDB.createStatement();
+        rs = st.executeQuery("SELECT * FROM referee WHERE refereeCategorie='chaise' AND refereeNbMatch < 4");
+        Random rand = new Random(); 
+        List<Referee> lr = new ArrayList<>();
+        Referee ref = null;
+        while(rs.next()){
+            lr.add(new Referee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)));
+        }
+        int alea;
+        
+        alea = rand.nextInt(lr.size());
+        ref = lr.get(alea);
+        
+        rs.close();
+        connexionDB.close();
+        return ref;
+     }
+    
+    @Override
+     public Referee selectRefereeRandomRefereeFilet()throws SQLException, IOException {
+        connexionDB = ConnexionMysqlFactory.getInstance();
+        ResultSet rs;
+        Statement st = connexionDB.createStatement();
+        rs = st.executeQuery("SELECT * FROM referee WHERE refereeCategorie='filet' AND refereeNbMatch < 4");
+        Random rand = new Random(); 
+        List<Referee> lr = new ArrayList<>();
+        Referee ref = null;
+        while(rs.next()){
+            lr.add(new Referee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)));
+        }
+        int alea;
+        
+        alea = rand.nextInt(lr.size());
+        ref = lr.get(alea);
+        
+        rs.close();
+        connexionDB.close();
+        return ref;
+     }
 }

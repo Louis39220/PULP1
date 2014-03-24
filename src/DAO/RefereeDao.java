@@ -32,4 +32,9 @@ public interface RefereeDao {
 
     public boolean updateReferee(int id, String name, String surname, String ddn, int nbMatch, String categorie) throws SQLException, IOException;
 
+    public int selectNbMatch(int id) throws SQLException, IOException;
+    
+    public Referee selectRefereeRandomRefereeChaise()throws SQLException, IOException;
+    
+    public Referee selectRefereeRandomRefereeFilet()throws SQLException, IOException;
 }
