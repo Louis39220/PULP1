@@ -1891,7 +1891,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_radioBtnTypeRelationActionPerformed
 
     private void btnAjoutConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjoutConsultActionPerformed
-        ajouterRelationActionVIP(tableConsultVIP);
+        ajouterRelationActionVIP();
     }//GEN-LAST:event_btnAjoutConsultActionPerformed
 
     private void menuItemQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemQuitterActionPerformed
@@ -2549,7 +2549,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private void ajouterRelationActionVIP(JTable table) {
+    private void ajouterRelationActionVIP() {
         if(radioBtnTypeRelation.isSelected() && !txtFieldDescriptif.getText().equals(""))
         {
             ((DefaultTableModel)tableConsultVIP.getModel()).addRow(new Object[]{"Relation",txtFieldDescriptif.getText(),comboBoxProtagoniste1.getSelectedItem()});
